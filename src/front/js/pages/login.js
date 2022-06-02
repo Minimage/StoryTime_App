@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { userContext } from "./global_context";
 
 export const Login = () => {
   //  useHistory is a hook that allows us to change pages
   //  and I have this bound to the onClick bellow
-  let history = useHistory();
+  let history = useNavigate();
 
   const { auth, setAuth } = useContext(userContext);
 
