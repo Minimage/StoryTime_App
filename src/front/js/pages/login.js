@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
 
 export const Login = () => {
@@ -8,15 +8,22 @@ export const Login = () => {
   let history = useNavigate();
 
   const { auth, setAuth } = useContext(userContext);
+  const navagate = useNavigate();
+  const location = useLocation();
 
   return (
     <div>
       <input type="text" placeholder="Username"></input>
       <input type="text" placeholder="Password"></input>
+
       <button
         onClick={() => {
           setAuth(true);
-          history.push("/user/1");
+          if (location.state?.from) {
+            navagate(location.state.from);
+          } else {
+            history("/user/1");
+          }
         }}
       >
         Submit

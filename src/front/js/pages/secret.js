@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 
 export const Secret = () => {
   const { auth, setAuth } = useContext(userContext);
-  const location = useLocation;
+  const location = useLocation();
   if (!auth) {
     return <Navigate to={"/Login"} replace state={{ from: location }} />;
   }
