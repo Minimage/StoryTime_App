@@ -9,3 +9,9 @@
   visibility: visible;
   display: block;
 }
+
+.profile {
+  width: 10%;
+  height: 100%;
+  float: right;
+}
