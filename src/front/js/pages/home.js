@@ -13,12 +13,7 @@ export const Home = () => {
     //This will be the home page that is displayed if the user is not logged in
     return (
       <div className="text-center mt-5">
-        <h1>Home Page</h1>
-        <Link to="/Login">
-          <span className="navbar-brand mb-0 h1" style={{ color: "" }}>
-            Login
-          </span>
-        </Link>
+        <h1>Welcome to StoryTime</h1>
       </div>
     );
   }
