@@ -1,6 +1,11 @@
-.login {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: #34d54f;
+/* Specifically for the login page */
+
+.hide {
+  visibility: hidden;
+  display: none;
+}
+
+.show {
+  visibility: visible;
+  display: block;
 }
