@@ -11,7 +11,7 @@ export const Learning = () => {
     return <Navigate to={"/Login"} />;
   }
   return (
-    <div>
+    <div className="learning">
       <h1>Page for learning</h1>
     </div>
   );
