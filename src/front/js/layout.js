@@ -16,6 +16,7 @@ import { Learning } from "./pages/learning";
 import { Secret } from "./pages/secret";
 import { Login } from "./pages/login";
 import { NotFound } from "./pages/notfound";
+import { Signup } from "./pages/signup";
 
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
@@ -40,6 +41,7 @@ const Layout = () => {
               <Route path="/user/:id" element={<User />} />
               <Route path="/learning" element={<Learning />} />
               <Route path="/secret" element={<Secret />} />
+              <Route path="/signup" element={Signup} />
 
               {/* <Route element={<h1>Not found!</h1>}></Route> */}
               <Route path="*" element={<NotFound />} />

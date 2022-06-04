@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
+import { Helmet } from "react-helmet";
+import "../../styles/login.css";
 
 export const Login = () => {
   //  useHistory is a hook that allows us to change pages
@@ -12,7 +14,7 @@ export const Login = () => {
   const location = useLocation();
 
   return (
-    <div>
+    <div className="login">
       <input type="text" placeholder="Username"></input>
       <input type="text" placeholder="Password"></input>
 
