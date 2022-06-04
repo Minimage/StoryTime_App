@@ -21,7 +21,7 @@ import { Signup } from "./pages/signup";
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
   //  to bypass login in and just going straigt to the userpage
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   const [isTeacher, setIsTeacher] = useState(true);
 
@@ -41,7 +41,7 @@ const Layout = () => {
               <Route path="/user/:id" element={<User />} />
               <Route path="/learning" element={<Learning />} />
               <Route path="/secret" element={<Secret />} />
-              <Route path="/signup" element={Signup} />
+              <Route path="/signup" element={<Signup />} />
 
               {/* <Route element={<h1>Not found!</h1>}></Route> */}
               <Route path="*" element={<NotFound />} />
