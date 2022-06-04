@@ -13,7 +13,7 @@ export const User = () => {
     return <Navigate to={"/Login"} />;
   }
   return (
-    <div>
+    <div className="user">
       <h1>Welcome to the User Page</h1>
     </div>
   );
