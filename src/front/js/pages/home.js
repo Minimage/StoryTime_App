@@ -10,25 +10,37 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   if (!auth) {
-    //This will be the home page that is displayed if the user is not logged in
+    //User NOT Logged In
     return (
       <div className="text-center mt-5">
         <h1>Welcome to StoryTime</h1>
       </div>
     );
   }
-  //This is the home page for if the user is logged in
+
+  //User Logged In
   return (
-    <div>
-      <h1>Welcome (Username)</h1>
-      <h1>hello</h1>
-      <button
-        onClick={() => {
-          setAuth(false);
-        }}
-      >
-        Log Out
-      </button>
+    <div className="container">
+      <div className="heading text-center mt-3">
+        <h1>Welcome (Username)</h1>
+        <button
+          onClick={() => {
+            setAuth(false);
+          }}
+        >
+          Log Out
+        </button>
+      </div>
+
+      <div className="row mt-5">
+        <div className="col-md-8 col-sm-12 section1 bg-secondary">
+          <h1>hello world</h1>
+        </div>
+
+        <div className="col-md-4 col-lg-4 d-none d-md-block ">
+          <h1>Pannel</h1>
+        </div>
+      </div>
     </div>
   );
 };
