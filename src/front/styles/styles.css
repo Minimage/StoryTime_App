@@ -70,3 +70,7 @@
 .fade.in {
   opacity: 1;
 }
+
+.login {
+  margin-top: 100px;
+}
