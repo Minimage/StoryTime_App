@@ -24,7 +24,7 @@ export const Login = () => {
           if (location.state?.from) {
             navagate(location.state.from);
           } else {
-            history("/user/1");
+            history("/");
           }
         }}
       >

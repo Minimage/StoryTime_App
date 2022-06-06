@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { userContext } from "./global_context";
 import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import image from "../../img/hero-img.png";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -10,30 +11,39 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   if (!auth) {
-    //This will be the home page that is displayed if the user is not logged in
+    //User NOT Logged In
     return (
-      <div className="text-center mt-5">
-        <h1>Home Page</h1>
-        <Link to="/Login">
-          <span className="navbar-brand mb-0 h1" style={{ color: "" }}>
-            Login
-          </span>
-        </Link>
+      <div id="hero">
+        <div class="container ">
+          <div class="row d-flex align-items-center">
+            <div
+              class="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
+              data-aos="fade-right"
+            >
+              <h1>Learn Mandarin with StoryTime</h1>
+              <h2>
+                We are team of talented designers making websites with Bootstrap
+              </h2>
+              <a href="#about" class="btn-get-started scrollto">
+                Get Started
+              </a>
+            </div>
+            <div
+              class="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
+              data-aos="fade-left"
+            >
+              <img src={image} class="img-fluid fade in" alt="" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
-  //This is the home page for if the user is logged in
+
+  //User Logged In
   return (
-    <div>
-      <h1>Welcome (Username)</h1>
-      <h1>hello</h1>
-      <button
-        onClick={() => {
-          setAuth(false);
-        }}
-      >
-        Log Out
-      </button>
+    <div className="text-center mt-5">
+      <h1>Welcome to StoryTime</h1>
     </div>
   );
 };
