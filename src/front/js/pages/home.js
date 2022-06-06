@@ -23,11 +23,12 @@ export const Home = () => {
                 class="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
                 data-aos="fade-right"
               >
-                <Transform enterTransform="translateX(50px)" in>
-                  <h1>Learn Mandarin with StoryTime</h1>
+                <Transform enterTransform="translateX(40px)" in>
+                  <h1>Ever had a hard time learning something new?</h1>
                   <h2>
-                    We are team of talented designers making websites with
-                    Bootstrap
+                    Story Time is a fun and innovative way to help trigger yours
+                    <br></br>Memory to request words and everything you've
+                    learned
                   </h2>
                   <a href="#about" class="btn-get-started scrollto">
                     Get Started
