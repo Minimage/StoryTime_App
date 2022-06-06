@@ -6,6 +6,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Fade } from "react-animation-components";
 import { Transform } from "react-animation-components";
 import image from "../../img/hero-img.png";
+import { Signup } from "./signup";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -30,9 +31,11 @@ export const Home = () => {
                     <br></br>Memory to request words and everything you've
                     learned
                   </h2>
-                  <a href="#about" class="btn-get-started scrollto">
-                    Get Started
-                  </a>
+                  <Link to="/signup">
+                    <button type="button" class="btn btn-warning">
+                      Get Started
+                    </button>
+                  </Link>
                 </Transform>
               </div>
               <div
