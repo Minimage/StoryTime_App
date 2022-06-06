@@ -7,6 +7,9 @@ import { Fade } from "react-animation-components";
 import { Transform } from "react-animation-components";
 import image from "../../img/hero-img.png";
 import { Signup } from "./signup";
+import { AnimationOnScroll } from "react-animation-on-scroll";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -14,10 +17,14 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   if (!auth) {
+    const [titleRef, titleInView] = useInView({
+      triggerOnce: true,
+      rootMargin: "-100px 0px",
+    });
     //User NOT Logged In
     return (
       <div id="hero">
-        <div class="container ">
+        <div class="container-fluid p-0 ">
           <Fade in>
             <div class="row d-flex align-items-center">
               <div
@@ -48,6 +55,40 @@ export const Home = () => {
               </div>
             </div>
           </Fade>
+
+          {/* Split */}
+
+          <div className="firstSection">
+            <motion.h1
+              animate={{ scale: [0, 1] }}
+              transition={{ duration: 0.5 }}
+            >
+              First section
+            </motion.h1>
+          </div>
+
+          <div className="secondSection">
+            <section id="about" class="about section-bg">
+              <div class="container-fluid p-0">
+                <div class="row gy-4">
+                  <div class="image col-xl-5"></div>
+                  <div class="col-xl-7">
+                    <div class="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
+                      <motion.h1
+                        ref={titleRef}
+                        animate={{ scale: titleInView ? 1 : 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <h1 className="mt-5" style={{ color: "#3a556e" }}>
+                          Testing text
+                        </h1>
+                      </motion.h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     );

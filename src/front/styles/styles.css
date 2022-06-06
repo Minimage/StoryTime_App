@@ -74,3 +74,17 @@
 .login {
   margin-top: 100px;
 }
+
+.section-bg {
+  margin-top: 400px;
+  background: linear-gradient(180deg, #e3ebf2 0%, #fff 100%);
+}
+
+.secondh1 {
+  margin-top: 400px;
+  color: red;
+}
+
+secondSection {
+  height: 100vh;
+}
