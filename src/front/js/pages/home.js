@@ -80,6 +80,16 @@ export const Home = () => {
                         <h1 className="mt-5" style={{ color: "#3a556e" }}>
                           Testing text
                         </h1>
+{/* ___________________________________________________________________________________________________________*/}
+                        <div className="Pronounciation">
+                          {store.audioLink.audio &&
+                            <audio controls>
+                              <source src={store.audioLink.audio} type="audio/ogg" />
+
+                            </audio>
+                          }
+{/* ___________________________________________________________________________________________________________*/}
+                        </div>
                       </motion.h1>
                     </div>
                   </div>

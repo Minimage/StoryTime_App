@@ -13,14 +13,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+//____________________________________________________________________________________________________________
+			audioLink: ''
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
 
+			//This function will give us a button to play pronounciations.
+			getAudio: (word) => {
+				fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+					.then(resp => resp.json())
+					.then(data => {
+						let audio = data[0].phonetics.find((item) => {
+							if (item.audio != '') {
+								return item.audio
+							}
+						})
+						setStore({ audioLink: audio })
+					})
+					.catch(error => console.log("Error loading message from backend", error));
+			},
+//____________________________________________________________________________________________________________
 			getMessage: () => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
