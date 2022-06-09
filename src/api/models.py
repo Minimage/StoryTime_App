@@ -54,3 +54,26 @@ class Favorites(db.Model):
         }
 
 # _______________________________________________________________________________________________
+
+class Words(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    word = db.Column(db.String(50), unique=True, nullable=False)
+    phonetic = db.Column(db.String(50), unique=True, nullable=False)
+    mandarin = db.Column(db.String(150), unique=True, nullable=False)
+    phoneticM = db.Column(db.String(150), unique=True, nullable=False)
+    
+    
+    def __repr__(self):
+        return f'<Words {self.id}>'
+    
+    def serialize(self):
+        return {
+        "id" : self.id,
+        "word" : self.word,
+        "phonetic" : self.phonetic,
+        "mandarin" : self.mandarin,
+        "phoneticM" : self.phoneticM,
+               
+    }
+        
+# _______________________________________________________________________________________________
