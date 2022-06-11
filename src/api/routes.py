@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, request
-from api.models import db, User, Account, Favorites, Words
+from api.models import db, User, Account, Favorites, Words, Lesson
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
@@ -8,8 +8,8 @@ from argon2 import PasswordHasher
 ph = PasswordHasher()
 api = Blueprint('api', __name__)
 
-
 #____________________________________________________________________________________________________
+
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -31,8 +31,12 @@ def register():
 # Working on this code
 
 @api.route('/user', methods=['POST', 'GET', 'DELETE'])
+@jwt_required()
 def user():
     
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+
     response_body = {
         "message": "user"
     }
@@ -126,14 +130,20 @@ def words():
 # @api.route('/forwarded_resp', methods=['GET'])
 # def forward_resp():
 #     resp = requests.get(
-#         'https://httpbin.org/get'
+#         'https://api.dictionaryapi.dev/api/v2/entries/en/'
 #     ).json()
 #     return jsonify(resp)
 
 # @api.route('/forwarded_resp/<string:word>', methods=['GET'])
 # def accepting_args(word):
 #     resp = requests.get(
-#         'https://httpbin.org/base64/{}'.format(word)
+#         'https://api.dictionaryapi.dev/api/v2/entries/en/{}'.format(word)
 #     ).text
 #     print(resp)
 #     return jsonify(resp)
+#_________________________________________________________________________
+
+@api.route("/lesson/<int:id>")
+def get_lesson(id):
+    lesson = Node.query.filter_by(id=id).one_or_none()
+    return jsonify(lesson.serialize()), 200
