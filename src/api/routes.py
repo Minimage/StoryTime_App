@@ -33,6 +33,8 @@ def register():
 @api.route('/user', methods=['POST', 'GET', 'DELETE'])
 @jwt_required()
 def user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
     
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
