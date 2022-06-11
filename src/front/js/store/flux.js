@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      audioLink: "",
       message: null,
       word: [],
       users: [],
@@ -22,7 +23,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
-
       getMessage: () => {
         // fetching data from the backend
         fetch(process.env.BACKEND_URL + "/api/hello")
@@ -38,20 +38,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ word: data }))
           .catch((error) => console.error("error loading from the backend"));
       },
-      changeColor: (index, color) => {
-        //get the store
-        const store = getStore();
-
-        //we have to loop the entire demo array to look for the respective index
-        //and change its color
-        const demo = store.demo.map((elm, i) => {
-          if (i === index) elm.background = color;
-          return elm;
-        });
-
-        //reset the global store
-        setStore({ demo: demo });
+      getAudio: (word) => {
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+          .then((resp) => resp.json())
+          .then((data) => {
+            let audio = data[0].phonetics.find((item) => {
+              if (item.audio != "") {
+                return item.audio;
+              }
+            });
+            setStore({ audioLink: audio });
+          })
+          .catch((error) =>
+            console.log("Error loading message from backend", error)
+          );
       },
+      //____________________________________________________________________________________________________________
     },
   };
 };
