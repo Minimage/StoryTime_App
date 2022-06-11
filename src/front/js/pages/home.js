@@ -22,11 +22,11 @@ export const Home = () => {
     //User NOT Logged In
     return (
       <div id="hero">
-        <div class="container-fluid p-0 ">
+        <div className="container-fluid p-0 ">
           <Fade in>
-            <div class="row d-flex align-items-center">
+            <div className="row d-flex align-items-center">
               <div
-                class="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
+                className="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
                 data-aos="fade-right"
               >
                 <Transform enterTransform="translateX(40px)" in>
@@ -37,18 +37,18 @@ export const Home = () => {
                     learned
                   </h2>
                   <Link to="/signup">
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       Get Started
                     </button>
                   </Link>
                 </Transform>
               </div>
               <div
-                class="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
+                className="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
                 data-aos="fade-left"
               >
                 <Transform enterTransform="translateX(-30px)" in>
-                  <img src={image} class="img-fluid fade in" alt="" />
+                  <img src={image} className="img-fluid fade in" alt="" />
                 </Transform>
               </div>
             </div>
@@ -66,29 +66,28 @@ export const Home = () => {
           </div>
 
           <div className="secondSection">
-            <section id="about" class="about section-bg">
-              <div class="container-fluid p-0">
-                <div class="row gy-4">
-                  <div class="image col-xl-5"></div>
-                  <div class="col-xl-7">
-                    <div class="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
+            <section id="about" className="about section-bg">
+              <div className="container-fluid p-0">
+                <div className="row gy-4">
+                  <div className="image col-xl-5"></div>
+                  <div className="col-xl-7">
+                    <div className="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
                       <motion.h1
                         ref={titleRef}
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <h1 className="mt-5" style={{ color: "#3a556e" }}>
-                          Testing text
-                        </h1>
-{/* ___________________________________________________________________________________________________________*/}
+                        {/* ___________________________________________________________________________________________________________*/}
                         <div className="Pronounciation">
-                          {store.audioLink.audio &&
+                          {store.audioLink.audio && (
                             <audio controls>
-                              <source src={store.audioLink.audio} type="audio/ogg" />
-
+                              <source
+                                src={store.audioLink.audio}
+                                type="audio/ogg"
+                              />
                             </audio>
-                          }
-{/* ___________________________________________________________________________________________________________*/}
+                          )}
+                          {/* ___________________________________________________________________________________________________________*/}
                         </div>
                       </motion.h1>
                     </div>
