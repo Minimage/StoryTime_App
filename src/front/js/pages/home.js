@@ -77,18 +77,17 @@ export const Home = () => {
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <h1 className="mt-5" style={{ color: "#3a556e" }}>
-                          Testing text
-                        </h1>
-{/* ___________________________________________________________________________________________________________*/}
+                        {/* ___________________________________________________________________________________________________________*/}
                         <div className="Pronounciation">
-                          {store.audioLink.audio &&
+                          {store.audioLink.audio && (
                             <audio controls>
-                              <source src={store.audioLink.audio} type="audio/ogg" />
-
+                              <source
+                                src={store.audioLink.audio}
+                                type="audio/ogg"
+                              />
                             </audio>
-                          }
-{/* ___________________________________________________________________________________________________________*/}
+                          )}
+                          {/* ___________________________________________________________________________________________________________*/}
                         </div>
                       </motion.h1>
                     </div>
