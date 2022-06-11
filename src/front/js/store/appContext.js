@@ -30,7 +30,7 @@ const injectContext = PassedComponent => {
 			 **/
 			state.actions.getMessage(); // <---- calling this function from the flux.js actions
 //____________________________________________________________________________________________________________			
-			state.actions.getAudio("word")
+			state.actions.getAudio("select")
 //____________________________________________________________________________________________________________
 
 		}, []);

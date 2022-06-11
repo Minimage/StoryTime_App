@@ -19,8 +19,6 @@ cloudinary = "*"
 flask-admin = "*"
 argon2-cffi = "*"
 flask-jwt-extended = "*"
-flask-login = "*"
-flask-wtf = "*"
 
 [requires]
 python_version = "3.8"
