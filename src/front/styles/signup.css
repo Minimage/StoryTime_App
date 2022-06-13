@@ -1,14 +1,9 @@
 #signup_form {
   width: 500px;
   height: 500px;
-
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  margin-top: 150px;
-  /* background-color: blue; */
 }
-input[type="text"],
+
+input[type="password"],
 select {
   width: 100%;
   padding: 12px 20px 20px 20px;

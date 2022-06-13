@@ -1,116 +1,113 @@
 const getState = ({ getStore, getActions, setStore }) => {
+  return {
+    store: {
+      message: null,
+      demo: [
+        {
+          title: "FIRST",
+          background: "white",
+          initial: "white",
+        },
+        {
+          title: "SECOND",
+          background: "white",
+          initial: "white",
+        },
+      ],
+      //____________________________________________________________________________________________________________
 
-	return {
-		store: {
+      audioLink: "",
+      word: [],
+      initializeLesson: {},
+      loadNextLesson: {},
+      current_lesson: { name: undefined, next: null },
+    },
+    actions: {
+      initializeLesson: () => {
+        const store = getStore();
+        if (
+          store.current_lesson.name === undefined ||
+          store.current_lesson.next === null
+        ) {
+          fetch(process.env.BACKEND_URL + "/api/lesson/1")
+            .then((resp) => resp.json())
+            .then((data) => {
+              setStore({ current_lesson: data });
+            })
+            .catch((error) =>
+              console.log("Error loading message from backend", error)
+            );
+        }
+      },
+      loadNextLesson: () => {
+        const store = getStore();
+        fetch(store.current_lesson.next, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":
+              "https://3000-dougmontas-storytimeapp-i24bcll766k.ws-us47.gitpod.io",
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setStore({ current_lesson: data });
+          })
+          .catch((error) => console.log(error, store.current_lesson));
+      },
+      getAudio: (word) => {
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+          .then((resp) => resp.json())
+          .then((data) => {
+            let audio = data[0].phonetics.find((item) => {
+              if (item.audio != "") {
+                return item.audio;
+              }
+            });
+            setStore({ audioLink: audio });
+          })
+          .catch((error) =>
+            console.log("Error loading message from backend", error)
+          );
+      },
+      //____________________________________________________________________________________________________________
+      getMessage: () => {
+        // fetching data from the backend
+        fetch(process.env.BACKEND_URL + "/api/hello")
+          .then((resp) => resp.json())
+          .then((data) => setStore({ message: data.message }))
+          .catch((error) =>
+            console.log("Error loading message from backend", error)
+          );
+      },
+      getWords: () => {
+        // fetching data from the backend
+        fetch(process.env.BACKEND_URL + "/api/word")
+          .then((resp) => resp.json())
+          .then((data) => setStore({ word: data }))
+          .catch((error) =>
+            console.log("Error loading message from backend", error)
+          );
+      },
+      changeColor: (index, color) => {
+        //get the store
+        const store = getStore();
 
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
-			//____________________________________________________________________________________________________________
-			
-			audioLink: '',
-			word: [],
-			initializeLesson: {},
-			loadNextLesson: {},
-			// current_lesson: {},
-			current_lesson: {name: undefined, next: null},
+        //we have to loop the entire demo array to look for the respective index
+        //and change its color
+        const demo = store.demo.map((elm, i) => {
+          if (i === index) elm.background = color;
+          return elm;
+        });
 
+        //reset the global store
+        setStore({ demo: demo });
+      },
+    },
 
-		},
-		actions: {
-			initializeLesson: () => {
-				const store = getStore();
-				if (store.current_lesson.name === undefined || store.current_lesson.next === null) {
-					fetch(process.env.BACKEND_URL + "/api/lesson/1")
-					.then((resp) => resp.json())
-					.then((data) => {
-						setStore({ current_lesson: data });
-					})
-					.catch((error) =>
-						console.log("Error loading message from backend", error)
-					);
-				}
-			},
-			loadNextLesson: () => {
-				const store = getStore();
-				fetch(store.current_lesson.next, {
-					headers:{
-						'Content-Type': 'application/json',
-						'Access-Control-Allow-Origin': 'https://3000-dougmontas-storytimeapp-i24bcll766k.ws-us47.gitpod.io'
-						
+    // Use getActions to call a function within a fuction
 
-					}
-
-				})
-					.then((resp) => resp.json())
-					.then((data) => {
-						setStore({ current_lesson: data });
-					})
-					.catch((error) =>
-						console.log(error, store.current_lesson)
-					);
-			},
-			getAudio: (word) => {
-				fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-					.then(resp => resp.json())
-					.then(data => {
-						let audio = data[0].phonetics.find((item) => {
-							if (item.audio != '') {
-								return item.audio
-							}
-						})
-						setStore({ audioLink: audio })
-					})
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			//____________________________________________________________________________________________________________
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			getWords: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/word")
-					.then(resp => resp.json())
-					.then(data => setStore({ word: data }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		},
-
-		// Use getActions to call a function within a fuction
-
-		//This function will give us a button to play pronounciations.
-			
-	}
+    //This function will give us a button to play pronounciations.
+  };
 };
-
-
 
 export default getState;
