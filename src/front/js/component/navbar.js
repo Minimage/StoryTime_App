@@ -26,7 +26,6 @@ export const Navbar = () => {
             </span>
           </Link>
 
-
           {/* Right now this profile pic is importing it into logo up top
               Going forward we will need to refactor our code to make it 
               pull from the stored profile pic in the back end */}
@@ -39,10 +38,9 @@ export const Navbar = () => {
 
           <div className="ml-auto">
             <Link to="/signup">
-              <div>Sign Up </div>
+              <div>Sign </div>
             </Link>
           </div>
-
         </div>
       </div>
     </nav>
