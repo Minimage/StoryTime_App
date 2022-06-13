@@ -35,7 +35,7 @@ export const Navbar = () => {
 
           <div className="ml-auto">
             <Link to="/signup">
-              <div>Sign </div>
+              <div>Sign up </div>
             </Link>
           </div>
         </div>
