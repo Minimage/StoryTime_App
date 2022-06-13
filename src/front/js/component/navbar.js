@@ -32,6 +32,12 @@ export const Navbar = () => {
               className={auth === false ? "hide" : "show" + " profile"}
             />
           </Link>
+
+          <div className="ml-auto">
+            <Link to="/signup">
+              <div>Sign </div>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
