@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
 		store: {
-			
+
 			message: null,
 			demo: [
 				{
@@ -16,43 +16,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-//____________________________________________________________________________________________________________
+			//____________________________________________________________________________________________________________
+			
 			audioLink: '',
 			word: [],
 			initializeLesson: {},
 			loadNextLesson: {},
+			current_lesson: {name: undefined, next: null},
+
 
 		},
 		actions: {
 			initializeLesson: () => {
 				const store = getStore();
 				if (store.current_lesson.name === undefined || store.current_lesson.next === null) {
-				  fetch(process.env.BACKEND_URL + "/api/lesson/1")
+					fetch(process.env.BACKEND_URL + "/api/lesson/1")
 					.then((resp) => resp.json())
 					.then((data) => {
-					  setStore({ current_lesson: data });
+						setStore({ current_lesson: data });
 					})
 					.catch((error) =>
-					  console.log("Error loading message from backend", error)
+						console.log("Error loading message from backend", error)
 					);
 				}
-			  },
-			  loadNextLesson: () => {
+			},
+			loadNextLesson: () => {
 				const store = getStore();
-				fetch(store.current_lesson.next)
-				  .then((resp) => resp.json())
-				  .then((data) => {
-					setStore({ current_lesson: data });
-				  })
-				  .catch((error) =>
-					console.log(error, store.current_lesson)
-				  );
-			  },
-		},
-			
-			// Use getActions to call a function within a fuction
+				fetch(store.current_lesson.next, {
+					headers:{
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': 'https://3000-dougmontas-storytimeapp-i24bcll766k.ws-us47.gitpod.io'
+						
 
-			//This function will give us a button to play pronounciations.
+					}
+
+				})
+					.then((resp) => resp.json())
+					.then((data) => {
+						setStore({ current_lesson: data });
+					})
+					.catch((error) =>
+						console.log(error, store.current_lesson)
+					);
+			},
 			getAudio: (word) => {
 				fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
 					.then(resp => resp.json())
@@ -66,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-//____________________________________________________________________________________________________________
+			//____________________________________________________________________________________________________________
 			getMessage: () => {
 				// fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
@@ -95,8 +101,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			}
-		}
-	};
+		},
+
+		// Use getActions to call a function within a fuction
+
+		//This function will give us a button to play pronounciations.
+			
+	}
+};
 
 
 
