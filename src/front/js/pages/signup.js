@@ -16,9 +16,7 @@ export const Signup = () => {
   //_____________________________________________________________________
   return (
     <>
-
       <div className="signup_form">
-
         <form action="/api/register" method="POST">
           <label for="fname">First name:</label>
           <input type="text" id="fname" name="fname" />
@@ -30,9 +28,8 @@ export const Signup = () => {
           <input type="password" placeholder="Password"></input>
           <input type="submit" value="Submit" />
         </form>
-      </div >
+      </div>
     </>
-  )
+  );
   //_____________________________________________________________________
-
 };
