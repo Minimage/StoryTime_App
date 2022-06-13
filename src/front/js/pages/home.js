@@ -30,7 +30,7 @@ export const Home = () => {
                 data-aos="fade-right"
               >
                 <Transform enterTransform="translateX(40px)" in>
-                  <h1>Ever had a hard time learning something new?</h1>
+                  <h5>never had a hard time learning something new?</h5>
                   <h2>
                     Story Time is a fun and innovative way to help trigger yours
                     <br></br>Memory to request words and everything you've
@@ -77,6 +77,9 @@ export const Home = () => {
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
+                        <h1 className="mt-5" style={{ color: "#3a556e" }}>
+                          Testing text
+                        </h1>
                         {/* ___________________________________________________________________________________________________________*/}
                         <div className="Pronounciation">
                           {store.audioLink.audio && (
