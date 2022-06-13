@@ -15,23 +15,22 @@ export const Signup = () => {
 
   //_____________________________________________________________________
   return (
+    <div className="container-fluid" id="signup_form">
+      <form action="/action_page.php" method="POST">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" />
 
-    <div className="signup_form">
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" />
 
-    <form action="/action_page.php" method="get">
-      <label for="fname">First name:</label>
-      <input type="text" id="fname" name="fname"/>
-      <label for="lname">Last name:</label>
-      <input type="text" id="lname" name="lname"/>
-      <input type="submit" value="Submit"/>
-    </form> 
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" />
 
-    <input type="text" placeholder="Username"></input>
-    <input type="text" placeholder="Password"></input>
-
+        <input type="text" placeholder="Username"></input>
+        <input type="text" placeholder="Password"></input>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
-
-  )
+  );
   //_____________________________________________________________________
-        
 };
