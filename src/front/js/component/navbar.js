@@ -35,7 +35,7 @@ export const Navbar = () => {
 
           <div className="ml-auto">
             <Link to="/signup">
-              <div>Sign up </div>
+              <div className={auth === true ? "hide" : "show"}>Sign up </div>
             </Link>
           </div>
         </div>
