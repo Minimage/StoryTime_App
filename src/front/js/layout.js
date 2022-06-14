@@ -16,7 +16,7 @@ import { Login } from "./pages/login";
 import { NotFound } from "./pages/notfound";
 import { Signup } from "./pages/signup";
 import { Test } from "./pages/test";
-import { Lesson } from "./pages/lesson";
+import Lesson from "./pages/lesson";
 
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
