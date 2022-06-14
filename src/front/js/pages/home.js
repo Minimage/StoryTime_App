@@ -30,7 +30,7 @@ export const Home = () => {
                 data-aos="fade-right"
               >
                 <Transform enterTransform="translateX(40px)" in>
-                  <h5>never had a hard time learning something new?</h5>
+                  <h1>ever had a hard time learning something new?</h1>
                   <h2>
                     Story Time is a fun and innovative way to help trigger yours
                     <br></br>Memory to request words and everything you've
