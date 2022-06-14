@@ -44,8 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         fetch(store.current_lesson.next, {
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin":
-              "https://3000-dougmontas-storytimeapp-i24bcll766k.ws-us47.gitpod.io",
+            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
           },
         })
           .then((resp) => resp.json())
