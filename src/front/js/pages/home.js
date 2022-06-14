@@ -82,12 +82,15 @@ export const Home = () => {
                         </h1> */}
 {/* ___________________________________________________________________________________________________________*/}
                         <div className="Pronounciation">
-                          {store.audioLink.audio &&
+                          {store.audioLink.audio && (
                             <audio controls>
-                              <source src={store.audioLink.audio} type="audio/ogg" />
-
+                              <source
+                                src={store.audioLink.audio}
+                                type="audio/ogg"
+                              />
                             </audio>
-                          }
+                          )}
+                          {/* ___________________________________________________________________________________________________________*/}
                         </div>
 {/* ___________________________________________________________________________________________________________*/}
                       </motion.h1>

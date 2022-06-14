@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			word: [],
 			initializeLesson: {},
 			loadNextLesson: {},
+			// current_lesson: {},
 			current_lesson: {name: undefined, next: null},
 
 

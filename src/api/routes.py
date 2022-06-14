@@ -9,8 +9,8 @@ from argon2 import PasswordHasher
 ph = PasswordHasher()
 api = Blueprint('api', __name__)
 
-#____________________________________________________________________________________________________
 
+#____________________________________________________________________________________________________
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -38,9 +38,6 @@ def user():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
     
-    user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
-
     response_body = {
         "message": "user"
     }
@@ -134,14 +131,14 @@ def words():
 # @api.route('/forwarded_resp', methods=['GET'])
 # def forward_resp():
 #     resp = requests.get(
-#         'https://api.dictionaryapi.dev/api/v2/entries/en/'
+#         'https://httpbin.org/get'
 #     ).json()
 #     return jsonify(resp)
 
 # @api.route('/forwarded_resp/<string:word>', methods=['GET'])
 # def accepting_args(word):
 #     resp = requests.get(
-#         'https://api.dictionaryapi.dev/api/v2/entries/en/{}'.format(word)
+#         'https://httpbin.org/base64/{}'.format(word)
 #     ).text
 #     print(resp)
 #     return jsonify(resp)

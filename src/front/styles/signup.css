@@ -1,7 +1,5 @@
-#signup_form {
-    width: 500px;
-    height: 500px;
-    
+.signup_form {
+    margin: 1000;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
