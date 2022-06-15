@@ -16,7 +16,7 @@ export const Login = () => {
   return (
     <div className="login">
       <input type="text" placeholder="Username"></input>
-      <input type="text" placeholder="Password"></input>
+      <input type="password" placeholder="Password"></input>
 
       <button
         onClick={() => {

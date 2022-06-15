@@ -31,11 +31,21 @@ export const Navbar = () => {
               src={logo}
               className={auth === false ? "hide" : "show" + " profile"}
             />
+
+            <button
+              className={auth === true ? "show" : "hide"}
+              onClick={() => {
+                setAuth(false);
+              }}
+            >
+              Log Out
+            </button>
           </Link>
 
           <div className="ml-auto">
             <Link to="/signup">
-              <div>Sign up </div>
+              <div className={auth === true ? "hide" : "show"}>Sign up </div>
+
             </Link>
           </div>
         </div>

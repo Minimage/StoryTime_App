@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, url_for, Blueprint, request
-from api.models import db, User, Account, Favorites, Words
+from flask import Flask, request, jsonify, url_for, Blueprint, flash
+from api.models import db, User, Account, Favorites, Words, Lesson
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
+
 
 
 ph = PasswordHasher()
@@ -26,6 +27,7 @@ def register():
     db.session.commit()
 
     return "user registered", 200
+
 
 #_______________________________________________________
 # Working on this code
@@ -140,3 +142,9 @@ def words():
 #     ).text
 #     print(resp)
 #     return jsonify(resp)
+#_________________________________________________________________________
+
+@api.route("/lesson/<int:id>")
+def get_lesson(id):
+    lesson = Lesson.query.filter_by(id=id).one_or_none()
+    return jsonify(lesson.serialize()), 200
