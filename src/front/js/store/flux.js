@@ -21,8 +21,27 @@ const getState = ({ getStore, getActions, setStore }) => {
       initializeLesson: {},
       loadNextLesson: {},
       current_lesson: { name: undefined, next: null },
+      user: null,
     },
     actions: {
+      createUser: (first_name, last_name, email, username, password) => {
+        fetch(process.env.BACKEND_URL + "/api/register", {
+          method:"POST",
+          headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ first_name, last_name, username, email, password })
+          })
+            .then((resp) => resp.json())
+            .then((data) => {
+              // setStore({ user: data });
+              console.log(data);
+            })
+            .catch((error) =>
+              console.log("Error loading message from backend", error)
+            );
+        
+      },
+
+
       initializeLesson: () => {
         const store = getStore();
         if (

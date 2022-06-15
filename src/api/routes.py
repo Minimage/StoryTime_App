@@ -20,13 +20,17 @@ def register():
     user = User(
         email=payload['email'],
         password=ph.hash(payload['password']),
+        username = payload['username'],
+        first_name = payload['first_name'],
+        last_name = payload['last_name'],
         is_active=True
     )
 
     db.session.add(user)
     db.session.commit()
 
-    return "user registered", 200
+    # return "user registered", 200
+    return jsonify(user.serialize()), 200
 
 
 #_______________________________________________________
