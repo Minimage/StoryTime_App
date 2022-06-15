@@ -9,6 +9,7 @@
   /* background-color: blue; */
 }
 input[type="text"],
+input[type="password"],
 select {
   width: 100%;
   padding: 12px 20px 20px 20px;
@@ -18,7 +19,6 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
   text-align: center;
-
 }
 
 /* Style the submit button */
