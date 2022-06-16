@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/display_lesson.css";
 
 const LessonComponent = () => {
     const { store, actions } = useContext(Context);
@@ -7,7 +8,7 @@ const LessonComponent = () => {
     return (
     <div className="mt-5">
         <h1>{store.current_lesson.name}</h1>
-        <button onClick={actions.loadNextLesson}>Next</button>
+        <button className="next" onClick={actions.loadNextLesson}>Next</button>
     </div>)
 }
 

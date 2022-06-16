@@ -50,24 +50,51 @@ def user():
 
 #____________________________________________________________________________________________________
 
-@api.route('/login', methods=['POST'])
-def login():
-    payload = request.get_json()
+# @api.route('/login', methods=['POST'])
+# def login():
+#     payload = request.get_json()
 
-    user = User.query.filter(User.email == payload['email']).first()
+#     user = User.query.filter(User.email == payload['email']).first()
+#     if user is None:
+#         return 'failed-auth', 401
+
+#     try:
+#         ph.verify(user.password, payload['password'])
+
+#     except:1
+#     return 'failed-auth', 401
+
+#     token = create_access_token(identity=user.id)
+
+#     return jsonify({'token': token})
+
+
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    user = get_jwt_identity()
+    search = User.query.filter_by(username=user).first()
+    return jsonify({"user":search.username})
+    
+
+@api.route("/login", methods=["POST"])
+
+def create_token():
+    body = request.get_json()
+    
+    if "username" not in body or body["username"] == "":
+        return "username does not exsist"
+    
+    user = User.query.filter_by(username=body["username"]).first()
+    
+    #if user is not found
     if user is None:
-        return 'failed-auth', 401
-
-    try:
-        ph.verify(user.password, payload['password'])
-
-    except:1
-    return 'failed-auth', 401
-
-    token = create_access_token(identity=user.id)
-
-    return jsonify({'token': token})
-
+        return jsonify({"msg": "Please create an account first"}), 400
+    
+    access_token = create_access_token(identity=body["username"])
+    
+    return jsonify({"token":access_token})
+    
 
 
 #____________________________________________________________________________________________________
@@ -76,13 +103,15 @@ def login():
 @ jwt_required()
 def accounts():
     user_id = get_jwt_identity()
+    current_user_id = get_jwt_identity()
 
     user = User.query.get(user_id)
     accounts = Account.query.filter(Account.user_id == user_id).all()
 
     account_info = {
         "account": [x.serialize() for x in accounts],
-        "user": user.serialize()
+        "user": user.serialize(),
+        "id": user_id.serialize()
     }
 
     return jsonify(account_info)

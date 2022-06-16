@@ -22,24 +22,67 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadNextLesson: {},
       current_lesson: { name: undefined, next: null },
       user: null,
+      key:[]
     },
     actions: {
       createUser: (first_name, last_name, email, username, password) => {
         fetch(process.env.BACKEND_URL + "/api/register", {
-          method:"POST",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ first_name, last_name, username, email, password })
+          body: JSON.stringify({ first_name, last_name, username, email, password })
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            // setStore({ user: data });
+            console.log(data);
           })
-            .then((resp) => resp.json())
-            .then((data) => {
-              // setStore({ user: data });
-              console.log(data);
-            })
-            .catch((error) =>
-              console.log("Error loading message from backend", error)
-            );
-        
-      },
+          .catch((error) =>
+            console.log("Error loading message from backend", error)
+          );
+        },
+        //____________________________________________________________________________________
+        //  protect: (token) => {
+        //   fetch(process.env.BACKEND_URL + "/api/protected", {
+        //     method: "GET",
+        //     headers: {
+        //       Authorization: `Bearer ${token}`
+        //     },
+        //   })
+        //   .then((response) => response.json())
+        //   .then((result) => setStore({key:result}))
+          
+        // },
+
+        login: async (username, password) => {
+          
+          const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username, password})
+          })
+          .then((response) => response.json())
+          // .then((result) => getActions().protect(result.access_token))
+          .catch((error) => console.log("error", error));
+
+          // if (!response.ok) throw Error("There was a problem in the login request")
+
+          // if (response.status === 401) {
+          //   throw ("Invalid credentials")
+          // }
+          // else if (response.status === 400) {
+          //   throw ("Invalid email or password format")
+          // }
+          // const data = await resp.json()
+          // save your token in the localStorage
+          //also you should set your user into the store using the setStore function
+          // localStorage.setItem("jwt-token", data.token);
+
+          // return data
+        },
+        //____________________________________________________________________________________       
+    
 
 
       initializeLesson: () => {

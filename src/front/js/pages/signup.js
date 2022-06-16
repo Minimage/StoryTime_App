@@ -19,6 +19,7 @@ export const Signup = () => {
   const [beginner, setBeginner] = useState(true);
   const [intermediate, setIntermediate] = useState(false);
   // let history = useHistory();
+  // console.log(firstName,lastName,email,userName,password)
 
   console.log(firstName);
 
