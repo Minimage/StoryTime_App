@@ -45,6 +45,7 @@ export const Signup = () => {
       <form>
         <label for="fname">First name:</label>
         <input
+          required
           type="text"
           id="fname"
           placeholder="First Name"
@@ -56,6 +57,7 @@ export const Signup = () => {
 
         <label for="lname">Last name:</label>
         <input
+          required
           type="text"
           id="lname"
           placeholder="Last Name"
@@ -67,6 +69,7 @@ export const Signup = () => {
         ></input>
         <label for="username">Username:</label>
         <input
+          required
           type="text"
           id="username"
           placeholder="Username"
@@ -81,6 +84,7 @@ export const Signup = () => {
           id="password"
           type="password"
           placeholder="Password"
+          required
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -91,8 +95,10 @@ export const Signup = () => {
         <input
           type="text"
           id="email"
-          placeholder="Email"
+          // placeholder="Email"
+          placeholder="✉️ Email"
           name="email"
+          required
           onChange={(e) => {
             setEmail(e.target.value);
           }}

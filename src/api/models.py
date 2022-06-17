@@ -62,16 +62,17 @@ class Favorites(db.Model):
 
 # _______________________________________________________________________________________________
 
-class Words(db.Model):
+class Lesson1_vocab(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    word = db.Column(db.String(50), unique=True, nullable=False)
-    phonetic = db.Column(db.String(50), unique=True, nullable=False)
-    mandarin = db.Column(db.String(150), unique=True, nullable=False)
-    phoneticM = db.Column(db.String(150), unique=True, nullable=False)
-    
+    word = db.Column(db.String(50), unique=False, nullable=False)
+    phonetic = db.Column(db.String(50), unique=False, nullable=False)
+    mandarin = db.Column(db.String(150), unique=False, nullable=False)
+    phoneticM = db.Column(db.String(150), unique=False, nullable=False)
+    images = db.Column(db.String(500), unique=False, nullable=True)
+    part_of_speech = db.Column(db.String(500), unique=False, nullable=True)
     
     def __repr__(self):
-        return f'<Words {self.id}>'
+        return f'<Lesson1_vocab {self.id}>'
     
     def serialize(self):
         return {
@@ -80,6 +81,8 @@ class Words(db.Model):
         "phonetic" : self.phonetic,
         "mandarin" : self.mandarin,
         "phoneticM" : self.phoneticM,
+        "images" : self.images,
+        "part_of_speech" : self.part_of_speech,
                
     }
         
@@ -88,8 +91,8 @@ class Words(db.Model):
 adjacency_relation = db.Table(
     "adjacency_relation",
     db.metadata,
-    db.Column("node_id_parent", db.Integer, db.ForeignKey("lesson.id")),
-    db.Column("node_id_child", db.Integer, db.ForeignKey("lesson.id"))
+    db.Column("node_id_parent", db.Integer, db.ForeignKey("lesson1_vocab.id")),
+    db.Column("node_id_child", db.Integer, db.ForeignKey("lesson1_vocab.id"))
 )
 
 
