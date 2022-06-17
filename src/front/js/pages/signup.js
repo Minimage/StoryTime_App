@@ -57,7 +57,7 @@ export const Signup = () => {
 
         <label for="lname">Last name:</label>
         <input
-          required
+          
           type="text"
           id="lname"
           placeholder="Last Name"
@@ -84,7 +84,7 @@ export const Signup = () => {
           id="password"
           type="password"
           placeholder="Password"
-          required
+          
           onChange={(e) => {
             setPassword(e.target.value);
           }}
@@ -98,7 +98,7 @@ export const Signup = () => {
           // placeholder="Email"
           placeholder="✉️ Email"
           name="email"
-          required
+          
           onChange={(e) => {
             setEmail(e.target.value);
           }}
