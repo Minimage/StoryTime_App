@@ -65,18 +65,18 @@ export const Signup = () => {
           onChange={(e) => {
             setLastName(e.target.value);
           }}
-          required
+          
         ></input>
         <label for="username">Username:</label>
         <input
-          required
+          
           type="text"
           id="username"
           placeholder="Username"
           onChange={(e) => {
             setUserName(e.target.value);
           }}
-          required
+          
         ></input>
 
         <label for="password">Password:</label>
@@ -88,7 +88,7 @@ export const Signup = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          required
+          
         ></input>
 
         <label for="email">Email:</label>
@@ -102,7 +102,7 @@ export const Signup = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          required
+          
         ></input>
 
         <div className="toggle">
@@ -138,7 +138,7 @@ export const Signup = () => {
               userName == "" ||
               password == ""
             ) {
-              alert("email and password cannot be empty");
+              alert("all fields are required");
             } else {
               actions.createUser(
                 firstName,
