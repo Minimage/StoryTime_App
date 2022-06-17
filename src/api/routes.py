@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, flash
-from api.models import db, User, Account, Favorites, Words, Lesson
+from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
@@ -148,11 +148,11 @@ def del_favorites(id):
 
 #____________________________________________________________________________________________________
 # @api.route('/words')
-@api.route('/words', methods=['POST'])
+@api.route('/lesson1_vocab', methods=['POST'])
 def words():
     payload = request.get_json()
     for item in payload:
-        instance = Words(word = item["word"], phonetic = item["phonetic"], mandarin = item["mandarin"], phoneticM = item["phoneticM"])
+        instance = Lesson1_vocab(word = item["word"], phonetic = item["phonetic"], mandarin = item["mandarin"], phoneticM = item["phoneticM"], images = item["images"], part_of_speech = item["part_of_speech"])
         
         db.session.add(instance)
         db.session.commit() 
@@ -177,7 +177,7 @@ def words():
 #     return jsonify(resp)
 #_________________________________________________________________________
 
-@api.route("/lesson/<int:id>")
+@api.route("/lesson1_vocab/<int:id>")
 def get_lesson(id):
-    lesson = Lesson.query.filter_by(id=id).one_or_none()
+    lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
     return jsonify(lesson.serialize()), 200
