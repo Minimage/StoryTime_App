@@ -63,7 +63,8 @@ export const Signup = () => {
           onChange={(e) => {
             setLastName(e.target.value);
           }}
-        />
+          required
+        ></input>
         <label for="username">Username:</label>
         <input
           type="text"
@@ -72,6 +73,7 @@ export const Signup = () => {
           onChange={(e) => {
             setUserName(e.target.value);
           }}
+          required
         ></input>
 
         <label for="password">Password:</label>
@@ -82,6 +84,7 @@ export const Signup = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          required
         ></input>
 
         <label for="email">Email:</label>
@@ -93,7 +96,8 @@ export const Signup = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-        />
+          required
+        ></input>
 
         <div className="toggle">
           <label class="container">
@@ -111,26 +115,36 @@ export const Signup = () => {
               type="checkbox"
               checked={intermediate}
               onClick={intermediateOnChange}
-            />
+              required
+            ></input>
             <span class="checkmark"></span>
           </label>
         </div>
 
-        <Link to="/login">
-          <input
-            type="submit"
-            value="Submit"
-            onClick={() => {
+        <input
+          type="submit"
+          value="Submit"
+          onClick={() => {
+            if (
+              firstName == "" ||
+              lastName == "" ||
+              email == "" ||
+              userName == "" ||
+              password == ""
+            ) {
+              alert("email and password cannot be empty");
+            } else {
               actions.createUser(
                 firstName,
                 lastName,
                 email,
                 userName,
-                password
+                password,
+                navagate("/login")
               );
-            }}
-          />
-        </Link>
+            }
+          }}
+        />
       </form>
     </div>
   );
