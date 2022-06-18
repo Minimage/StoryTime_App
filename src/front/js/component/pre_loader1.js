@@ -15,17 +15,18 @@ export const Preloader1 = () => {
   }, []);
 
   const loading = (
-    <h1>
+    <div className="container">
       <ReactLoading
+        className="m-auto mt-5"
         type={"bars"}
         color={"green"}
         height={"100vh"}
         width={375}
       />
-    </h1>
+    </div>
   );
 
-  const content = <h1>Welcome, this is the content</h1>;
+  //   const content = <h1>Welcome, this is the content</h1>;
 
-  return <>{!done ? loading : content}</>;
+  return <>{!done ? loading : ""}</>;
 };
