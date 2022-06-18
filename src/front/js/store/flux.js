@@ -18,17 +18,67 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       audioLink: "",
       word: [],
-      initializeLesson: {},
-      loadNextLesson: {},
+      // initializeLesson: {},
+      // loadNextLesson: {},
       current_lesson: { name: undefined, next: null },
       user: null,
-      key:[]
+      key: [],
+      token: "null"
     },
     actions: {
+      protect: (token) => {
+          fetch(process.env.BACKEND_URL + "/api/protected", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
+          })
+          .then((response) => response.json())
+          .then((result) => setStore({key:result}))
+        },
+
+      syncTokenSessionStore: () => {
+        const token = sessionStorage.getItem("token")
+        if(store.token && store.token != "" && store.token != undefined)setStore({ token:data.access_token })
+      },
+
+      login: async (username, password) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": process.env.FRONTEND_URL
+          },
+          body: JSON.stringify({
+            "username": username,
+            "password": password
+          })
+        }
+
+        try {
+          const resp = await fetch("https://3001-dougmontas-storytimeapp-x3k9r7vcdrc.ws-us47.gitpod.io/api/login", options)
+          if (resp.status !== 200) {
+            alert("There has been some error!!!")
+            return false
+          }
+          const data = await resp.json()
+          console.log("this came from the backend", data)
+          sessionStorage.setItem("token", data.access_token)
+          setStore({ token: data.access_token })
+          return true
+        }
+        catch (error) {
+          console.error("There has been an error", error)
+        }
+
+      },
+
       createUser: (first_name, last_name, email, username, password) => {
         fetch(process.env.BACKEND_URL + "/api/register", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json",
+                     "Access-Control-Allow-Origin": process.env.FRONTEND_URL
+                   },
           body: JSON.stringify({ first_name, last_name, username, email, password })
         })
           .then((resp) => resp.json())
@@ -39,82 +89,45 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
-        },
-        //____________________________________________________________________________________
-        //  protect: (token) => {
-        //   fetch(process.env.BACKEND_URL + "/api/protected", {
-        //     method: "GET",
-        //     headers: {
-        //       Authorization: `Bearer ${token}`
-        //     },
-        //   })
-        //   .then((response) => response.json())
-        //   .then((result) => setStore({key:result}))
-          
-        // },
-
-        login: async (username, password) => {
-          
-          const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({username, password})
-          })
-          .then((response) => response.json())
-          // .then((result) => getActions().protect(result.access_token))
-          .catch((error) => console.log("error", error));
-
-          // if (!response.ok) throw Error("There was a problem in the login request")
-
-          // if (response.status === 401) {
-          //   throw ("Invalid credentials")
-          // }
-          // else if (response.status === 400) {
-          //   throw ("Invalid email or password format")
-          // }
-          // const data = await resp.json()
-          // save your token in the localStorage
-          //also you should set your user into the store using the setStore function
-          // localStorage.setItem("jwt-token", data.token);
-
-          // return data
-        },
-        //____________________________________________________________________________________       
-    
-
-
-      initializeLesson: () => {
-        const store = getStore();
-        if (
-          store.current_lesson.name === undefined ||
-          store.current_lesson.next === null
-        ) {
-          fetch(process.env.BACKEND_URL + "/api/lesson/1")
-            .then((resp) => resp.json())
-            .then((data) => {
-              setStore({ current_lesson: data });
-            })
-            .catch((error) =>
-              console.log("Error loading message from backend", error)
-            );
-        }
       },
-      loadNextLesson: () => {
-        const store = getStore();
-        fetch(store.current_lesson.next, {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setStore({ current_lesson: data });
-          })
-          .catch((error) => console.log(error, store.current_lesson));
-      },
+      //____________________________________________________________________________________
+
+     
+      // initializeLesson: () => {
+      //   const store = getStore();
+      //   if (
+      //     store.current_lesson.name === undefined ||
+      //     store.current_lesson.next === null
+      //   ) {
+      //     fetch(process.env.BACKEND_URL + "/api/lesson/1"), {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
+      //       },
+      //     }
+      //       .then((resp) => resp.json())
+      //       .then((data) => {
+      //         setStore({ current_lesson: data });
+      //       })
+      //       .catch((error) =>
+      //         console.log("Error loading message from backend", error)
+      //       );
+      //   }
+      // },
+      // loadNextLesson: () => {
+      //   const store = getStore();
+      //   fetch(store.current_lesson.next, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
+      //     },
+      //   })
+      //     .then((resp) => {resp.json()})
+      //     .then((data) => {
+      //       setStore({ current_lesson: data });
+      //     })
+      //     .catch((error) => console.log(error, store.current_lesson));
+      // },
       getAudio: (word) => {
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
           .then((resp) => resp.json())

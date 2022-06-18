@@ -11,9 +11,9 @@ export const Lesson = () => {
   const navagate = useNavigate();
 
   console.log(store.current_lesson);
-  useEffect(() => {
-    actions.initializeLesson();
-  }, []);
+  // useEffect(() => {
+  //   actions.initializeLesson();
+  // }, []);
 
   if (!auth) {
     return <Navigate to={"/Login"} />;

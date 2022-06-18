@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
 import { Helmet } from "react-helmet";
@@ -13,52 +13,48 @@ export const Login = () => {
 
   const { auth, setAuth } = useContext(userContext);
   const navagate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   //________________________________________________________
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { store, actions } = useContext(Context);
   // const history = useHistory();
+  // const token = sessionStorage.getItem("token")
+  // console.log("This is your token", store.token)
+  const handleClick = () => {
+    actions.login(userName, password)
+  }
+  
+  useEffect(() => {
+    if(store.token && store.token == "" && store.token == undefined && store.token == null){
+      navagate("/lesson")
+    }
+  }, [store.token])
 
   return (
-    <div className="login">
-      <input
-        type="text"
-        placeholder="Username"
-        onChange={(e) => {
-          setUserName(e.target.value);
-        }}
-        required
-      ></input>
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        required
-      ></input>
 
-      <button
-        onClick={() => {
-          if (userName == "" && password == "") {
-            alert("email and password cannot be empty");
-          } else if (userName == "" || password == "") {
-            alert("One of the required field are blank");
-          } else {
-            actions.login(userName, password);
-            actions.login(userName, password);
-            setAuth(true);
-            if (location.state?.from) {
-              navagate(location.state.from);
-            } else {
-              history("/lesson");
-            }
-          }
-        }}
-      >
-        Submit
-      </button>
+    <div className="login">
+      {/* {store.token && store.token != "" && store.token != undefined && store.token != null ? "Your are logged in with this token" + store.token : */}
+
+{/* // tenanry expression working in reverse --- do not know how to solve*/}
+      {store.token == null ? `You are logged in using this token ${store.token}`:
+
+        <div>
+
+          <input type="text" placeholder="Username" value={(userName)} onChange={(e) => {
+            setUserName(e.target.value)
+          }} required></input>
+
+          <input type="password" placeholder="Password" value={(password)} onChange={(e) => {
+            setPassword(e.target.value)
+          }} required></input>
+
+
+          <button onClick={handleClick}>Submit</button>
+        </div>
+      }
+
     </div>
   );
-};
+}
+
