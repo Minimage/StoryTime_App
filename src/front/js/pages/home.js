@@ -57,15 +57,6 @@ export const Home = () => {
 
           {/* Split */}
 
-          <div className="firstSection">
-            <motion.h1
-              animate={{ scale: [0, 1] }}
-              transition={{ duration: 0.5 }}
-            >
-              First section
-            </motion.h1>
-          </div>
-
           <div className="secondSection">
             <section id="about" className="about section-bg">
               <div className="container-fluid p-0">
