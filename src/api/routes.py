@@ -78,22 +78,30 @@ def protected():
     
 
 @api.route("/login", methods=["POST"])
-
 def create_token():
-    body = request.get_json()
+    # body = request.get_json()
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+    user = User.query.filter_by(username=username).first()
+    password_hash = ph.hash(password)
+    print(password_hash)
+    print(user.username)
+    print(user.password)
+    # if username != user.username or password_hash != user.password:
+    #     return jsonify({"msg": "Bad user name or password"}), 401
+        
     
-    if "username" not in body or body["username"] == "":
-        return "username does not exsist"
+    # if "username" not in body or body["username"] == "":
+    #     return "username does not exsist"
     
-    user = User.query.filter_by(username=body["username"]).first()
+    #
     
-    #if user is not found
-    if user is None:
-        return jsonify({"msg": "Please create an account first"}), 400
+    # #if user is not found
+    # if user is None:
+    #     return jsonify({"msg": "Please create an account first"}), 400
     
-    access_token = create_access_token(identity=body["username"])
-    
-    return jsonify({"token":access_token})
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token":access_token})
     
 
 
@@ -178,6 +186,13 @@ def words():
 #_________________________________________________________________________
 
 @api.route("/lesson1_vocab/<int:id>")
-def get_lesson(id):
-    lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
+def get_lesson1_vocab(id):
+    lesson1_vocab = Lesson1_vocab.query.filter_by(id=id).one_or_none()
+    return jsonify(lesson.serialize()), 200
+
+
+
+@api.route("/lesson")
+def get_lesson():
+    # lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
     return jsonify(lesson.serialize()), 200

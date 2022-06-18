@@ -1,0 +1,170 @@
+[
+    {
+        "word": "hello",
+        "phonetic": "həˈlō",
+        "mandarin": "你好",
+        "phoneticM": "Nǐ hǎo",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "bye",
+        "phonetic": "bī",
+        "mandarin": "再见",
+        "phoneticM": "Zàijiàn",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "food",
+        "phonetic": "fo͞od",
+        "mandarin": "食物",
+        "phoneticM": "Shíwù",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "toilet",
+        "phonetic": "ˈtoilit",
+        "mandarin": "洗手间",
+        "phoneticM": "Xǐshǒujiā",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "help",
+        "phonetic": "help",
+        "mandarin": "帮助",
+        "phoneticM": "Bāngzhù",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "police",
+        "phonetic": "pəˈlēs",
+        "mandarin": "警察",
+        "phoneticM": "Jǐngchá",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "want",
+        "phonetic": "wänt",
+        "mandarin": "想",
+        "phoneticM": "Xiǎng",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "have",
+        "phonetic": "hav",
+        "mandarin": "有",
+        "phoneticM": "Yǒu",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "like",
+        "phonetic": "līk",
+        "mandarin": "喜欢",
+        "phoneticM": "Xǐhuān",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "no",
+        "phonetic": "nō",
+        "mandarin": "不",
+        "phoneticM": "Bù",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "good",
+        "phonetic": "ɡo͝od",
+        "mandarin": "好的",
+        "phoneticM": "Hǎo de",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "eat",
+        "phonetic": "ēt",
+        "mandarin": "吃",
+        "phoneticM": "Chī",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "drink",
+        "phonetic": "driNGk",
+        "mandarin": "喝",
+        "phoneticM": "Hē",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "water",
+        "phonetic": "ˈwôdər",
+        "mandarin": "水",
+        "phoneticM": "Shuǐ",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "bathroom",
+        "phonetic": "ˈbaTHˌro͞om",
+        "mandarin": "卫生间",
+        "phoneticM": "Wei sheng jian",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "where",
+        "phonetic": "(h)wer",
+        "mandarin": "那里",
+        "phoneticM": "na li",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "bad",
+        "phonetic": "bad",
+        "mandarin": "不好",
+        "phoneticM": "Bu hao",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "this",
+        "phonetic": "T͟His",
+        "mandarin": "这个",
+        "phoneticM": "Zhe ge",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "at",
+        "phonetic": "at",
+        "mandarin": "在",
+        "phoneticM": "zai",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "here",
+        "phonetic": "hir",
+        "mandarin": "这里",
+        "phoneticM": "Zhe li",
+        "images": "as",
+        "part_of_speech": "as"
+    },
+    {
+        "word": "I",
+        "phonetic": "i",
+        "mandarin": "我",
+        "phoneticM": "Wǒ",
+        "images": "as",
+        "part_of_speech": "as"
+    }
+]
