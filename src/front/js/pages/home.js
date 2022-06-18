@@ -13,6 +13,7 @@ import "../../styles/home.css";
 export const Home = () => {
   const { auth, setAuth } = useContext(userContext);
   const { store, actions } = useContext(Context);
+  const { hidden, isHidden } = useContext(userContext);
 
   if (!auth) {
     const [titleRef, titleInView] = useInView({
@@ -21,7 +22,7 @@ export const Home = () => {
     });
     //User NOT Logged In
     return (
-      <div id="hero">
+      <div id="hero" className={!!hidden ? "hide" : "show"}>
         <div className="container-fluid p-0 ">
           <Fade in>
             <div className="row d-flex align-items-center">
