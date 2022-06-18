@@ -17,11 +17,14 @@ import { NotFound } from "./pages/notfound";
 import { Signup } from "./pages/signup";
 import { Test } from "./pages/test";
 import { Lesson } from "./pages/lesson";
+import { Preloader1 } from "./component/pre_loader1";
 
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
   //  to bypass login in and just going straigt to the userpage
   const [auth, setAuth] = useState(false);
+
+  const [hidden, isHidden] = useState(false);
 
   const [isTeacher, setIsTeacher] = useState(true);
 
@@ -33,8 +36,9 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <userContext.Provider value={{ auth, setAuth }}>
+          <userContext.Provider value={{ auth, setAuth, hidden, isHidden }}>
             <Navbar />
+            <Preloader1 />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
