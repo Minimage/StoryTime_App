@@ -43,6 +43,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
       },
 
+      logout: () => {
+        sessionStorage.removeItem("token");
+        setStore({ token: "null" });
+      },
+
       login: async (username, password) => {
         const options = {
           method: "POST",

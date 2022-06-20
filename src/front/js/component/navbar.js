@@ -21,9 +21,10 @@ export const Navbar = () => {
         </Link> */}
 
         <div className="ml-auto">
-          {store.token == "null" &&
-          store.token != "" &&
-          store.token != "undefined" ? (
+          {store.token == "null" ||
+          (store.token == null &&
+            store.token != "" &&
+            store.token != "undefined") ? (
             <Link to="/Login">
               <span
                 className={
@@ -36,7 +37,7 @@ export const Navbar = () => {
           ) : (
             <button
               onClick={() => {
-                setAuth(false);
+                actions.logout();
               }}
             >
               Log Out
