@@ -21,17 +21,27 @@ export const Navbar = () => {
         </Link> */}
 
         <div className="ml-auto">
-          <Link to="/Login">
-            <span
-              className={
-                auth === true ? "hide" : "show" + " btn btn-primary texter"
-              }
+          {store.token == "null" &&
+          store.token != "" &&
+          store.token != "undefined" ? (
+            <Link to="/Login">
+              <span
+                className={
+                  auth === true ? "hide" : "show" + " btn btn-primary texter"
+                }
+              >
+                Login
+              </span>
+            </Link>
+          ) : (
+            <button
+              onClick={() => {
+                setAuth(false);
+              }}
             >
-              Login
-            </span>
-          </Link>
-
-          {store.token == "null" ? "no token" : "token found"}
+              Log Out
+            </button>
+          )}
 
           {/* Right now this profile pic is importing it into logo up top
               Going forward we will need to refactor our code to make it 
@@ -42,15 +52,6 @@ export const Navbar = () => {
               className={auth === false ? "hide" : "show" + " profile"}
             />
           </Link>
-
-          <button
-            className={auth === true ? "show" : "hide"}
-            onClick={() => {
-              setAuth(false);
-            }}
-          >
-            Log Out
-          </button>
 
           <div className="ml-auto">
             <Link to="/signup">
