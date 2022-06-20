@@ -1,11 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../pages/global_context";
+import { Context } from "../store/appContext";
 import logo from "../../img/profile-pic.png";
 import "../../styles/styles.css";
 
 export const Navbar = () => {
   const { auth, setAuth } = useContext(userContext);
+  const { store, actions } = useContext(Context);
+
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
@@ -27,6 +30,8 @@ export const Navbar = () => {
               Login
             </span>
           </Link>
+
+          {store.token == "null" ? "no token" : "token found"}
 
           {/* Right now this profile pic is importing it into logo up top
               Going forward we will need to refactor our code to make it 
