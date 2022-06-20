@@ -37,10 +37,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((result) => setStore({ key: result }));
       },
 
-      syncTokenSessionStore: () => {
+      syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
-        if (store.token && store.token != "" && store.token != undefined)
-          setStore({ token: data.access_token });
+        if (token && token != "" && token != undefined)
+          setStore({ token: token });
       },
 
       login: async (username, password) => {
