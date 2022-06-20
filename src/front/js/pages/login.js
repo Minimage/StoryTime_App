@@ -19,42 +19,81 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const { store, actions } = useContext(Context);
   // const history = useHistory();
-  // const token = sessionStorage.getItem("token")
+  const token = sessionStorage.getItem("token");
   // console.log("This is your token", store.token)
   const handleClick = () => {
-    actions.login(userName, password)
-  }
-  
-  useEffect(() => {
-    if(store.token && store.token == "" && store.token == undefined && store.token == null){
-      navagate("/lesson")
-    }
-  }, [store.token])
+    actions.login(userName, password);
+  };
+
+  // useEffect(() => {
+  //   if (
+  //     store.token &&
+  //     store.token != "" &&
+  //     store.token != undefined &&
+  //     store.token != null
+  //   ) {
+  //     navagate("/lesson");
+  //   }
+  // }, [store.token]);
 
   return (
-
     <div className="login">
-      {/* {store.token && store.token != "" && store.token != undefined && store.token != null ? "Your are logged in with this token" + store.token : */}
-
-{/* // tenanry expression working in reverse --- do not know how to solve*/}
-      {store.token == null ? `You are logged in using this token ${store.token}`:
-
+      {token && token != "" && token != undefined ? (
+        <div>Your are logged in with this token {token}</div>
+      ) : (
         <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            required
+          ></input>
 
-          <input type="text" placeholder="Username" value={(userName)} onChange={(e) => {
-            setUserName(e.target.value)
-          }} required></input>
-
-          <input type="password" placeholder="Password" value={(password)} onChange={(e) => {
-            setPassword(e.target.value)
-          }} required></input>
-
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          ></input>
 
           <button onClick={handleClick}>Submit</button>
         </div>
-      }
+      )}
 
+      {/* // tenanry expression working in reverse --- do not know how to solve */}
+      {/* {store.token == null ? (
+        `You are logged in using this token ${store.token}`
+      ) : (
+        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            required
+          ></input>
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          ></input>
+
+          <button onClick={handleClick}>Submit</button>
+        </div>
+      )} */}
     </div>
   );
-}
-
+};
