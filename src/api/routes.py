@@ -19,7 +19,7 @@ def register():
 
     user = User(
         email=payload['email'],
-        password=ph.hash(payload['password']),
+        password=payload['password'],
         username = payload['username'],
         first_name = payload['first_name'],
         last_name = payload['last_name'],
