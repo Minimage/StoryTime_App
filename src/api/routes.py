@@ -82,26 +82,14 @@ def create_token():
     # body = request.get_json()
     username = request.json.get('username', None)
     password = request.json.get('password', None)
-    user = User.query.filter_by(username=username).first()
-    password_hash = ph.hash(password)
-    print(password_hash)
-    print(user.username)
-    print(user.password)
-    # if username != user.username or password_hash != user.password:
-    #     return jsonify({"msg": "Bad user name or password"}), 401
-        
+    user = User.query.filter_by(username=username).one_or_none()
+    if user:
+        if user.checkpassword(password):
+            access_token = create_access_token(identity=username)
+            return jsonify({"access_token":access_token})
     
-    # if "username" not in body or body["username"] == "":
-    #     return "username does not exsist"
-    
-    #
-    
-    # #if user is not found
-    # if user is None:
-    #     return jsonify({"msg": "Please create an account first"}), 400
-    
-    access_token = create_access_token(identity=username)
-    return jsonify({"access_token":access_token})
+    # tuple
+    return jsonify(msg='failed'),400
     
 
 
