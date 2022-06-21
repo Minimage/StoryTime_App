@@ -25,16 +25,19 @@ export const Login = () => {
     actions.login(userName, password);
   };
 
-  // useEffect(() => {
-  //   if (
-  //     store.token &&
-  //     store.token != "" &&
-  //     store.token != undefined &&
-  //     store.token != null
-  //   ) {
-  //     navagate("/lesson");
-  //   }
-  // }, [store.token]);
+  // This will run everytime the token updates but will only render what we need once the token is valid
+  // or in other words this effect will run when the token is null but wont display anything as we have
+  // it set to do nothing if null
+
+  // this should probably be where i pull user info from the back since when the token changes then I can
+  // also update the user info in one go
+  useEffect(() => {
+    if (
+      (store.token && store.token != null) ||
+      (store.token != "null" && store.token != "" && store.token != undefined)
+    ) {
+    }
+  }, [store.token]);
 
   return (
     <div className="login">
