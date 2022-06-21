@@ -59,8 +59,11 @@ export const Navbar = () => {
           store.token != undefined &&
           store.token != null &&
           store.token != "null" ? (
+            // User signed in
             ""
           ) : (
+            // No User Signed In
+
             <div className="ml-auto">
               <Link to="/signup">
                 <div className={auth === true ? "hide" : "show"}>Sign up </div>
