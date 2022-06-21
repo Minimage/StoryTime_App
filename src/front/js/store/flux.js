@@ -23,23 +23,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       current_lesson: { name: undefined, next: null },
       user: null,
       key: [],
-      token: "null"
+      token: "null",
     },
     actions: {
       protect: (token) => {
-          fetch(process.env.BACKEND_URL + "/api/protected", {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`
-            },
-          })
+        fetch(process.env.BACKEND_URL + "/api/protected", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => response.json())
-          .then((result) => setStore({key:result}))
-        },
+          .then((result) => setStore({ key: result }));
+      },
 
-      syncTokenSessionStore: () => {
-        const token = sessionStorage.getItem("token")
-        if(store.token && store.token != "" && store.token != undefined)setStore({ token:data.access_token })
+      syncTokenFromSessionStore: () => {
+        const token = sessionStorage.getItem("token");
+        if (token && token != "" && token != undefined)
+          setStore({ token: token });
+      },
+
+      logout: () => {
+        sessionStorage.removeItem("token");
+        setStore({ token: "null" });
       },
 
       login: async (username, password) => {
@@ -47,39 +53,47 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": process.env.FRONTEND_URL
+            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
           },
           body: JSON.stringify({
-            "username": username,
-            "password": password
-          })
-        }
+            username: username,
+            password: password,
+          }),
+        };
 
         try {
-          const resp = await fetch("https://3001-dougmontas-storytimeapp-x3k9r7vcdrc.ws-us47.gitpod.io/api/login", options)
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/login",
+            options
+          );
           if (resp.status !== 200) {
-            alert("There has been some error!!!")
-            return false
+            alert("There has been some error!!!");
+            return false;
           }
-          const data = await resp.json()
-          console.log("this came from the backend", data)
-          sessionStorage.setItem("token", data.access_token)
-          setStore({ token: data.access_token })
-          return true
+          const data = await resp.json();
+          console.log("this came from the backend", data);
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token });
+          return true;
+        } catch (error) {
+          console.error("There has been an error", error);
         }
-        catch (error) {
-          console.error("There has been an error", error)
-        }
-
       },
 
       createUser: (first_name, last_name, email, username, password) => {
         fetch(process.env.BACKEND_URL + "/api/register", {
           method: "POST",
-          headers: { "Content-Type": "application/json",
-                     "Access-Control-Allow-Origin": process.env.FRONTEND_URL
-                   },
-          body: JSON.stringify({ first_name, last_name, username, email, password })
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
+          },
+          body: JSON.stringify({
+            first_name,
+            last_name,
+            username,
+            email,
+            password,
+          }),
         })
           .then((resp) => resp.json())
           .then((data) => {
@@ -92,7 +106,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       //____________________________________________________________________________________
 
-     
       // initializeLesson: () => {
       //   const store = getStore();
       //   if (

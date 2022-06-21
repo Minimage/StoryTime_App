@@ -29,8 +29,8 @@ const injectContext = (PassedComponent) => {
        **/
       // 			state.actions.getMessage(); // <---- calling this function from the flux.js actions
       //___________________________________________________________________________________________________________
-       			  state.actions.getAudio("word")
-              // state.actions.syncTokenFromSessionStore()
+      state.actions.getAudio("word");
+      state.actions.syncTokenFromSessionStore();
       //____________________________________________________________________________________________________________
     }, []);
 
