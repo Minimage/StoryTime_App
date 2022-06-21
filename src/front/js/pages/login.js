@@ -21,8 +21,16 @@ export const Login = () => {
   // const history = useHistory();
   const token = sessionStorage.getItem("token");
   // console.log("This is your token", store.token)
+
   const handleClick = () => {
     actions.login(userName, password);
+    if (
+      (store.token && store.token != null) ||
+      (store.token != "null" && store.token != undefined)
+    ) {
+      setUserName("");
+      setPassword("");
+    }
   };
 
   // This will run everytime the token updates but will only render what we need once the token is valid
