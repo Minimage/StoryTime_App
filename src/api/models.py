@@ -1,5 +1,7 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
+from werkzeug.security import generate_password_hash,check_password_hash
 
 db = SQLAlchemy()
 
@@ -10,7 +12,9 @@ class User(db.Model):
     first_name = db.Column(db.String(120), nullable=False)
     last_name = db.Column(db.String(120), nullable=False)
     username = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(275), nullable=False)
+    
+    # password is private and wont be accessable
+    _password = db.Column(db.String(275), nullable=False)
     is_active = db.Column(db.Boolean(), nullable=False)
 
     def __repr__(self):
@@ -25,6 +29,18 @@ class User(db.Model):
             "username": self.username,
             "is_active ": self.is_active
         }
+    
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self,password):
+        self._password = generate_password_hash(password)
+
+    def checkpassword(self,password):
+        return check_password_hash(self.password, password)
+
 # _______________________________________________________________________________________________
 
 
