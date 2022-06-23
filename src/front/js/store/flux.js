@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       current_lesson: { name: undefined, next: null },
       user: null,
       key: [],
-      token: "null",
+      token: null,
     },
     actions: {
       protect: (token) => {
@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       logout: () => {
         sessionStorage.removeItem("token");
-        setStore({ token: "null" });
+        setStore({ token: null });
       },
 
       login: async (username, password) => {
