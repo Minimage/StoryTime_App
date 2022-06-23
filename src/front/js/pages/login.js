@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
 import { Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+
 import "../../styles/styles.css";
 import { Context } from "../store/appContext";
 // import {useNavigate} from 'react-router-dom'
@@ -13,7 +13,7 @@ export const Login = () => {
   let history = useNavigate();
 
   const { auth, setAuth } = useContext(userContext);
-  const navagate = useNavigate();
+  const navigate = useNavigate();
   // const location = useLocation();
   //________________________________________________________
   const [userName, setUserName] = useState("");
@@ -25,10 +25,7 @@ export const Login = () => {
 
   const handleClick = () => {
     actions.login(userName, password);
-    if (
-      (store.token && store.token != null) ||
-      (store.token != "null" && store.token != undefined)
-    ) {
+    if (store.token && store.token !== null && store.token !== undefined) {
       setUserName("");
       setPassword("");
     }
@@ -42,8 +39,10 @@ export const Login = () => {
   // also update the user info in one go
   useEffect(() => {
     if (
-      (store.token && store.token != null) ||
-      (store.token != "null" && store.token != "" && store.token != undefined)
+      store.token &&
+      store.token !== null &&
+      store.token !== "" &&
+      store.token !== undefined
     ) {
     }
   }, [store.token]);
@@ -51,7 +50,7 @@ export const Login = () => {
   return (
     <div className="login">
       {token && token != "" && token != undefined ? (
-        <Navigate to={"/"} />
+        navigate("/")
       ) : (
         <div>
           <input

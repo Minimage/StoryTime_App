@@ -4,11 +4,10 @@ import ScrollToTop from "./component/scrollToTop";
 import { userContext } from "./pages/global_context";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-
+import LessonComponent from "./component/display_lesson";
 import { User } from "./pages/user";
 import { Learning } from "./pages/learning";
 import { Secret } from "./pages/secret";
@@ -25,8 +24,6 @@ const Layout = () => {
   const [auth, setAuth] = useState(false);
 
   const [hidden, isHidden] = useState(false);
-
-  const [isTeacher, setIsTeacher] = useState(true);
 
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -48,6 +45,7 @@ const Layout = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/test" element={<Test />} />
               <Route path="/lesson" element={<Lesson />} />
+              <Route path="/display_lesson" element={<LessonComponent />} />
 
               {/* <Route element={<h1>Not found!</h1>}></Route> */}
               <Route path="*" element={<NotFound />} />
