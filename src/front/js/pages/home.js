@@ -37,11 +37,19 @@ export const Home = () => {
                     <br></br>Memory to request words and everything you've
                     learned
                   </h2>
-                  <Link to="/signup">
-                    <button type="button" className="btn btn-warning">
-                      Get Started
-                    </button>
-                  </Link>
+                  {store.token &&
+                  store.token !== null &&
+                  store.token !== undefined ? (
+                    // Authenticated
+                    ""
+                  ) : (
+                    // Unauthenticated
+                    <Link to="/signup">
+                      <button type="button" className="btn btn-warning">
+                        Get Started
+                      </button>
+                    </Link>
+                  )}
                 </Transform>
               </div>
               <div

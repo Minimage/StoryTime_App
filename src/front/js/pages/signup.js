@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { userContext } from "./global_context";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 
 export const Signup = () => {
-  const navagate = useNavigate();
+  const navigate = useNavigate();
   const { auth, setAuth } = useContext(userContext);
   const { store, actions } = useContext(Context);
   const [firstName, setFirstName] = useState("");
@@ -34,8 +34,9 @@ export const Signup = () => {
   };
 
   useEffect(() => {
-    if (auth === true) {
-      navagate("/");
+    actions.syncTokenFromSessionStore();
+    if (store.token) {
+      navigate("/");
     }
   });
 
@@ -57,7 +58,6 @@ export const Signup = () => {
 
         <label for="lname">Last name:</label>
         <input
-          
           type="text"
           id="lname"
           placeholder="Last Name"
@@ -65,18 +65,15 @@ export const Signup = () => {
           onChange={(e) => {
             setLastName(e.target.value);
           }}
-          
         ></input>
         <label for="username">Username:</label>
         <input
-          
           type="text"
           id="username"
           placeholder="Username"
           onChange={(e) => {
             setUserName(e.target.value);
           }}
-          
         ></input>
 
         <label for="password">Password:</label>
@@ -84,11 +81,9 @@ export const Signup = () => {
           id="password"
           type="password"
           placeholder="Password"
-          
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          
         ></input>
 
         <label for="email">Email:</label>
@@ -98,11 +93,9 @@ export const Signup = () => {
           // placeholder="Email"
           placeholder="✉️ Email"
           name="email"
-          
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          
         ></input>
 
         <div className="toggle">
