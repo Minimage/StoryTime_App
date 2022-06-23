@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
-import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 // import {ProgressBar} from "./component/progressBar";
 

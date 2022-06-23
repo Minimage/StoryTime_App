@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
-import { Navigate } from "react-router-dom";
 
 import "../../styles/styles.css";
 import { Context } from "../store/appContext";
