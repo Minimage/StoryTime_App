@@ -36,45 +36,39 @@ export const Login = () => {
 
   // this should probably be where i pull user info from the back since when the token changes then I can
   // also update the user info in one go
+
   useEffect(() => {
-    if (
-      store.token &&
-      store.token !== null &&
-      store.token !== "" &&
-      store.token !== undefined
-    ) {
+    actions.syncTokenFromSessionStore();
+    if (store.token) {
+      navigate("/");
     }
-  }, [store.token]);
+  });
 
   return (
     <div className="login">
-      {token && token != "" && token != undefined ? (
-        navigate("/")
-      ) : (
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            required
-          ></input>
+      <div>
+        <input
+          type="text"
+          placeholder="Username"
+          value={userName}
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+          required
+        ></input>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            required
-          ></input>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          required
+        ></input>
 
-          <button onClick={handleClick}>Submit</button>
-        </div>
-      )}
+        <button onClick={handleClick}>Submit</button>
+      </div>
 
       {/* // tenanry expression working in reverse --- do not know how to solve */}
       {/* {store.token == null ? (

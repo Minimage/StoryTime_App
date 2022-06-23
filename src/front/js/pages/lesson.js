@@ -9,20 +9,22 @@ export const Lesson = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-  console.log(store.current_lesson);
   // useEffect(() => {
   //   actions.initializeLesson();
   // }, []);
 
+  useEffect(() => {
+    actions.syncTokenFromSessionStore();
+    if (!store.token) {
+      navigate("/login");
+    }
+  });
+
   return (
     <div className="Lesson">
-      {store.token && store.token !== null && store.token !== undefined ? (
-        <div>
-          <h1>lessons page</h1>
-        </div>
-      ) : (
-        navigate("/login")
-      )}
+      <div>
+        <h1>lessons page</h1>
+      </div>
     </div>
   );
 };
