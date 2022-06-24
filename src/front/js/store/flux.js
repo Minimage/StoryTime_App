@@ -50,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       reset: async (email) => {
         const options = {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": process.env.FRONTEND_URL,

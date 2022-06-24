@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 
 export const ResetPassword = () => {
+  const [email, setEmail] = useState("");
+  const { store, actions } = useContext(Context);
+
   const handleClick = () => {
     actions.reset(email);
   };
 
-  const [email, setEmail] = useState("");
   return (
     <div className="container-fluid" style={{ textAlign: "center" }}>
       <h1>Forgot Password?</h1>
@@ -19,13 +21,7 @@ export const ResetPassword = () => {
         placeholder="Enter your email"
       />
       <br />
-      <button
-        onClick={() => {
-          handleClick;
-        }}
-      >
-        Submit
-      </button>
+      <button onClick={handleClick}>Submit</button>
       <br />
       <br />
       <br />
