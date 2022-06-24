@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { userContext } from "./pages/global_context";
-
+import { ResetPassword } from "./pages/email";
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
@@ -46,6 +46,7 @@ const Layout = () => {
               <Route path="/test" element={<Test />} />
               <Route path="/lesson" element={<Lesson />} />
               <Route path="/display_lesson" element={<LessonComponent />} />
+              <Route path="/ResetPassword" element={<ResetPassword />} />
 
               {/* <Route element={<h1>Not found!</h1>}></Route> */}
               <Route path="*" element={<NotFound />} />
