@@ -3,14 +3,57 @@ from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
+import sendgrid
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail,Email,From,To,Content
+from dotenv import load_dotenv
+import os
 
-
+load_dotenv()
 
 ph = PasswordHasher()
 api = Blueprint('api', __name__)
 
 
 #____________________________________________________________________________________________________
+
+@api.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    payload = request.get_json()
+    user = User.query.filter_by(email=payload["email"]).one_or_none()
+        # if user.email == 'seancampbell914@gmail.com':
+        #     sg = sendgrid.SendGridAPIClient(api_key = os.getenv('SENDGRID_API_KEY'))
+        #     from_email = Email('seancampbell914@gmail.com')
+        #     to_email = To('seancampbell914@gmail.com')
+        #     content = Content("text/plain", "and easy to do anywhere, even with Python")
+        #     myMail = Mail(from_email, to_email,'', content)
+
+        #     sg.send(myMail)
+        #     print(myMail)
+        #     response_body = {
+        #         "message": 'response.serialize()'
+        #         }
+
+        #     return jsonify(response_body), 200
+        # return 'Sucess'
+
+    if user:
+        message = Mail(
+            from_email='seancampbell914@gmail.com',
+            to_emails=user.email,
+            subject='Sending with Twilio SendGrid is Fun',
+            html_content=("<strong>and easy to do anywhere, even with Python</strong>"))
+        try:
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e)
+
+        return jsonify({})
+
 
 @api.route('/register', methods=['POST'])
 def register():

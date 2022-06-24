@@ -48,6 +48,32 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ token: null });
       },
 
+      reset: async (email) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        };
+
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/reset_password",
+            options
+          );
+          if (resp.status !== 200) {
+            alert("There has been some error!!!");
+            return false;
+          }
+        } catch (error) {
+          console.error("There has been an error", error);
+        }
+      },
+
       login: async (username, password) => {
         const options = {
           method: "POST",
