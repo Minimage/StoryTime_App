@@ -9,6 +9,9 @@ export const ResetPassword = () => {
     actions.reset(email);
   };
 
+  //add a loading effect to wait for 200 and if successful then route to a new page that says email sent seccessfully else
+  //stay on this page and a new element should apear stating that email is not found, (preferably in red text)
+
   return (
     <div className="container-fluid" style={{ textAlign: "center" }}>
       <h1>Forgot Password?</h1>
