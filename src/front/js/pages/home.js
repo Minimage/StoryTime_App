@@ -22,7 +22,7 @@ export const Home = () => {
     (!store.token && store.token === null)
   ) {
     const [titleRef, titleInView] = useInView({
-      triggerOnce: false,
+      triggerOnce: true,
       rootMargin: "-100px 0px",
       threshold: 0.2,
     });
