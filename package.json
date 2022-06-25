@@ -79,6 +79,7 @@
 		"react": "^16.8.4",
 		"react-animation-components": "^3.0.0",
 		"react-animation-on-scroll": "^5.1.0",
+		"react-bootstrap": "^2.4.0",
 		"react-dom": "^16.8.4",
 		"react-helmet": "^6.1.0",
 		"react-icons": "^4.4.0",

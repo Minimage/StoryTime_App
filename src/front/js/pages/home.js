@@ -8,6 +8,8 @@ import image from "../../img/hero-img.png";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import Carousel from "react-bootstrap/Carousel";
+
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -20,8 +22,9 @@ export const Home = () => {
     (!store.token && store.token === null)
   ) {
     const [titleRef, titleInView] = useInView({
-      triggerOnce: true,
+      triggerOnce: false,
       rootMargin: "-100px 0px",
+      threshold: 0.2,
     });
     //User NOT Logged In
     return (
@@ -34,8 +37,10 @@ export const Home = () => {
                 data-aos="fade-right"
               >
                 <Transform enterTransform="translateX(40px)" in>
-                  <h1>ever had a hard time learning something new?</h1>
-                  <h2>
+                  <h1 className="heading1">
+                    ever had a hard time learning something new?
+                  </h1>
+                  <h2 className="heading2">
                     Story Time is a fun and innovative way to help trigger yours
                     <br></br>Memory to request words and everything you've
                     learned
@@ -68,15 +73,13 @@ export const Home = () => {
 
           {/* Split */}
 
-          <div className="secondSection">
+          <div className="secondSection" ref={titleRef}>
             <section id="about" className="about section-bg">
               <div className="container-fluid p-0">
                 <div className="row gy-4">
-                  <div className="image col-xl-5"></div>
-                  <div className="col-xl-7">
+                  <div className="col-xl-7 mx-auto">
                     <div className="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
                       <motion.h1
-                        ref={titleRef}
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -90,9 +93,34 @@ export const Home = () => {
                               />
                             </audio>
                           )}
+
                           {/* ___________________________________________________________________________________________________________*/}
                         </div>
                         {/* ___________________________________________________________________________________________________________*/}
+
+                        <Carousel>
+                          <Carousel.Item>
+                            <h2>Ever Had a hard time learning something</h2>
+                            <p>
+                              Nulla vitae elit libero, a pharetra augue mollis
+                              interdum.
+                            </p>
+                          </Carousel.Item>
+                          <Carousel.Item>
+                            <h3>Second slide label</h3>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit.
+                            </p>
+                          </Carousel.Item>
+                          <Carousel.Item>
+                            <h3>Third slide label</h3>
+                            <p>
+                              Praesent commodo cursus magna, vel scelerisque
+                              nisl consectetur.
+                            </p>
+                          </Carousel.Item>
+                        </Carousel>
                       </motion.h1>
                     </div>
                   </div>

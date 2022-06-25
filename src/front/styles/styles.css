@@ -44,7 +44,7 @@
   background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
 }
 
-#hero h1 {
+#hero .heading1 {
   margin: 0 0 15px 0;
   font-size: 48px;
   font-weight: 700;
@@ -53,7 +53,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-#hero h2 {
+#hero .heading2 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 22px;
@@ -92,3 +92,18 @@ secondSection {
   margin: auto;
 }
 /* __________________________________________________ */
+
+.cap {
+  height: 100%;
+  width: 100%;
+}
+
+.secondSection h2,
+.secondSection h3,
+.secondSection p {
+  text-align: center;
+}
+
+.secondSection p {
+  margin-bottom: 100px;
+}
