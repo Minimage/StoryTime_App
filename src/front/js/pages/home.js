@@ -15,7 +15,10 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
 
-  if (!auth) {
+  if (
+    (!store.token && store.token === undefined) ||
+    (!store.token && store.token === null)
+  ) {
     const [titleRef, titleInView] = useInView({
       triggerOnce: true,
       rootMargin: "-100px 0px",
