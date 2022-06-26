@@ -79,7 +79,7 @@ export const Home = () => {
                 <div className="row gy-4">
                   <div className="col-xl-7 mx-auto">
                     <div className="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
-                      <motion.h1
+                      <motion.div
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -97,31 +97,30 @@ export const Home = () => {
                           {/* ___________________________________________________________________________________________________________*/}
                         </div>
                         {/* ___________________________________________________________________________________________________________*/}
-
-                        <Carousel>
-                          <Carousel.Item>
-                            <h2>Ever Had a hard time learning something</h2>
-                            <p>
-                              Nulla vitae elit libero, a pharetra augue mollis
-                              interdum.
-                            </p>
-                          </Carousel.Item>
-                          <Carousel.Item>
-                            <h3>Second slide label</h3>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit.
-                            </p>
-                          </Carousel.Item>
-                          <Carousel.Item>
-                            <h3>Third slide label</h3>
-                            <p>
-                              Praesent commodo cursus magna, vel scelerisque
-                              nisl consectetur.
-                            </p>
-                          </Carousel.Item>
-                        </Carousel>
-                      </motion.h1>
+                        <h2>Fun Facts</h2>
+                        <div className="Carousel">
+                          <Carousel>
+                            <Carousel.Item>
+                              <p>
+                                Mandarin's top 100 most frequent words make up
+                                60% of the spoken language
+                              </p>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                              <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit.
+                              </p>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                              <p>
+                                Praesent commodo cursus magna, vel scelerisque
+                                nisl consectetur.
+                              </p>
+                            </Carousel.Item>
+                          </Carousel>
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
