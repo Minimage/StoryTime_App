@@ -33,17 +33,17 @@ export const Home = () => {
           <Fade in>
             <div className="row d-flex align-items-center">
               <div
-                className="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
+                className="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate words"
                 data-aos="fade-right"
               >
-                <Transform enterTransform="translateX(40px)" in>
+                <Transform enterTransform="translateX(30px)" in>
                   <h1 className="heading1">
                     ever had a hard time learning something new?
                   </h1>
                   <h2 className="heading2">
-                    Story Time is a fun and innovative way to help trigger yours
-                    <br></br>Memory to request words and everything you've
-                    learned
+                    Story Time is a fun and <wbr />
+                    innovative way to help trigger yours Memory to request words
+                    and everything you've learned
                   </h2>
                   {store.token &&
                   store.token !== null &&
@@ -64,7 +64,7 @@ export const Home = () => {
                 className="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
                 data-aos="fade-left"
               >
-                <Transform enterTransform="translateX(-30px)" in>
+                <Transform enterTransform="translateX(0px)" in>
                   <img src={image} className="img-fluid fade in" alt="" />
                 </Transform>
               </div>
@@ -108,14 +108,14 @@ export const Home = () => {
                             </Carousel.Item>
                             <Carousel.Item>
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit.
+                                The Mandarin language has almost a billion
+                                speakers
                               </p>
                             </Carousel.Item>
                             <Carousel.Item>
                               <p>
-                                Praesent commodo cursus magna, vel scelerisque
-                                nisl consectetur.
+                                Mandarin has four tones and an additional
+                                neutral tone.
                               </p>
                             </Carousel.Item>
                           </Carousel>
