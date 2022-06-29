@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -24,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       user: null,
       key: [],
       token: null,
+      userdata: {},
     },
     actions: {
       protect: (token) => {
@@ -35,6 +38,26 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then((response) => response.json())
           .then((result) => setStore({ key: result }));
+      },
+
+      myData: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+        console.log(config);
+        axios
+          .get(process.env.BACKEND_URL + "/api/user", config)
+          .then((res) => {
+            setStore({ userdata: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            // console.log(myData);
+          });
       },
 
       syncTokenFromSessionStore: () => {
@@ -123,7 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            // setStore({ user: data });
+            setStore({ user: data });
             console.log(data);
           })
           .catch((error) =>

@@ -9,23 +9,27 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Carousel from "react-bootstrap/Carousel";
-
 import "../../styles/home.css";
+import { useEffect } from "react";
 
 export const Home = () => {
-  const { auth, setAuth } = useContext(userContext);
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
+
+  useEffect(() => {
+    actions.myData();
+  }, []);
+
+  const [titleRef, titleInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+    threshold: 0.2,
+  });
 
   if (
     (!store.token && store.token === undefined) ||
     (!store.token && store.token === null)
   ) {
-    const [titleRef, titleInView] = useInView({
-      triggerOnce: true,
-      rootMargin: "-100px 0px",
-      threshold: 0.2,
-    });
     //User NOT Logged In
     return (
       <div id="hero" className={!!hidden ? "hide" : "show"}>
@@ -60,6 +64,7 @@ export const Home = () => {
                   )}
                 </Transform>
               </div>
+
               <div
                 className="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
                 data-aos="fade-left"
@@ -97,29 +102,6 @@ export const Home = () => {
                           {/* ___________________________________________________________________________________________________________*/}
                         </div>
                         {/* ___________________________________________________________________________________________________________*/}
-                        <h2>Fun Facts</h2>
-                        <div className="Carousel">
-                          <Carousel>
-                            <Carousel.Item>
-                              <p>
-                                Mandarin's top 100 most frequent words make up
-                                60% of the spoken language
-                              </p>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                              <p>
-                                The Mandarin language has almost a billion
-                                speakers
-                              </p>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                              <p>
-                                Mandarin has four tones and an additional
-                                neutral tone.
-                              </p>
-                            </Carousel.Item>
-                          </Carousel>
-                        </div>
                       </motion.div>
                     </div>
                   </div>
@@ -136,6 +118,8 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
       <h1>Welcome to StoryTime</h1>
+      <p>welcome back</p>
+      {store.userdata?.data?.first_name} {store.userdata?.data?.last_name}
     </div>
   );
 };
