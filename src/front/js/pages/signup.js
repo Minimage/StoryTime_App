@@ -139,7 +139,7 @@ export const Signup = () => {
                 email,
                 userName,
                 password,
-                navagate("/login")
+                navigate("/login")
               );
             }
           }}
