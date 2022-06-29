@@ -44,6 +44,19 @@ class User(db.Model):
 # _______________________________________________________________________________________________
 
 
+class Questions(db.Model):
+    __tablename__ = "questions"
+    id = db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.String(256))
+    answer = db.relationship('Answers', backref='questions', uselist=False)
+
+    
+class Answers(db.Model):
+    __tablename__ = "answers"
+    id = db.Column(db.Integer, primary_key=True)
+    answer = db.Column(db.String(256))
+    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'),unique=True)
+
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

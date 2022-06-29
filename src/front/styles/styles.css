@@ -1,4 +1,8 @@
 /* Specifically for the login page */
+body {
+  width: 100%;
+  margin: 0;
+}
 
 .hide {
   visibility: hidden;
@@ -44,7 +48,7 @@
   background: linear-gradient(180deg, #213b52 0%, #213c54 35%, #204564 100%);
 }
 
-#hero h1 {
+#hero .heading1 {
   margin: 0 0 15px 0;
   font-size: 48px;
   font-weight: 700;
@@ -53,7 +57,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-#hero h2 {
+#hero .heading2 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 22px;
@@ -81,8 +85,12 @@
   color: blue;
 }
 
-secondSection {
+.secondSection {
   height: 100vh;
+  width: 100vw;
+  background-image: url("https://img.freepik.com/free-photo/abstract-flowing-neon-wave-background_53876-101942.jpg?t=st=1656271303~exp=1656271903~hmac=2d6cfdd7edfab8c60edbcc493b78a30e0a6fc61cd47e169328887b4f49e1ddfa&w=900");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* __________________________________________________ */
@@ -92,3 +100,32 @@ secondSection {
   margin: auto;
 }
 /* __________________________________________________ */
+
+.cap {
+  height: 100%;
+  width: 100%;
+}
+
+.secondSection h2,
+.secondSection h3,
+.secondSection p {
+  text-align: center;
+}
+
+.secondSection p {
+  margin-bottom: 100px;
+}
+
+.Carousel {
+  margin-top: 50px;
+}
+
+.box {
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  #hero .heading1 {
+    background-color: rgb(32, 144, 41);
+  }
+}

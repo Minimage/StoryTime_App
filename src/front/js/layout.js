@@ -17,6 +17,7 @@ import { Signup } from "./pages/signup";
 import { Test } from "./pages/test";
 import { Lesson } from "./pages/lesson";
 import { Preloader1 } from "./component/pre_loader1";
+import { Data } from "./pages/Datafetching";
 
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
@@ -24,6 +25,8 @@ const Layout = () => {
   const [auth, setAuth] = useState(false);
 
   const [hidden, isHidden] = useState(false);
+
+  const [myData, setMyData] = useState({});
 
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -33,7 +36,9 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <userContext.Provider value={{ auth, setAuth, hidden, isHidden }}>
+          <userContext.Provider
+            value={{ auth, setAuth, hidden, isHidden, myData, setMyData }}
+          >
             <Navbar />
             <Preloader1 />
             <Routes>
@@ -47,6 +52,7 @@ const Layout = () => {
               <Route path="/lesson" element={<Lesson />} />
               <Route path="/display_lesson" element={<LessonComponent />} />
               <Route path="/ResetPassword" element={<ResetPassword />} />
+              <Route path="/Data" element={<Data />} />
 
               {/* <Route element={<h1>Not found!</h1>}></Route> */}
               <Route path="*" element={<NotFound />} />

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { userContext } from "./global_context";
+import axios from "axios";
 
 import "../../styles/styles.css";
 import { Context } from "../store/appContext";
@@ -11,7 +12,6 @@ export const Login = () => {
   //  and I have this bound to the onClick bellow
   let history = useNavigate();
 
-  const { auth, setAuth } = useContext(userContext);
   const navigate = useNavigate();
   // const location = useLocation();
   //________________________________________________________
@@ -22,6 +22,7 @@ export const Login = () => {
   const token = sessionStorage.getItem("token");
   // console.log("This is your token", store.token)
 
+  console.log(store);
   const handleClick = () => {
     actions.login(userName, password);
     if (store.token && store.token !== null && store.token !== undefined) {

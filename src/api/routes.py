@@ -80,13 +80,17 @@ def register():
 # Working on this code
 
 @api.route('/user', methods=['POST', 'GET', 'DELETE'])
+
+ 
 @jwt_required()
 def user():
     user_id = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
+    user = User.query.filter_by(username=user_id).first()
     
     response_body = {
-        "message": "user"
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+        "username": user.username,
     }
 
     return jsonify(response_body), 200
@@ -120,7 +124,7 @@ def protected():
     return jsonify({"user":search.username})
     
 
-@api.route("/login", methods=["POST"])
+@api.route("/login", methods=["POST","GET"])
 def create_token():
     # body = request.get_json()
     username = request.json.get('username', None)

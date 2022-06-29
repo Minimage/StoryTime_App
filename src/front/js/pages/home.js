@@ -8,18 +8,28 @@ import image from "../../img/hero-img.png";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import Carousel from "react-bootstrap/Carousel";
 import "../../styles/home.css";
+import { useEffect } from "react";
 
 export const Home = () => {
-  const { auth, setAuth } = useContext(userContext);
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
 
-  if (!auth) {
-    const [titleRef, titleInView] = useInView({
-      triggerOnce: true,
-      rootMargin: "-100px 0px",
-    });
+  useEffect(() => {
+    actions.myData();
+  }, []);
+
+  const [titleRef, titleInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+    threshold: 0.2,
+  });
+
+  if (
+    (!store.token && store.token === undefined) ||
+    (!store.token && store.token === null)
+  ) {
     //User NOT Logged In
     return (
       <div id="hero" className={!!hidden ? "hide" : "show"}>
@@ -27,15 +37,17 @@ export const Home = () => {
           <Fade in>
             <div className="row d-flex align-items-center">
               <div
-                className="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate"
+                className="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 aos-init aos-animate words"
                 data-aos="fade-right"
               >
-                <Transform enterTransform="translateX(40px)" in>
-                  <h1>ever had a hard time learning something new?</h1>
-                  <h2>
-                    Story Time is a fun and innovative way to help trigger yours
-                    <br></br>Memory to request words and everything you've
-                    learned
+                <Transform enterTransform="translateX(30px)" in>
+                  <h1 className="heading1">
+                    ever had a hard time learning something new?
+                  </h1>
+                  <h2 className="heading2">
+                    Story Time is a fun and <wbr />
+                    innovative way to help trigger yours Memory to request words
+                    and everything you've learned
                   </h2>
                   {store.token &&
                   store.token !== null &&
@@ -52,11 +64,12 @@ export const Home = () => {
                   )}
                 </Transform>
               </div>
+
               <div
                 className="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate"
                 data-aos="fade-left"
               >
-                <Transform enterTransform="translateX(-30px)" in>
+                <Transform enterTransform="translateX(0px)" in>
                   <img src={image} className="img-fluid fade in" alt="" />
                 </Transform>
               </div>
@@ -65,15 +78,13 @@ export const Home = () => {
 
           {/* Split */}
 
-          <div className="secondSection">
+          <div className="secondSection" ref={titleRef}>
             <section id="about" className="about section-bg">
               <div className="container-fluid p-0">
                 <div className="row gy-4">
-                  <div className="image col-xl-5"></div>
-                  <div className="col-xl-7">
+                  <div className="col-xl-7 mx-auto">
                     <div className="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
-                      <motion.h1
-                        ref={titleRef}
+                      <motion.div
                         animate={{ scale: titleInView ? 1 : 0 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -87,10 +98,11 @@ export const Home = () => {
                               />
                             </audio>
                           )}
+
                           {/* ___________________________________________________________________________________________________________*/}
                         </div>
                         {/* ___________________________________________________________________________________________________________*/}
-                      </motion.h1>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
@@ -106,6 +118,8 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
       <h1>Welcome to StoryTime</h1>
+      <p>welcome back</p>
+      {store.userdata?.data?.first_name} {store.userdata?.data?.last_name}
     </div>
   );
 };
