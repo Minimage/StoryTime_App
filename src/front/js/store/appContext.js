@@ -30,6 +30,8 @@ const injectContext = (PassedComponent) => {
       // 			state.actions.getMessage(); // <---- calling this function from the flux.js actions
       //___________________________________________________________________________________________________________
       state.actions.getAudio("word");
+      // state.actions.getMandarin();
+      state.actions.getWords("food");
       state.actions.syncTokenFromSessionStore();
       //____________________________________________________________________________________________________________
     }, []);

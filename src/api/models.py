@@ -116,8 +116,8 @@ class Favorites(db.Model):
 class Lesson1_vocab(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(50), unique=False, nullable=False)
-    phonetic = db.Column(db.String(50), unique=False, nullable=False)
     mandarin = db.Column(db.String(150), unique=False, nullable=False)
+    phonetic = db.Column(db.String(50), unique=False, nullable=False)
     phoneticM = db.Column(db.String(150), unique=False, nullable=False)
     images = db.Column(db.String(500), unique=False, nullable=True)
     part_of_speech = db.Column(db.String(500), unique=False, nullable=True)
@@ -129,8 +129,8 @@ class Lesson1_vocab(db.Model):
         return {
         "id" : self.id,
         "word" : self.word,
-        "phonetic" : self.phonetic,
         "mandarin" : self.mandarin,
+        "phonetic" : self.phonetic,
         "phoneticM" : self.phoneticM,
         "images" : self.images,
         "part_of_speech" : self.part_of_speech,
@@ -175,3 +175,18 @@ class Lesson(db.Model):
             "name": self.name,
             "next": child_url
         }
+       
+# class Questions(db.Model):
+#     __tablename__ = "questions"
+#     id = db.Column(db.Integer, primary_key=True)
+#     question = db.Column(db.String(256))
+#     answer = db.relationship('Answers', backref='questions', uselist=False)
+
+    
+class Answers(db.Model):
+    __tablename__ = "answers"
+    id = db.Column(db.Integer, primary_key=True)
+    answer = db.Column(db.String(256))
+    characters = db.Column(db.String(250))
+    
+ 

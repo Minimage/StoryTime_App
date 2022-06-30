@@ -17,9 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
       ],
       //____________________________________________________________________________________________________________
-
+      mandarinText: "",
       audioLink: "",
-      word: [],
+      wordLink: [],
       // initializeLesson: {},
       // loadNextLesson: {},
       current_lesson: { name: undefined, next: null },
@@ -262,13 +262,46 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getWords: () => {
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + "/api/word")
+        fetch(process.env.BACKEND_URL + `/api/answers/`,{
+          methods: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          
+        })
           .then((resp) => resp.json())
-          .then((data) => setStore({ word: data }))
+          .then((data) => setStore({wordLink: data}))
+          
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
+         
       },
+
+      // getWords: (word) => {
+      //   getActions().syncTokenFromSessionStore();
+
+      //   const config = {
+      //     headers: { Authorization: `Bearer ${getStore().token}`, 
+      //     "Access-Control-Allow-Origin": process.env.FRONTEND_URL, },
+      //   };
+      //   console.log(config);
+
+      //   axios
+      //     .get(process.env.BACKEND_URL + `/api/lesson1_vocab/${word}`, config)
+      //     .then((res) => {
+      //       setStore({ wordLink: res });
+      //       console.log(res.data.mandarin) +console.log(res)
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     })
+      //     .finally(() => {
+      //       // console.log(myData);
+      //     });
+      // },
+ 
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
@@ -284,6 +317,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ demo: demo });
       },
     },
+
+    // getMandarin: (word) => {
+    //   fetch(process.env.BACKEND_URL +`/api/lesson1_vocab/${word}`)
+    //     .then((resp) => resp.json())
+    //     .then((data) => {
+    //       let mandarin = data[0].mandarin.find((item) => {
+    //         return item.mandarin
+    //       });
+    //       setStore({ mandarinText: mandarin });
+    //     })
+    //     .catch((error) =>
+    //       console.log("Error loading message from backend", error)
+    //     );
+    // },
 
     // Use getActions to call a function within a fuction
 

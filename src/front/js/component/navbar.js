@@ -16,6 +16,11 @@ export const Navbar = () => {
           <span className="navbar-brand mb-0 h1 ">Home</span>
         </Link>
 
+         <Link to="/about_us">
+          <span className="navbar-brand mb-0 h1 ">About Us</span>
+        </Link>
+
+
         {/* <Link to="/lesson">
           <span className="navbar-brand mb-0 h1 ">Lesson</span>
         </Link> */}

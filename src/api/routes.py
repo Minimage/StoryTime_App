@@ -217,7 +217,14 @@ def del_favorites(id):
     return 'Favorites deleted', 204
 
 #____________________________________________________________________________________________________
+
 # @api.route('/words')
+@api.route('/lesson1_vocab/<string:mandarin>', methods=['GET'])
+def getWords(mandarin):
+    mandarin = Lesson1_vocab.query.filter_by(word=mandarin).one_or_none()
+    return jsonify(mandarin.serialize()), 200
+
+
 @api.route('/lesson1_vocab', methods=['POST'])
 def words():
     payload = request.get_json()
@@ -250,7 +257,7 @@ def words():
 @api.route("/lesson1_vocab/<int:id>")
 def get_lesson1_vocab(id):
     lesson1_vocab = Lesson1_vocab.query.filter_by(id=id).one_or_none()
-    return jsonify(lesson.serialize()), 200
+    return jsonify(lesson1_vocab.serialize()), 200
 
 
 
@@ -258,3 +265,20 @@ def get_lesson1_vocab(id):
 def get_lesson():
     # lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
     return jsonify(lesson.serialize()), 200
+
+@api.route("/answers", methods=["POST"])
+def getAnswers():
+    data = request.get_json()
+    
+    result =  Lesson1_vocab(word=data["word"], mandarin=data["mandarin"], phonetic=data["phonetic"], phoneticM=data["phoneticM"])
+    db.session.add(result)
+    db.session.commit()
+    return "success"
+
+@api.route("/answers", methods=["GET"])
+def Answers():
+    info = Lesson1_vocab.query.all()
+    infoList = list(map(lambda x: x.serialize(), info))
+    return jsonify(infoList), 200
+    
+    
