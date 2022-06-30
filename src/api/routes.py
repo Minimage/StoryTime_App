@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, flash
-from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson
+from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson, Questions
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
@@ -158,6 +158,20 @@ def accounts():
     }
 
     return jsonify(account_info)
+
+
+@api.route('/questions', methods=['GET','POST'])
+@ jwt_required()
+def questions():
+    
+    questions = Questions.query.all()
+    
+    myQuestion =  [x.serialize() for x in questions]
+    
+    print(myQuestion)
+    return jsonify(myQuestion)
+
+
 
 
 #____________________________________________________________________________________________________

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { userContext } from "./global_context";
 import { Link } from "react-router-dom";
@@ -15,10 +15,20 @@ import { useEffect } from "react";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
+  const [lesson1, setLesson1] = useState([]);
 
   useEffect(() => {
     actions.myData();
+    actions.getQuestions();
   }, []);
+  console.log(store.myQuestion);
+
+  useEffect(() => {
+    let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
+    setLesson1(firstLesson);
+  }, [store.myQuestion]);
+
+  console.log(lesson1[0]);
 
   const [titleRef, titleInView] = useInView({
     triggerOnce: true,
