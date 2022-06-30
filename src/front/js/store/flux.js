@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       userdata: {},
       myQuestion: [],
+      myOptions: [],
     },
     actions: {
       protect: (token) => {
@@ -72,6 +73,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           .get(process.env.BACKEND_URL + "/api/questions", config)
           .then((res) => {
             setStore({ myQuestion: res.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      getOptions: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+
+        axios
+          .get(process.env.BACKEND_URL + "/api/options", config)
+          .then((res) => {
+            setStore({ myOptions: res.data });
           })
           .catch((err) => {
             console.log(err);

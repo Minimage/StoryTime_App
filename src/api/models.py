@@ -64,6 +64,18 @@ class Questions(db.Model):
 
         }
 
+
+class Options(db.Model):
+    __tablename__ = "options"
+    id = db.Column(db.Integer, primary_key=True)
+    option = db.Column(db.String(256))
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "option": self.option,
+        }
+
     
 
 

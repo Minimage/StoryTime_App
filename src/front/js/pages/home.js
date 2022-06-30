@@ -15,11 +15,15 @@ import { useEffect } from "react";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
-  const [lesson1, setLesson1] = useState([]);
+  const [lesson1, setLesson1] = useState({});
+  const [options, setOptions] = useState({});
+  const [count, setCount] = useState(0);
+  const [myInt, setMyInt] = useState(0);
 
   useEffect(() => {
     actions.myData();
     actions.getQuestions();
+    actions.getOptions();
   }, []);
   console.log(store.myQuestion);
 
@@ -28,7 +32,27 @@ export const Home = () => {
     setLesson1(firstLesson);
   }, [store.myQuestion]);
 
-  console.log(lesson1[0]);
+  useEffect(() => {
+    console.log(store.myOptions.length);
+    setOptions(store.myOptions);
+  }, [store.myOptions]);
+  let ints = [];
+  for (let x = 0; x < store.myOptions.length; x++) {
+    ints.push(x);
+  }
+  console.log(ints + " this is my ints");
+
+  let randint = store.myOptions.length;
+
+  const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
+
+  let result1 = Math.floor(Math.random() * randint) + 1;
+  let result2 = Math.floor(Math.random() * randint) + 1;
+  let result3 = Math.floor(Math.random() * randint) + 1;
+
+  let randomPos = randomize(ints);
+  // console.log(result);
+  // console.log(lesson1[0]?.lessons);
 
   const [titleRef, titleInView] = useInView({
     triggerOnce: true,
@@ -130,6 +154,57 @@ export const Home = () => {
       <h1>Welcome to StoryTime</h1>
       <p>welcome back</p>
       {store.userdata?.data?.first_name} {store.userdata?.data?.last_name}
+      {<br />}
+      <h1>{lesson1[count]?.question}</h1>
+      <br />
+      <div className="container-fluid"></div>
+      <div className="row">
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{lesson1[count]?.answer}</h5>
+
+              <button
+                onClick={() => {
+                  alert("this is correct");
+                  setCount(count + 1);
+                }}
+                href="#"
+                className="btn btn-primary"
+              >
+                Go somewhere
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">
+                {store.myOptions[ints[0]]?.option}
+
+                {console.log(options)}
+              </h5>
+
+              <a href="#" className="btn btn-primary">
+                Go somewhere
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{store.myOptions[ints[1]]?.option}</h5>
+              <a href="#" className="btn btn-primary">
+                Go somewhere
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
