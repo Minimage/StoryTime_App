@@ -183,10 +183,5 @@ class Lesson(db.Model):
 #     answer = db.relationship('Answers', backref='questions', uselist=False)
 
     
-class Answers(db.Model):
-    __tablename__ = "answers"
-    id = db.Column(db.Integer, primary_key=True)
-    answer = db.Column(db.String(256))
-    characters = db.Column(db.String(250))
-    
+
  
