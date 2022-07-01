@@ -1,27 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
-let progressInterval = null;
-
-function ProgressBar() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    progressInterval = setInterval(() => {
-      setProgress(prev => prev + 1);
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    if (progress >= 100) {
-      clearInterval(progressInterval);
-    }
-  }, [progress]);
-
-  return (
-    <div className="progress">
-      <div className="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-    </div>
-  );
+function TheProgressBar() {
+  const now = 20;
+  return <ProgressBar now={now} label={`${now}%`} style={{textAlign:"center"}} />;
 }
 
-export default ProgressBar;
+export default TheProgressBar;

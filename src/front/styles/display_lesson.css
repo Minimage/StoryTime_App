@@ -26,7 +26,7 @@
 }
 
 .title {
-  text-align: center;
+    text-align: left;
 }
 
 .game-section {
@@ -57,16 +57,44 @@
   color: rgb(253, 0, 0);
 }
 
+.Next_Lesson {
+    text-align: center;
+    
+}
+
 .stories {
   text-align: center;
   font-size: 20px;
 }
 
-.box1,
-.box2,
-.box3 {
-  text-align: center;
-  margin-top: 98px;
-  font-size: 70px;
-  color: rgb(253, 0, 0);
+.box1, .box2 , .box3{
+    text-align: center;
+    margin-top: 98px;
+    font-size: 70px;
+    color: rgb(253, 0, 0);
+    margin: 10px;
+   
+    
 }
+
+.Pronounciation {
+    text-align: center;
+}
+
+.card-group :hover {
+    /* border-color: blue; */
+    /* border-color: rgb(4, 4, 4); */
+    /* box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px; */
+    transform: scale(1.06);
+    /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+    /* transform: translate3d(0px, -1px, 0px); */
+}
+
+/* .card {
+    width: 300px;
+    background: rgb(66, 0, 173);
+    font-size: 40px;
+    margin: 100px auto;
+    padding: 10px;
+    cursor: pointer;
+} */

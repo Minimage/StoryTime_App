@@ -92,7 +92,7 @@ export const Home = () => {
                     // Unauthenticated
                     <Link to="/signup">
                       <button type="button" className="btn btn-warning">
-                        Get Started
+                        Start learning today!
                       </button>
                     </Link>
                   )}
@@ -123,18 +123,7 @@ export const Home = () => {
                         transition={{ duration: 0.5 }}
                       >
                         {/* ___________________________________________________________________________________________________________*/}
-                        <div className="Pronounciation">
-                          {store.audioLink.audio && (
-                            <audio controls>
-                              <source
-                                src={store.audioLink.audio}
-                                type="audio/ogg"
-                              />
-                            </audio>
-                          )}
-
-                          {/* ___________________________________________________________________________________________________________*/}
-                        </div>
+                        
                         {/* ___________________________________________________________________________________________________________*/}
                       </motion.div>
                     </div>

@@ -1,7 +1,8 @@
 /* Specifically for the login page */
-body {
-  width: 100%;
-  margin: 0;
+* {
+  font-family: 'Tangerine', serif;
+  /* font-size: 48px; */
+  text-shadow: 4px 4px 4px #aaa;
 }
 
 .hide {
