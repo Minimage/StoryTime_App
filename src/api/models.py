@@ -47,15 +47,37 @@ class User(db.Model):
 class Questions(db.Model):
     __tablename__ = "questions"
     id = db.Column(db.Integer, primary_key=True)
+    lessons = db.Column(db.Integer)
     question = db.Column(db.String(256))
-    answer = db.relationship('Answers', backref='questions', uselist=False)
+    answer = db.Column(db.String(256))
+    
+  
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "question": self.question,
+            "answer" : self.answer,
+            "lessons": self.lessons,
+            # "answer": self.answer
+
+
+        }
+
+
+class Options(db.Model):
+    __tablename__ = "options"
+    id = db.Column(db.Integer, primary_key=True)
+    option = db.Column(db.String(256))
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "option": self.option,
+        }
 
     
-class Answers(db.Model):
-    __tablename__ = "answers"
-    id = db.Column(db.Integer, primary_key=True)
-    answer = db.Column(db.String(256))
-    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'),unique=True)
+
 
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -112,7 +134,7 @@ class Lesson1_vocab(db.Model):
         "phoneticM" : self.phoneticM,
         "images" : self.images,
         "part_of_speech" : self.part_of_speech,
-               
+        
     }
         
 # _______________________________________________________________________________________________

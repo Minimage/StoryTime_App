@@ -27,6 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       key: [],
       token: null,
       userdata: {},
+      myQuestion: [],
+      myOptions: [],
     },
     actions: {
       protect: (token) => {
@@ -59,6 +61,49 @@ const getState = ({ getStore, getActions, setStore }) => {
             // console.log(myData);
           });
       },
+
+      getQuestions: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+
+        axios
+          .get(process.env.BACKEND_URL + "/api/questions", config)
+          .then((res) => {
+            setStore({ myQuestion: res.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      getOptions: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+
+        axios
+          .get(process.env.BACKEND_URL + "/api/options", config)
+          .then((res) => {
+            setStore({ myOptions: res.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      // question: () => {
+      //   getActions().syncTokenFromSessionStore();
+      //   const config = {
+      //     headers: { Authorization: `Bearer ${getStore().token}` },
+      //   };
+
+      //   axios
+      // }
 
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
