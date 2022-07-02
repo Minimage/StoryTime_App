@@ -1,18 +1,18 @@
 import json
 
-from main import app, db
-from models import Lesson
+from app import app, db
+from api.models import Lesson1_vocab
 
 lessons = None
 lesson_objs = []
 
-with open("src/lessons.json", 'rt') as json_file:
+with open("./src/lessons.json", 'rt') as json_file:
     data = json.load(json_file)
     lessons = data
 
 with app.app_context():
     for lesson in lessons:
-        lesson_objs.append(Lesson(
+        lesson_objs.append(Lesson1_vocab(
             word=lesson["word"],
             phonetic=lesson["phonetic"],
             mandarin=lesson["mandarin"],

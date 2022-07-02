@@ -48,17 +48,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         const config = {
           headers: { Authorization: `Bearer ${getStore().token}` },
         };
-        console.log(config);
+        // console.log("this is the config",config);
         axios
           .get(process.env.BACKEND_URL + "/api/user", config)
           .then((res) => {
-            setStore({ userdata: res });
+            setStore({ userdata: res.data });
+            
+              
           })
           .catch((err) => {
             console.log(err);
           })
           .finally(() => {
-            // console.log(myData);
+            //console.log(myData);
           });
       },
 
@@ -85,6 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const config = {
           headers: { Authorization: `Bearer ${getStore().token}` },
         };
+        console.log("This is config",config)
 
         axios
           .get(process.env.BACKEND_URL + "/api/options", config)
@@ -236,15 +239,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       //     .catch((error) => console.log(error, store.current_lesson));
       // },
       getAudio: (word) => {
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-          .then((resp) => resp.json())
+        // fetch(`https://api.pons.com/v1/dictionaries?language=zh/${word}`)
+        // fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+        fetch(process.env.BACKEND_URL + `/api/vocab_words/${word}`)
+        .then((resp) => resp.json())
           .then((data) => {
-            let audio = data[0].phonetics.find((item) => {
-              if (item.audio != "") {
-                return item.audio;
-              }
-            });
-            setStore({ audioLink: audio });
+            
+            setStore({ audioLink: data.audio });
           })
           .catch((error) =>
             console.log("Error loading message from backend", error)

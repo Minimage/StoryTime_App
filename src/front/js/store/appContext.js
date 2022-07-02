@@ -32,6 +32,7 @@ const injectContext = (PassedComponent) => {
       state.actions.getAudio("word");
       // state.actions.getMandarin();
       state.actions.getWords("food");
+      // state.aciton
       state.actions.syncTokenFromSessionStore();
       //____________________________________________________________________________________________________________
     }, []);

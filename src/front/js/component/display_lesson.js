@@ -14,6 +14,9 @@ const LessonComponent = () => {
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
+    actions.myData();
+    // actions.getWords()
+    
     if (!store.token) {
       navigate("/login");
     }
@@ -30,8 +33,12 @@ const LessonComponent = () => {
             {/* Section for the games / games selection */}
           </div>
           <div>
-            <h3 className="title"> Story Time Lesson 1</h3>
+          <h3 className="mt-1">Welcome to  {" "}  Story Time {" "} {store.userdata.first_name}</h3>
+              <h3 className="lesson_title">Lesson 1</h3>
+           
             <div>
+            
+            
 
             </div>
            
@@ -71,10 +78,10 @@ const LessonComponent = () => {
                       <p className="card-text">Shíwù</p>
                     </div>
                     <div className="Pronounciation">
-                      {store.audioLink.audio && (
+                      {store.audioLink && (
                         <audio controls>
                           <source
-                            src={store.audioLink.audio}
+                            src={store.audioLink}
                             type="audio/ogg"
                           />
                         </audio>
@@ -91,10 +98,10 @@ const LessonComponent = () => {
                       <p className="card-text">Chē</p>
                     </div>
                     <div className="Pronounciation">
-                      {store.audioLink.audio && (
+                      {store.audioLink && (
                         <audio controls>
                           <source
-                            src={store.audioLink.audio}
+                            src={store.audioLink}
                             type="audio/ogg"
                           />
                         </audio>
@@ -114,10 +121,10 @@ const LessonComponent = () => {
                       <p className="card-text">Wei sheng jian</p>
                     </div>
                     <div className="Pronounciation">
-                      {store.audioLink.audio && (
+                      {store.audioLink && (
                         <audio controls>
                           <source
-                            src={store.audioLink.audio}
+                            src={store.audioLink}
                             type="audio/ogg"
                           />
                         </audio>

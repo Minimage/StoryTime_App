@@ -8,6 +8,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail,Email,From,To,Content
 from dotenv import load_dotenv
 import os
+import requests
 
 load_dotenv()
 
@@ -181,7 +182,7 @@ def options():
     options = Options.query.all()
     
     myOptions =  [x.serialize() for x in options]
-    
+    print(options)
     print(myOptions)
     return jsonify(myOptions)
 
@@ -281,4 +282,15 @@ def Answers():
     infoList = list(map(lambda x: x.serialize(), info))
     return jsonify(infoList), 200
     
+@api.route('/vocab_words/<string:word>', methods=['GET'])
+def vocab_word(word):
+    resp = requests.get(
+        'https://api.dictionaryapi.dev/api/v2/entries/en/{word}'.format(word=word)
+    ).json()
     
+    mp3 = resp[0].get("phonetics",[{}])
+    mp3_file = list(filter(lambda item: item["audio"] != "",mp3))[0]
+    
+
+    return jsonify(audio=mp3_file["audio"])
+

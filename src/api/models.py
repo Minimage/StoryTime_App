@@ -50,18 +50,18 @@ class Questions(db.Model):
     lessons = db.Column(db.Integer)
     question = db.Column(db.String(256))
     answer = db.Column(db.String(256))
+    # answer = db.relationship('Answers', backref='questions', uselist=False)
     
-  
+    # def __repr__(self):
+    #     return f'<Questions{self.id}>'
     
     def serialize(self):
         return {
             "id": self.id,
+            "lessons": self.lessons,
             "question": self.question,
             "answer" : self.answer,
-            "lessons": self.lessons,
-            # "answer": self.answer
-
-
+            
         }
 
 
@@ -69,6 +69,9 @@ class Options(db.Model):
     __tablename__ = "options"
     id = db.Column(db.Integer, primary_key=True)
     option = db.Column(db.String(256))
+    
+    # def __repr__(self):
+    #     return f'<Options{self.id}>'
     
     def serialize(self):
         return {

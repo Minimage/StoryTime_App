@@ -3,7 +3,7 @@
   /* margin: 0;
     padding: 0; */
 
-  /* color: blue ; */
+  color: blue;
 }
 
 .background {
@@ -88,6 +88,14 @@
     transform: scale(1.06);
     /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
     /* transform: translate3d(0px, -1px, 0px); */
+}
+
+.lesson_title {
+font-style: italic;
+color: red;
+text-decoration: underline; 
+text-align: center;
+
 }
 
 /* .card {
