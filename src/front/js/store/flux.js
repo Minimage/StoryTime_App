@@ -29,6 +29,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       userdata: {},
       myQuestion: [],
       myOptions: [],
+      myLesson1: [],
+      myAudio: [],
+      myAudio2: [],
+      myAudio3: [],
     },
     actions: {
       protect: (token) => {
@@ -62,6 +66,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
+      getPinyin: (word) => {
+        axios
+          .get(`https://pinyin-word-api.vercel.app/api/:${word}`)
+          .then((res) => {
+            setStore({ myAudio: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      getPinyin2: (word) => {
+        axios
+          .get(`https://pinyin-word-api.vercel.app/api/:${word}`)
+          .then((res) => {
+            setStore({ myAudio2: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      getPinyin3: (word) => {
+        axios
+          .get(`https://pinyin-word-api.vercel.app/api/:${word}`)
+          .then((res) => {
+            setStore({ myAudio3: res });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
       getQuestions: () => {
         getActions().syncTokenFromSessionStore();
 
@@ -90,6 +126,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           .get(process.env.BACKEND_URL + "/api/options", config)
           .then((res) => {
             setStore({ myOptions: res.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+
+      getLesson1: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+
+        axios
+          .get(process.env.BACKEND_URL + "/api/answers", config)
+          .then((res) => {
+            setStore({ myLesson1: res.data });
           })
           .catch((err) => {
             console.log(err);
@@ -262,27 +315,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getWords: () => {
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + `/api/answers/`,{
+        fetch(process.env.BACKEND_URL + `/api/answers/`, {
           methods: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          
         })
           .then((resp) => resp.json())
-          .then((data) => setStore({wordLink: data}))
-          
+          .then((data) => setStore({ wordLink: data }))
+
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
-         
       },
 
       // getWords: (word) => {
       //   getActions().syncTokenFromSessionStore();
 
       //   const config = {
-      //     headers: { Authorization: `Bearer ${getStore().token}`, 
+      //     headers: { Authorization: `Bearer ${getStore().token}`,
       //     "Access-Control-Allow-Origin": process.env.FRONTEND_URL, },
       //   };
       //   console.log(config);
@@ -300,7 +351,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       // console.log(myData);
       //     });
       // },
- 
 
       changeColor: (index, color) => {
         //get the store

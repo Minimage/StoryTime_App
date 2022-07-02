@@ -263,7 +263,7 @@ def get_lesson1_vocab(id):
 
 @api.route("/lesson")
 def get_lesson():
-    # lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
+    lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
     return jsonify(lesson.serialize()), 200
 
 @api.route("/answers", methods=["POST"])
