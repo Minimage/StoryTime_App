@@ -51,7 +51,8 @@ export const Home = () => {
   let result3 = Math.floor(Math.random() * randint) + 1;
 
   let randomPos = randomize(ints);
-  // console.log(result);
+
+  console.log(randomPos, " this is my random positions");
   // console.log(lesson1[0]?.lessons);
 
   const [titleRef, titleInView] = useInView({
@@ -123,7 +124,7 @@ export const Home = () => {
                         transition={{ duration: 0.5 }}
                       >
                         {/* ___________________________________________________________________________________________________________*/}
-                        
+
                         {/* ___________________________________________________________________________________________________________*/}
                       </motion.div>
                     </div>

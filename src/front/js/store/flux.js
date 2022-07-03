@@ -29,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userdata: {},
       myQuestion: [],
       myOptions: [],
+      myLesson1: [],
     },
     actions: {
       protect: (token) => {
@@ -60,6 +61,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           .finally(() => {
             // console.log(myData);
           });
+      },
+
+      getLesson1: () => {
+        getActions().syncTokenFromSessionStore();
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
+
+        axios
+          .get(process.env.BACKEND_URL + "/api/answers", config)
+          .then((res) => {
+            setStore({ myLesson1: res.data });
+          });
+      },
+
+      getPinyin: () => {
+        getActions().syncTokenFromSessionStore;
+
+        const config = {
+          headers: { Authorization: `Bearer ${getStore().token}` },
+        };
       },
 
       getQuestions: () => {
@@ -262,27 +285,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getWords: () => {
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + `/api/answers/`,{
+        fetch(process.env.BACKEND_URL + `/api/answers/`, {
           methods: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          
         })
           .then((resp) => resp.json())
-          .then((data) => setStore({wordLink: data}))
-          
+          .then((data) => setStore({ wordLink: data }))
+
           .catch((error) =>
             console.log("Error loading message from backend", error)
           );
-         
       },
 
       // getWords: (word) => {
       //   getActions().syncTokenFromSessionStore();
 
       //   const config = {
-      //     headers: { Authorization: `Bearer ${getStore().token}`, 
+      //     headers: { Authorization: `Bearer ${getStore().token}`,
       //     "Access-Control-Allow-Origin": process.env.FRONTEND_URL, },
       //   };
       //   console.log(config);
@@ -300,7 +321,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       //       // console.log(myData);
       //     });
       // },
- 
 
       changeColor: (index, color) => {
         //get the store

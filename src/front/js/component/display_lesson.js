@@ -2,39 +2,34 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
 import { useNavigate } from "react-router-dom";
-import { Questions } from "./questions"
+import { Questions } from "./questions";
 import TheProgressBar from "./progressBar";
 
 const LessonComponent = () => {
   let navigate = useNavigate();
   const { store, actions } = useContext(Context);
-  
-  console.log(store)
 
+  console.log(store);
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
+    actions.getLesson1();
     if (!store.token) {
       navigate("/login");
     }
   }, []);
 
-
-
   return (
     <div className="background">
       <div className="mt-1">
-
         <div className="container-fluid">
           <div className="game-section">
             {/* Section for the games / games selection */}
           </div>
           <div>
             <h3 className="title"> Story Time Lesson 1</h3>
-            <div>
+            <div></div>
 
-            </div>
-           
             {/* <h1>{store.wordLink?.data?.mandarin}</h1>
             <h1>{store.wordLink?.data?.phoneticM}</h1> */}
 
@@ -52,18 +47,17 @@ const LessonComponent = () => {
               )
             })}  */}
 
-          
-           
-
             {/* <h1>Stories /Lesson</h1> */}
 
             <div>
               <Questions />
 
               <div>
-
                 <div className="card-group mt-2">
-                  <div className="card" onClick={() => alert("Hello I am card one")}>
+                  <div
+                    className="card"
+                    onClick={() => alert("Hello I am card one")}
+                  >
                     <h1 className="box1">食物</h1>
                     {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
                     <div className="card-body">
@@ -81,9 +75,11 @@ const LessonComponent = () => {
                       )}
                       {/* ___________________________________________________________________________________________________________*/}
                     </div>
-
                   </div>
-                  <div className="card" onClick={() => alert("Hello I am card 2")}>
+                  <div
+                    className="card"
+                    onClick={() => alert("Hello I am card 2")}
+                  >
                     <h1 className="box2">车</h1>
                     {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
                     <div className="card-body">
@@ -102,11 +98,12 @@ const LessonComponent = () => {
                       {/* ___________________________________________________________________________________________________________*/}
                       {/* {console.log(store.wordLink.data)} */}
                     </div>
-
-
                   </div>
 
-                  <div className="card" onClick={() => alert("Hello I am card three")}>
+                  <div
+                    className="card"
+                    onClick={() => alert("Hello I am card three")}
+                  >
                     <h1 className="box3">卫生间</h1>
                     {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
                     <div className="card-body">
@@ -124,13 +121,11 @@ const LessonComponent = () => {
                       )}
                       {/* ___________________________________________________________________________________________________________*/}
                     </div>
-
                   </div>
                 </div>
                 <div style={{ color: "blue", marginTop: "20px" }}>
                   <h3 className="answer-alert">That is Correct!!</h3>
                   <div style={{ textAlign: "center" }}>
-
                     {/* <h2 className="progress-bar">Space for progressBar</h2> */}
                     <div className="progress-bar">
                       <span style={{ width: "25%" }}></span>
