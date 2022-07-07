@@ -20,8 +20,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       mandarinText: "",
       audioLink: "",
       wordLink: [],
-      // initializeLesson: {},
-      // loadNextLesson: {},
       current_lesson: { name: undefined, next: null },
       user: null,
       key: [],
@@ -29,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userdata: {},
       myQuestion: [],
       myOptions: [],
+      lesson_paraLink: []
     },
     actions: {
       protect: (token) => {
@@ -60,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(err);
           })
           .finally(() => {
-            //console.log(myData);
+           
           });
       },
 
@@ -70,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const config = {
           headers: { Authorization: `Bearer ${getStore().token}` },
         };
+        
 
         axios
           .get(process.env.BACKEND_URL + "/api/questions", config)
@@ -79,6 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => {
             console.log(err);
           });
+          
       },
 
       getOptions: () => {
@@ -87,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const config = {
           headers: { Authorization: `Bearer ${getStore().token}` },
         };
-        console.log("This is config",config)
+        // console.log("This is config",config)
 
         axios
           .get(process.env.BACKEND_URL + "/api/options", config)
@@ -99,15 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-      // question: () => {
-      //   getActions().syncTokenFromSessionStore();
-      //   const config = {
-      //     headers: { Authorization: `Bearer ${getStore().token}` },
-      //   };
-
-      //   axios
-      // }
-
+     
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
         if (token && token != "" && token != undefined)
@@ -117,6 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       logout: () => {
         sessionStorage.removeItem("token");
         setStore({ token: null });
+        
       },
 
       reset: async (email) => {
@@ -168,7 +162,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await resp.json();
-          console.log("this came from the backend", data);
+
+          // console.log("this came from the backend", data);
+
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
           return true;
@@ -201,43 +197,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
-      //____________________________________________________________________________________
-
-      // initializeLesson: () => {
-      //   const store = getStore();
-      //   if (
-      //     store.current_lesson.name === undefined ||
-      //     store.current_lesson.next === null
-      //   ) {
-      //     fetch(process.env.BACKEND_URL + "/api/lesson/1"), {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
-      //       },
-      //     }
-      //       .then((resp) => resp.json())
-      //       .then((data) => {
-      //         setStore({ current_lesson: data });
-      //       })
-      //       .catch((error) =>
-      //         console.log("Error loading message from backend", error)
-      //       );
-      //   }
-      // },
-      // loadNextLesson: () => {
-      //   const store = getStore();
-      //   fetch(store.current_lesson.next, {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
-      //     },
-      //   })
-      //     .then((resp) => {resp.json()})
-      //     .then((data) => {
-      //       setStore({ current_lesson: data });
-      //     })
-      //     .catch((error) => console.log(error, store.current_lesson));
-      // },
+      
       getAudio: (word) => {
         // fetch(`https://api.pons.com/v1/dictionaries?language=zh/${word}`)
         // fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
@@ -279,31 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
          
       },
 
-      // getWords: (word) => {
-      //   getActions().syncTokenFromSessionStore();
-
-      //   const config = {
-      //     headers: { Authorization: `Bearer ${getStore().token}`, 
-      //     "Access-Control-Allow-Origin": process.env.FRONTEND_URL, },
-      //   };
-      //   console.log(config);
-
-      //   axios
-      //     .get(process.env.BACKEND_URL + `/api/lesson1_vocab/${word}`, config)
-      //     .then((res) => {
-      //       setStore({ wordLink: res });
-      //       console.log(res.data.mandarin) +console.log(res)
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     })
-      //     .finally(() => {
-      //       // console.log(myData);
-      //     });
-      // },
- 
-
-      changeColor: (index, color) => {
+        changeColor: (index, color) => {
         //get the store
         const store = getStore();
 
@@ -319,23 +255,24 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
 
-    // getMandarin: (word) => {
-    //   fetch(process.env.BACKEND_URL +`/api/lesson1_vocab/${word}`)
-    //     .then((resp) => resp.json())
-    //     .then((data) => {
-    //       let mandarin = data[0].mandarin.find((item) => {
-    //         return item.mandarin
-    //       });
-    //       setStore({ mandarinText: mandarin });
-    //     })
-    //     .catch((error) =>
-    //       console.log("Error loading message from backend", error)
-    //     );
-    // },
 
-    // Use getActions to call a function within a fuction
-
-    //This function will give us a button to play pronounciations.
+    getLesson_para: () => {
+      // fetching data from the backend
+      fetch(process.env.BACKEND_URL + `/api/lesson_para/`,{
+        methods: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        
+      })
+        .then((resp) => resp.json())
+        .then((data) => setStore({lesson_paraLink: data}))
+        
+        .catch((error) =>
+          console.log("Error loading message from backend", error)
+        );
+       
+    },   
   };
 };
 

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint, flash
-from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson, Questions, Options
+from api.models import db, User, Account, Favorites, Lesson1_vocab, Lesson, Questions, Options, Lesson_Para
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from argon2 import PasswordHasher
@@ -73,16 +73,10 @@ def register():
     db.session.add(user)
     db.session.commit()
 
-    # return "user registered", 200
     return jsonify(user.serialize()), 200
 
 
-#_______________________________________________________
-# Working on this code
-
 @api.route('/user', methods=['POST', 'GET', 'DELETE'])
-
- 
 @jwt_required()
 def user():
     user_id = get_jwt_identity()
@@ -98,25 +92,6 @@ def user():
 
 #____________________________________________________________________________________________________
 
-# @api.route('/login', methods=['POST'])
-# def login():
-#     payload = request.get_json()
-
-#     user = User.query.filter(User.email == payload['email']).first()
-#     if user is None:
-#         return 'failed-auth', 401
-
-#     try:
-#         ph.verify(user.password, payload['password'])
-
-#     except:1
-#     return 'failed-auth', 401
-
-#     token = create_access_token(identity=user.id)
-
-#     return jsonify({'token': token})
-
-
 @api.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
@@ -127,7 +102,6 @@ def protected():
 
 @api.route("/login", methods=["POST","GET"])
 def create_token():
-    # body = request.get_json()
     username = request.json.get('username', None)
     password = request.json.get('password', None)
     user = User.query.filter_by(username=username).one_or_none()
@@ -136,7 +110,6 @@ def create_token():
             access_token = create_access_token(identity=username)
             return jsonify({"access_token":access_token})
     
-    # tuple
     return jsonify(msg='failed'),400
     
 
@@ -161,7 +134,7 @@ def accounts():
     return jsonify(account_info)
 
 
-@api.route('/questions', methods=['GET','POST'])
+@api.route('/questions', methods=['GET'])
 @ jwt_required()
 def questions():
     
@@ -172,10 +145,22 @@ def questions():
     print(myQuestion)
     return jsonify(myQuestion)
 
+@api.route('/questions',methods=['POST'])
+@jwt_required()
+def add_questions():
+    payload = request.get_json()
+    for item in payload:
+        option = Options.query.filter_by(option=item["answer"]).one_or_none()
+        print(option)
+        instance = Questions(lessons = item["lessons"], question = item["question"], option = option, lesson_para = item["lesson_para"])
+        
+        db.session.add(instance)
+        db.session.commit() 
+      
+    return "Success the words have been added", 200
 
 
-
-@api.route('/options', methods=['GET','POST'])
+@api.route('/options', methods=['GET'])
 @ jwt_required()
 def options():
     
@@ -186,9 +171,42 @@ def options():
     print(myOptions)
     return jsonify(myOptions)
 
+@api.route('/options', methods = ['POST'])
+@jwt_required
+def add_options():
+    payload = request.get_json()
+    for item in payload:
+        instance = Options(option = item["option"], audio = item["audio"])
+        
+        
+        db.session.add(instance)
+        db.session.commit() 
+      
+    return "Success the words have been added", 200
 
 
-#____________________________________________________________________________________________________
+@api.route('/lesson_para', methods=['GET'])
+@ jwt_required()
+def lesson_para():
+    
+    lesson_para = Lesson_Para.query.all()
+    
+    mylesson_para =  [x.serialize() for x in lesson_para]
+    
+    print(lesson_para)
+    return jsonify(lesson_para)
+
+@api.route('/lesson_para',methods=['POST'])
+@jwt_required()
+def add_lesson_para():
+    payload = request.get_json()
+    for item in payload:
+        instance = Lesson_Para(lesson_para = item["lesson_para"])
+        
+        db.session.add(instance)
+        db.session.commit() 
+      
+    return "Success the words have been added", 200
 
 
 @api.route('/account/<int:id>', methods=['DELETE'])
@@ -197,9 +215,6 @@ def del_account(id):
     db.session.commit()
 
     return 'Account deleted', 204
-
-
-#____________________________________________________________________________________________________
 
 
 @api.route('/favorites', methods=['GET'])
@@ -217,14 +232,10 @@ def del_favorites(id):
 
     return 'Favorites deleted', 204
 
-#____________________________________________________________________________________________________
-
-# @api.route('/words')
 @api.route('/lesson1_vocab/<string:mandarin>', methods=['GET'])
 def getWords(mandarin):
     mandarin = Lesson1_vocab.query.filter_by(word=mandarin).one_or_none()
     return jsonify(mandarin.serialize()), 200
-
 
 @api.route('/lesson1_vocab', methods=['POST'])
 def words():
@@ -237,23 +248,6 @@ def words():
       
     return "Success the words have been added", 200
 
-#____________________________________________________________________________________________________
-
-# @api.route('/forwarded_resp', methods=['GET'])
-# def forward_resp():
-#     resp = requests.get(
-#         'https://httpbin.org/get'
-#     ).json()
-#     return jsonify(resp)
-
-# @api.route('/forwarded_resp/<string:word>', methods=['GET'])
-# def accepting_args(word):
-#     resp = requests.get(
-#         'https://httpbin.org/base64/{}'.format(word)
-#     ).text
-#     print(resp)
-#     return jsonify(resp)
-#_________________________________________________________________________
 
 @api.route("/lesson1_vocab/<int:id>")
 def get_lesson1_vocab(id):
@@ -261,10 +255,9 @@ def get_lesson1_vocab(id):
     return jsonify(lesson1_vocab.serialize()), 200
 
 
-
 @api.route("/lesson")
 def get_lesson():
-    # lesson = Lesson1_vocab.query.filter_by(id=id).one_or_none()
+    
     return jsonify(lesson.serialize()), 200
 
 @api.route("/answers", methods=["POST"])

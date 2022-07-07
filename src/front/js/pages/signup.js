@@ -44,7 +44,7 @@ export const Signup = () => {
   return (
     <div className="container-fluid" id="signup_form">
       <form>
-        <label for="fname">First name:</label>
+        <label for="fname"></label>
         <input
           required
           type="text"
@@ -56,7 +56,7 @@ export const Signup = () => {
           }}
         />
 
-        <label for="lname">Last name:</label>
+        <label for="lname"></label>
         <input
           type="text"
           id="lname"
@@ -66,7 +66,7 @@ export const Signup = () => {
             setLastName(e.target.value);
           }}
         ></input>
-        <label for="username">Username:</label>
+        <label for="username"></label>
         <input
           type="text"
           id="username"
@@ -76,7 +76,7 @@ export const Signup = () => {
           }}
         ></input>
 
-        <label for="password">Password:</label>
+        <label for="password"></label>
         <input
           id="password"
           type="password"
@@ -86,7 +86,7 @@ export const Signup = () => {
           }}
         ></input>
 
-        <label for="email">Email:</label>
+        <label for="email"></label>
         <input
           type="text"
           id="email"

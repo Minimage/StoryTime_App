@@ -1,7 +1,7 @@
   
 import os
 from flask_admin import Admin
-from .models import db, User, Account, Favorites, Lesson1_vocab, Lesson, Questions, Options
+from .models import db, User, Account, Favorites, Lesson1_vocab, Lesson, Questions, Options, Lesson_Para
 from flask_admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField
 
@@ -29,5 +29,6 @@ def setup_admin(app):
     admin.add_view(ModelView(Lesson, db.session))
     admin.add_view(ModelView(Questions, db.session))
     admin.add_view(ModelView(Options, db.session))
+    admin.add_view(ModelView(Lesson_Para, db.session))
 
     

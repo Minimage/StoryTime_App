@@ -20,9 +20,10 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
   // const history = useHistory();
   const token = sessionStorage.getItem("token");
-  // console.log("This is your token", store.token)
 
-  console.log(store);
+  // console.log("This is your token", store.token)
+  // console.log(store);
+
   const handleClick = () => {
     actions.login(userName, password);
     if (store.token && store.token !== null && store.token !== undefined) {
@@ -31,19 +32,18 @@ export const Login = () => {
     }
   };
 
-  // This will run everytime the token updates but will only render what we need once the token is valid
-  // or in other words this effect will run when the token is null but wont display anything as we have
-  // it set to do nothing if null
-
-  // this should probably be where i pull user info from the back since when the token changes then I can
-  // also update the user info in one go
-
   useEffect(() => {
     actions.syncTokenFromSessionStore();
     if (store.token) {
-      navigate("/display_lesson");
+      navigate("/display_lesson/0");
     }
-  });
+})
+
+// useEffect(() => {
+//     if (store.token === null) {
+//       navigate("/ratings")
+//   }
+// })
 
   return (
     <div className="login">
@@ -67,38 +67,13 @@ export const Login = () => {
           }}
           required
         ></input>
+        <div id="submit_button">
+          <button className="btn btn-primary btn-lg btn-block" onClick={handleClick}>Login</button>
+        </div>
 
-        <button onClick={handleClick}>Submit</button>
       </div>
 
-      {/* // tenanry expression working in reverse --- do not know how to solve */}
-      {/* {store.token == null ? (
-        `You are logged in using this token ${store.token}`
-      ) : (
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            required
-          ></input>
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            required
-          ></input>
-
-          <button onClick={handleClick}>Submit</button>
-        </div>
-      )} */}
+      
     </div>
   );
 };

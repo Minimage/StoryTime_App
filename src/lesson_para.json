@@ -1,0 +1,39 @@
+[
+	{
+		"answer": "食物 Shíwù",
+		"id": 1,
+		"lessons": 1,
+        "lesson_para": "The 食物 is delicious",
+		"question": "Challenge 1: What madarin word means food?"
+	},
+	{
+		"answer": "食物 Shíwù",
+		"id": 1,
+		"lessons": 1,
+        "lesson_para": "The 食物 is hot",
+		"question": "Challenge 2: What madarin word means food?"
+	},
+	{
+		"answer": "食物 Shíwù",
+		"id": 1,
+		"lessons": 1,
+        "lesson_para": "The 食物 is cold",
+		"question": "Challenge 3: What madarin word means food?"
+	},
+	{
+		"answer": "食物 Shíwù",
+		"id": 1,
+		"lessons": 1,
+        "lesson_para": "The 食物 is missing",
+		"question": "Challenge 4: What madarin word means food?"
+	},
+	{
+		"answer": "食物 Shíwù",
+		"id": 1,
+		"lessons": 1,
+        "lesson_para": "The 食物 is old",
+		"question": "Challenge 5: What madarin word means food?"
+	}
+
+    
+]

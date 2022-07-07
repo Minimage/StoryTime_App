@@ -2,8 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../pages/global_context";
 import { Context } from "../store/appContext";
-import logo from "../../img/profile-pic.png";
+// import logo from "../../img/profile-pic.png";
 import "../../styles/styles.css";
+import logo from "../../img/story-time-logo.png"
 
 export const Navbar = () => {
   const { auth, setAuth } = useContext(userContext);
@@ -11,6 +12,7 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar navbar-light bg-light">
+      <img src={logo} className="logo"></img>
       <div className="container">
         <Link to="/">
           <span className="navbar-brand mb-0 h1 ">Home</span>
@@ -19,11 +21,6 @@ export const Navbar = () => {
          <Link to="/about_us">
           <span className="navbar-brand mb-0 h1 ">About Us</span>
         </Link>
-
-
-        {/* <Link to="/lesson">
-          <span className="navbar-brand mb-0 h1 ">Lesson</span>
-        </Link> */}
 
         <div className="ml-auto">
           {store.token == "null" ||
@@ -40,18 +37,22 @@ export const Navbar = () => {
               </span>
             </Link>
           ) : (
-            <button
+            <span style={{textDecoration:"underline",color:"blue"}}className="navbar-brand mb-0 h1"
               onClick={() => {
-                actions.logout();
+                actions.logout()
+                // <Link to={"/ratings"}>actions.logout()</Link>;
+                // if (actions.logout()) {
+                //   <Link to={"/ratings"}></Link>;
+                // }
+                // <Link to={"/ratings"}>
+                //   actions.logout(),
+                // </Link>;
               }}
             >
               Log Out
-            </button>
+            </span>
           )}
 
-          {/* Right now this profile pic is importing it into logo up top
-              Going forward we will need to refactor our code to make it 
-              pull from the stored profile pic in the back end */}
           <Link to="/User/1">
             <img
               src={logo}
@@ -64,10 +65,10 @@ export const Navbar = () => {
           store.token != undefined &&
           store.token != null &&
           store.token != "null" ? (
-            // User signed in
+            
             ""
           ) : (
-            // No User Signed In
+            
 
             <div className="ml-auto">
               <Link to="/signup">
