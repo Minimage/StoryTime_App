@@ -16,6 +16,31 @@ const LessonComponent = () => {
 
   console.log(store.myLesson1);
 
+  let ints = [];
+  for (let x = 0; x < store.myLesson1.length; x++) {
+    ints.push(x);
+  }
+
+  let randint = store.myLesson1.length;
+
+  const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
+
+  let result1 = Math.floor(Math.random() * randint) + 1;
+  let result2 = Math.floor(Math.random() * randint) + 1;
+  let result3 = Math.floor(Math.random() * randint) + 1;
+
+  //randomizes the ints array
+  useEffect(() => {
+    randomize(ints);
+  }, []);
+
+  let holdints = [];
+  for (let i = 0; i < 5; i++) {
+    holdints.push(ints[i]);
+  }
+
+  console.log(holdints, " Holdints !!!");
+
   useEffect(() => {
     actions.syncTokenFromSessionStore();
     actions.getPinyin();
@@ -97,7 +122,7 @@ const LessonComponent = () => {
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       <p className="card-text">
-                        {store.myLesson1[count]?.phoneticM}
+                        {store.myLesson1[holdints[count]]?.phoneticM}
                       </p>
                     </div>
                     <div className="Pronounciation">

@@ -50,7 +50,9 @@ export const Home = () => {
   let result2 = Math.floor(Math.random() * randint) + 1;
   let result3 = Math.floor(Math.random() * randint) + 1;
 
-  let randomPos = randomize(ints);
+  //randomizes the ints array
+  randomize(ints);
+
   // console.log(result);
   // console.log(lesson1[0]?.lessons);
 
@@ -123,7 +125,7 @@ export const Home = () => {
                         transition={{ duration: 0.5 }}
                       >
                         {/* ___________________________________________________________________________________________________________*/}
-                        
+
                         {/* ___________________________________________________________________________________________________________*/}
                       </motion.div>
                     </div>

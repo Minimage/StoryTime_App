@@ -1,0 +1,11 @@
+TODO List
+
+-   Program needs to store all data from the back end into a setStore function. <store.myLesson1>
+    
+
+-   After this we must set up a function to store an array of number up to the length of the setStore function
+        example: If the setStore function has a length of 2 elements then we will have an array called count and this
+        array will consist of numbers [0,1].
+
+-   From here the program needs to randomly sort the count array and the program will choose the first 5 elements 
+    of the count array
