@@ -1,6 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../styles/notfound.css";
 
 export const NotFound = () => {
-  return <h1 className="notFound">Invalid URL</h1>;
+  return (
+
+  <Link to="/login">
+    <h1 className="notFound">Invalid URL</h1>;
+
+  </Link>
+
+  )
+
 };

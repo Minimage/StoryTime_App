@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import 'animate.css';
+// import 'animate.css';
 import "../../styles/about_us.css"
 // import { motion } from "framer-motion";
 

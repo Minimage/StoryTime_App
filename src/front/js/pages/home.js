@@ -76,12 +76,12 @@ export const Home = () => {
               >
                 <Transform enterTransform="translateX(30px)" in>
                   <h1 className="heading1">
-                    ever had a hard time learning something new?
+                    Ever had a hard time learning something new?
                   </h1>
                   <h2 className="heading2">
                     Story Time is a fun and <wbr />
-                    innovative way to help trigger yours Memory to request words
-                    and everything you've learned
+                    innovative way to help trigger yours memory to request words
+                    and everything you've learned!!
                   </h2>
                   {store.token &&
                   store.token !== null &&
@@ -91,7 +91,7 @@ export const Home = () => {
                   ) : (
                     // Unauthenticated
                     <Link to="/signup">
-                      <button type="button" className="btn btn-warning">
+                      <button type="button" className="btn btn-primary btn-lg btn-block">
                         Start learning today!
                       </button>
                     </Link>

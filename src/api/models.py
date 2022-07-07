@@ -41,44 +41,65 @@ class User(db.Model):
     def checkpassword(self,password):
         return check_password_hash(self.password, password)
 
-# _______________________________________________________________________________________________
-
 
 class Questions(db.Model):
     __tablename__ = "questions"
     id = db.Column(db.Integer, primary_key=True)
     lessons = db.Column(db.Integer)
     question = db.Column(db.String(256))
-    answer = db.Column(db.String(256))
+    lesson_para = db.Column(db.String(500))
     
-  
+    answer = db.Column(db.Integer, db.ForeignKey("options.id"))
+    option = db.relationship("Options", back_populates="question")
+    
+    def __repr__(self):
+        return f'<Questions{self.id}>'
     
     def serialize(self):
         return {
             "id": self.id,
-            "question": self.question,
-            "answer" : self.answer,
             "lessons": self.lessons,
-            # "answer": self.answer
-
-
+            "question": self.question,
+            "lesson_para": self.lesson_para,
+            "answer" : self.option.serialize(),
+            
         }
-
-
 class Options(db.Model):
     __tablename__ = "options"
     id = db.Column(db.Integer, primary_key=True)
     option = db.Column(db.String(256))
+    audio = db.Column(db.String(700))
+    
+    question = db.relationship("Questions", back_populates="option")
+    
+      
+    def __repr__(self):
+        return f'<Options{self.option}>'
     
     def serialize(self):
         return {
             "id": self.id,
             "option": self.option,
+            "audio": self.audio,
+           
+        }
+
+class Lesson_Para(db.Model):
+    __tablename__ = "lesson_para"
+    id = db.Column(db.Integer, primary_key=True)
+    lesson_para = db.Column(db.String(256))
+   
+    
+    def __repr__(self):
+        return f'<Lesson_Para{self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "lesson_para": self.lesson_para,
         }
 
     
-
-
 class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -95,12 +116,10 @@ class Account(db.Model):
 
         }
 # _______________________________________________________________________________________________
-
-
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     favorites = db.Column(db.String(50), unique=False, nullable=True)
-    # user = db.relationship("User")
+    
 
     def __repr__(self):
         return f'<User {self.favorites}>'
@@ -174,14 +193,4 @@ class Lesson(db.Model):
             "id": self.id,
             "name": self.name,
             "next": child_url
-        }
-       
-# class Questions(db.Model):
-#     __tablename__ = "questions"
-#     id = db.Column(db.Integer, primary_key=True)
-#     question = db.Column(db.String(256))
-#     answer = db.relationship('Answers', backref='questions', uselist=False)
-
-    
-
- 
+        } 

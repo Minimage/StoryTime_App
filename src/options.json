@@ -1,0 +1,104 @@
+[
+    {
+    "id": 1,
+    "option": "你好 Nǐ hǎo",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-au.mp3"
+    },
+    {
+    "id": 2,
+    "option": "食物 Shíwù",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/food-uk.mp3"
+    },
+    {
+    "id": 3,
+    "option": "再见 Zàijiàn",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/bye-au.mp3"
+    },
+    {
+    "id": 4,
+    "option": "洗手间 Xǐshǒujiā",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/toilet-uk.mp3"
+    },
+    {
+    "id": 5,
+    "option": "帮助 Bāngzhù",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/help-us.mp3"
+    },
+    {
+    "id": 6,
+    "option": "警察 Jǐngchá",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/police-uk.mp3"
+    },
+    {
+    "id": 7,
+    "option": "想 Xiǎng",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/want-uk.mp3"
+    },
+    {
+    "id": 8,
+    "option": "有 Yǒu",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/have-au.mp3"
+    },
+    {
+    "id": 9,
+    "option": "喜欢 Xǐhuān",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/like-us.mp3"
+    },
+    {
+    "id": 10,
+    "option": "不 Bù",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/no-uk.mp3"
+    },
+    {
+    "id": 11,
+    "option": "好的 Hǎo de",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/good-uk.mp3"
+    },
+    {
+    "id": 12,
+    "option": "吃 Chī",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/eat-uk.mp3"
+    },
+    {
+    "id": 13,
+    "option": "喝 Hē",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/drink-us.mp3"
+    },
+    {
+    "id": 14,
+    "option": "水 Shuǐ",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/water-uk.mp3"
+    },
+    {
+    "id": 15,
+    "option": "卫生间 Wei sheng jian",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/bathroom-uk.mp3"
+    },
+    {
+    "id": 16,
+    "option": "那里 na li",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/where-us.mp3"
+    },
+    {
+    "id": 17,
+    "option": "不好 Bu hao",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/bad-uk.mp3"
+    },
+    {
+    "id": 18,
+    "option": "这个 Zhe ge",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/this-us.mp3"
+    },
+    {
+    "id": 19,
+    "option": "在 zai",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/at-us.mp3"
+    },
+    {
+    "id": 20,
+    "option": "这里 Zhe li",
+    "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/here-uk.mp3"
+    }
+    
+]
+    

@@ -1,0 +1,32 @@
+.Rating_Title {
+    text-align: center;
+}
+
+.background_ratings {
+    background-image: url("https://st3.depositphotos.com/6396642/15998/v/950/depositphotos_159981324-stock-illustration-book-open-book-with-heart.jpg");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.cursor-pointer {
+    font-size: 50px;
+    /* color: crimson; */
+    margin-top: 25px;
+
+}
+.cursor-pointer:hover {
+    font-size: 60px;
+    /* color: rgb(1, 254, 52); */
+    margin-top: 25px;
+    outline: none;
+    /* border-color: black; */
+    /* color: #fff; */
+    background: rgb(146, 250, 0);
+}
+.rate_question {
+    margin-top: 250px;
+    
+}
+.rating_count {
+    margin-bottom: 150px;
+    margin-top: 25px;
+}
