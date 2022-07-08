@@ -146,7 +146,7 @@ def questions():
     return jsonify(myQuestion)
 
 @api.route('/questions',methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def add_questions():
     payload = request.get_json()
     for item in payload:
@@ -287,3 +287,4 @@ def vocab_word(word):
 
     return jsonify(audio=mp3_file["audio"])
 
+ 

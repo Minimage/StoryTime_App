@@ -4,7 +4,7 @@ import { userContext } from "../pages/global_context";
 import { Context } from "../store/appContext";
 // import logo from "../../img/profile-pic.png";
 import "../../styles/styles.css";
-import logo from "../../img/story-time-logo.png"
+import logo from "../../img/new-story-time-logo.png";
 
 export const Navbar = () => {
   const { auth, setAuth } = useContext(userContext);
@@ -18,7 +18,7 @@ export const Navbar = () => {
           <span className="navbar-brand mb-0 h1 ">Home</span>
         </Link>
 
-         <Link to="/about_us">
+        <Link to="/about_us">
           <span className="navbar-brand mb-0 h1 ">About Us</span>
         </Link>
 
@@ -37,9 +37,11 @@ export const Navbar = () => {
               </span>
             </Link>
           ) : (
-            <span style={{textDecoration:"underline",color:"blue"}}className="navbar-brand mb-0 h1"
+            <span
+              style={{ textDecoration: "underline", color: "blue" }}
+              className="navbar-brand mb-0 h1"
               onClick={() => {
-                actions.logout()
+                actions.logout();
                 // <Link to={"/ratings"}>actions.logout()</Link>;
                 // if (actions.logout()) {
                 //   <Link to={"/ratings"}></Link>;
@@ -65,11 +67,8 @@ export const Navbar = () => {
           store.token != undefined &&
           store.token != null &&
           store.token != "null" ? (
-            
             ""
           ) : (
-            
-
             <div className="ml-auto">
               <Link to="/signup">
                 <div className={auth === true ? "hide" : "show"}>Sign up </div>
