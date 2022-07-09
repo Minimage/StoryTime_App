@@ -31,7 +31,6 @@ const LessonComponent = (props) => {
     actions.myData();
     actions.getQuestions();
     actions.getOptions();
-  
 
     if (!store.token) {
       navigate("/login");
@@ -52,23 +51,23 @@ const LessonComponent = (props) => {
 
   useEffect(() => {
     setOptions(store.myOptions);
-    
   }, [store.myOptions]);
   // console.log(options, "options new");
 
-  
-
   let ints = [];
+  console.log(store.myOptions, "myQuestion");
   for (let x = 0; x < store.myOptions.length; x++) {
     ints.push(x);
+    // console.log("this is x ", x);
   }
-
   // console.log(randOption2, "option2")
   // console.log(randOption3, "option3")
 
   let randint = store.myOptions.length;
 
   const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
+  randomize(ints);
+  console.log("randomized ", ints);
 
   let result1 = Math.floor(Math.random() * randint) + 1;
   let result2 = Math.floor(Math.random() * randint) + 1;
@@ -160,7 +159,7 @@ const LessonComponent = (props) => {
                   >
                     <h1 className="box1">{store.myOptions[1]?.option}</h1>
                     {/* <h1 className="box1">食物</h1> */}
-                    
+
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Shíwù</p> */}
@@ -181,11 +180,14 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!")}
                   >
                     <h1 className="box2">
-                      {options.length > 0 && options[randOption2]?.option}
+                      {options.length > 0 &&
+                      options[ints[1]]?.option === "食物 Shíwù"
+                        ? randomize(ints)
+                        : options[ints[1]]?.option}
                     </h1>
 
                     {/* <h1 className="box2">车</h1> */}
-                    
+
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Chē</p> */}
@@ -200,7 +202,6 @@ const LessonComponent = (props) => {
                         </audio>
                       )}
                       {/* ___________________________________________________________________________________________________________*/}
-                      
                     </div>
                   </div>
 
@@ -210,10 +211,13 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!!")}
                   >
                     <h1 className="box3">
-                      {options.length > 0 && options[randOption3]?.option}
+                      {options.length > 0 &&
+                      options[ints[2]]?.option === "食物 Shíwù"
+                        ? randomize(ints)
+                        : options[ints[2]]?.option}
                     </h1>
                     {/* <h1 className="box3">卫生间</h1> */}
-                    
+
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Wei sheng jian</p> */}
@@ -234,9 +238,7 @@ const LessonComponent = (props) => {
                 </div>
                 <div style={{ color: "blue", marginTop: "20px" }}>
                   {/* <h3 className="answer-alert">That is Correct!!</h3> */}
-                  <div style={{ textAlign: "center" }}>
-                    
-                  </div>
+                  <div style={{ textAlign: "center" }}></div>
                   {/* {console.log(randOption2, "randOption 2 NOT FIRST")}
                   {console.log(randOption3, "randOption 3 NOT FIRST")}
                   {console.log(options[randOption2]?.audio, "this is audio2")}
