@@ -4,24 +4,23 @@ import "../../styles/display_lesson.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Questions } from "./questions";
 import TheProgressBar from "./progressBar";
+import { Link } from "react-router-dom";
+import ProgressBar from "@ramonak/react-progress-bar";
 
-const LessonComponent = () => {
+const LessonComponent = (props) => {
   let navigate = useNavigate();
   const { store, actions } = useContext(Context);
   const params = useParams();
-  const [options, setOptions] = useState([]);
+  const [prog, setProg] = useState(0);
+  const [lesson1, setLesson1] = useState({});
   const [count, setCount] = useState(0);
-  const [myInt, setMyInt] = useState(0);
-  // const [randOption2, setRandOption2] = useState(store.myOptions[ints]);
-  // const [randOption3, setRandOption3] = useState(store.myOptions[ints]);
+  const [options, setOptions] = useState([]);
+
   const randOption2 = Math.floor(Math.random() * options.length);
   const randOption3 = Math.floor(Math.random() * options.length);
 
   console.log(randOption2, "randOption 2 new");
   console.log(randOption3, "randOption 3 new");
-
-  // console.log(options[randOption2]?.option, "RANDOPTION 2")
-  // console.log(options[randOption3]?.option, "RANDOPTION 3")
 
   console.log(store);
 
@@ -30,6 +29,7 @@ const LessonComponent = () => {
     actions.myData();
     actions.getQuestions();
     actions.getOptions();
+
     // actions.getWords()
 
     if (!store.token) {
@@ -95,6 +95,30 @@ const LessonComponent = () => {
   let b = arr[1];
   let c = arr[2];
 
+  const lessons_length = Object.keys(store.myQuestion).length;
+  let increment = 100 / lessons_length;
+
+  let handleclick = () => {
+    setProg(prog + increment);
+    <Link to={`/display_lesson/${parseInt(props.index) + 1}`} />;
+    setCount(count + 1);
+  };
+
+  useEffect(() => {
+    if (prog > 100) {
+      setProg(100);
+    }
+  }, [prog]);
+
+  const data = store.myQuestion[props.index];
+
+  useEffect(() => {
+    let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
+    setLesson1(firstLesson);
+    console.log(firstLesson, "firstLesson");
+  }, [store.myQuestion]);
+
+  console.log(data, " this is data");
   return (
     <div className="background">
       <div className="mt-1">
@@ -108,17 +132,24 @@ const LessonComponent = () => {
             </h3>
             <h3 className="lesson_title">Lesson 1</h3>
 
-            <div></div>
+            <div>
+              <h1 style={{ textAlign: "center" }}>
+                {lesson1[count]?.lesson_para}
+              </h1>
+              <h1 style={{ textAlign: "center" }}>
+                {lesson1[count]?.question}
+              </h1>
+            </div>
 
             <div>
-              <Questions index={params.question_id} />
+              {/* <Questions index={params.question_id} /> */}
 
               <div>
                 <div style={{ display: "flex" }} className="card-group mt-2">
                   <div
                     style={{ order: a }}
                     className="card"
-                    onClick={() => alert("That's Corret!")}
+                    onClick={handleclick}
                   >
                     <h1 className="box1">{store.myOptions[1]?.option}</h1>
                     {/* <h1 className="box1">食物</h1> */}
@@ -136,6 +167,7 @@ const LessonComponent = () => {
                       {/* ___________________________________________________________________________________________________________*/}
                     </div>
                   </div>
+
                   <div
                     style={{ order: b }}
                     className="card"
@@ -206,7 +238,6 @@ const LessonComponent = () => {
                   {console.log(randOption3, "randOption 3 NOT FIRST")}
                   {console.log(options[randOption2]?.audio, "this is audio2")}
                   {console.log(options[randOption3]?.audio, "this is audio3")}
-                  <TheProgressBar />
                 </div>
 
                 <div className="next">
@@ -214,6 +245,21 @@ const LessonComponent = () => {
                     type="button"
                     onClick={actions.loadNextLesson}
                     className="btn btn-primary btn-lg btn-block"
+                  >
+                    Next Lesson
+                  </button> */}
+
+                  <ProgressBar
+                    completed={prog.toFixed(2)}
+                    labelColor="white"
+                    bgColor="blue"
+                    animateOnRender
+                  />
+
+                  {/* Keeping this as it has a turnary for when the progress bar is 100%*/}
+                  {/* <button
+                    className={prog >= 100 ? "hide" : ""}
+                    onClick={handleclick}
                   >
                     Next Lesson
                   </button> */}
