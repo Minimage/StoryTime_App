@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userdata: {},
       myQuestion: [],
       myOptions: [],
-      lesson_paraLink: []
+      lesson_paraLink: [],
     },
     actions: {
       protect: (token) => {
@@ -52,15 +52,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           .get(process.env.BACKEND_URL + "/api/user", config)
           .then((res) => {
             setStore({ userdata: res.data });
-            
-              
           })
           .catch((err) => {
             console.log(err);
           })
-          .finally(() => {
-           
-          });
+          .finally(() => {});
       },
 
       getQuestions: () => {
@@ -69,7 +65,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const config = {
           headers: { Authorization: `Bearer ${getStore().token}` },
         };
-        
 
         axios
           .get(process.env.BACKEND_URL + "/api/questions", config)
@@ -79,7 +74,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((err) => {
             console.log(err);
           });
-          
       },
 
       getOptions: () => {
@@ -100,7 +94,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-     
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
         if (token && token != "" && token != undefined)
@@ -110,7 +103,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       logout: () => {
         sessionStorage.clear();
         setStore({ token: null });
-        
       },
 
       reset: async (email) => {
@@ -197,19 +189,22 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
-      
-      getAudio: (word) => {
+
+      getAudio: async (word) => {
+        try {
+          const response = fetch(
+            process.env.BACKEND_URL + `/api/vocab_words/${word}`
+          );
+          if (response.ok) {
+            const data = response.json();
+            setStore({ audioLink: data.audio });
+            return true;
+          }
+        } catch (error) {
+          throw Error("this is my error", error);
+        }
         // fetch(`https://api.pons.com/v1/dictionaries?language=zh/${word}`)
         // fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        fetch(process.env.BACKEND_URL + `/api/vocab_words/${word}`)
-        .then((resp) => resp.json())
-          .then((data) => {
-            
-            setStore({ audioLink: data.audio });
-          })
-          .catch((error) =>
-            console.log("Error loading message from backend", error)
-          );
       },
       //____________________________________________________________________________________________________________
       getMessage: () => {
@@ -221,25 +216,54 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
-      getWords: () => {
+      getWords: async () => {
         // fetching data from the backend
-        fetch(process.env.BACKEND_URL + `/api/answers/`,{
-          methods: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          
-        })
-          .then((resp) => resp.json())
-          .then((data) => setStore({wordLink: data}))
-          
-          .catch((error) =>
-            console.log("Error loading message from backend", error)
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + `/api/answers`,
+            {
+              methods: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
           );
-         
+          // const data = await response.json();
+          if (response.ok) {
+            const data = await response.json();
+            setStore({ wordLink: data });
+            console.log(data);
+            return true;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
       },
 
-        changeColor: (index, color) => {
+      // getWords: (word) => {
+      //   getActions().syncTokenFromSessionStore();
+
+      //   const config = {
+      //     headers: { Authorization: `Bearer ${getStore().token}`,
+      //     "Access-Control-Allow-Origin": process.env.FRONTEND_URL, },
+      //   };
+      //   console.log(config);
+
+      //   axios
+      //     .get(process.env.BACKEND_URL + `/api/lesson1_vocab/${word}`, config)
+      //     .then((res) => {
+      //       setStore({ wordLink: res });
+      //       console.log(res.data.mandarin) +console.log(res)
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     })
+      //     .finally(() => {
+      //       // console.log(myData);
+      //     });
+      // },
+
+      changeColor: (index, color) => {
         //get the store
         const store = getStore();
 
@@ -255,24 +279,21 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
 
-
     getLesson_para: () => {
       // fetching data from the backend
-      fetch(process.env.BACKEND_URL + `/api/lesson_para/`,{
+      fetch(process.env.BACKEND_URL + `/api/lesson_para/`, {
         methods: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        
       })
         .then((resp) => resp.json())
-        .then((data) => setStore({lesson_paraLink: data}))
-        
+        .then((data) => setStore({ lesson_paraLink: data }))
+
         .catch((error) =>
           console.log("Error loading message from backend", error)
         );
-       
-    },   
+    },
   };
 };
 

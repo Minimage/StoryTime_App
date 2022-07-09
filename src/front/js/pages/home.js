@@ -25,7 +25,6 @@ export const Home = () => {
     actions.getQuestions();
     actions.getOptions();
   }, []);
-  console.log(store.myQuestion);
 
   useEffect(() => {
     let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
@@ -33,14 +32,14 @@ export const Home = () => {
   }, [store.myQuestion]);
 
   useEffect(() => {
-    console.log(store.myOptions.length);
+    //console.log(store.myOptions.length);
     setOptions(store.myOptions);
   }, [store.myOptions]);
   let ints = [];
   for (let x = 0; x < store.myOptions.length; x++) {
     ints.push(x);
   }
-  console.log(ints + " this is my ints");
+  //console.log(ints + " this is my ints");
 
   let randint = store.myOptions.length;
 
@@ -123,7 +122,7 @@ export const Home = () => {
                         transition={{ duration: 0.5 }}
                       >
                         {/* ___________________________________________________________________________________________________________*/}
-                        
+
                         {/* ___________________________________________________________________________________________________________*/}
                       </motion.div>
                     </div>
@@ -173,7 +172,7 @@ export const Home = () => {
               <h5 className="card-title">
                 {store.myOptions[ints[0]]?.option}
 
-                {console.log(options)}
+                {/* {console.log(options)} */}
               </h5>
 
               <a href="#" className="btn btn-primary">
