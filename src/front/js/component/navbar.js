@@ -23,7 +23,6 @@ export const Navbar = () => {
   };
   return (
     <nav className="navbar navbar-light bg-light">
-      <img src={logo} className="logo"></img>
       {/* <img src={logo2} className="logo"></img> */}
       <div className="container">
         <img src={logo} className="logo"></img>
