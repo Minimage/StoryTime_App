@@ -1,0 +1,107 @@
+.ABusCont {
+  font-size: 2rem;
+  position: relative;
+  /* background-image: url("https://th.bing.com/th/id/R.74ddac60e5f0c159c4c067cb8aafecee?rik=uQG0YZlAIo64XA&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f4%2fCoder-Transparent-PNG.png&ehk=OulpE90xj9CO4kkW58rWEumU2kHZMrRX8N1YypWqPno%3d&risl=&pid=ImgRaw&r=0");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(105, 105, 254); */
+  padding: 0;
+  margin: 0;
+}
+.ABusCont::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url("https://th.bing.com/th/id/R.74ddac60e5f0c159c4c067cb8aafecee?rik=uQG0YZlAIo64XA&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f4%2fCoder-Transparent-PNG.png&ehk=OulpE90xj9CO4kkW58rWEumU2kHZMrRX8N1YypWqPno%3d&risl=&pid=ImgRaw&r=0");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(2, 2, 254, 0.5);
+  filter: blur(2px);
+}
+.navbar {
+  max-height: 100px;
+  border-bottom: 3px solid #000;
+  background-image: url("https://th.bing.com/th/id/R.07c9835561a53a76416a0cb95fc434e2?rik=fuTQVMAAf9tndw&pid=ImgRaw&r=0");
+  background-size: contain;
+  background-position: left center;
+}
+
+.slide {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+img {
+  height: 150px;
+  margin-right: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  transform: translateX(-1600px);
+  transition: transform 2s ease;
+  box-shadow: 5px 5px black;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.left {
+  text-align: center;
+  background-color: rgb(53, 170, 212);
+  opacity: 1;
+  z-index: 100;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 15px 15px black;
+  transform: translatex(1600px);
+  transition: transform 2s ease;
+}
+
+.active {
+  transform: translatex(0);
+}
+.modal {
+  opacity: 0;
+  z-index: -1;
+}
+
+.is-open {
+  text-align: center;
+  background-color: rgb(53, 170, 212);
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 15px 15px;
+  min-width: 675px;
+  padding: 5px;
+}
+
+.footer {
+  border-top: 3px solid #000;
+  background: white;
+  background-image: url("https://st.depositphotos.com/1016498/2963/i/950/depositphotos_29638025-stock-photo-shanghai-pudong-skyline-view-from.jpg");
+  background-size: contain;
+  background-position: left center;
+}
+.text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.name {
+  color: #03254c;
+  font-size: 2.5rem;
+  letter-spacing: 5px;
+}

@@ -146,15 +146,15 @@ class Lesson1_vocab(db.Model):
     
     def serialize(self):
         return {
-        "id" : self.id,
-        "word" : self.word,
-        "mandarin" : self.mandarin,
-        "phonetic" : self.phonetic,
-        "phoneticM" : self.phoneticM,
-        "images" : self.images,
-        "part_of_speech" : self.part_of_speech,
-        
-    }
+            "id" : self.id,
+            "word" : self.word,
+            "mandarin" : self.mandarin,
+            "phonetic" : self.phonetic,
+            "phoneticM" : self.phoneticM,
+            "images" : self.images,
+            "part_of_speech" : self.part_of_speech,
+            
+        }
         
 # _______________________________________________________________________________________________
 

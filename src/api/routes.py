@@ -8,7 +8,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail,Email,From,To,Content
 from dotenv import load_dotenv
 import os
-import requests
+
 
 load_dotenv()
 
@@ -249,7 +249,7 @@ def words():
     return "Success the words have been added", 200
 
 
-@api.route("/lesson1_vocab/<int:id>")
+@api.route("/lesson/<int:id>")
 def get_lesson1_vocab(id):
     lesson1_vocab = Lesson1_vocab.query.filter_by(id=id).one_or_none()
     return jsonify(lesson1_vocab.serialize()), 200
@@ -277,14 +277,14 @@ def Answers():
     
 @api.route('/vocab_words/<string:word>', methods=['GET'])
 def vocab_word(word):
-    resp = requests.get(
-        'https://api.dictionaryapi.dev/api/v2/entries/en/{word}'.format(word=word)
+    resp = request.get(
+        'https://api.dictionaryapi.dev/media/pronounciations/en/{word}-1-us.mp3'.format(word=word)
     ).json()
     
     mp3 = resp[0].get("phonetics",[{}])
     mp3_file = list(filter(lambda item: item["audio"] != "",mp3))[0]
     
 
-    return jsonify(audio=mp3_file["audio"])
+    return jsonify(audio=mp3_file["audio"].serialize())
 
  
