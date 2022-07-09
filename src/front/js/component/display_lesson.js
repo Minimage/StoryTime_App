@@ -26,16 +26,22 @@ const LessonComponent = (props) => {
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
-    actions.myData();
-    actions.getQuestions();
-    actions.getOptions();
-
-    // actions.getWords()
-
     if (!store.token) {
       navigate("/login");
     }
-  }, []);
+  }, [store.token]),
+    useEffect(() => {
+      actions.syncTokenFromSessionStore();
+      actions.myData();
+      actions.getQuestions();
+      actions.getOptions();
+
+      // actions.getWords()
+
+      if (!store.token) {
+        navigate("/login");
+      }
+    }, []);
 
   useEffect(() => {
     setOptions(store.myOptions);

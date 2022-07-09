@@ -12,8 +12,8 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar navbar-light bg-light">
-      <img src={logo} className="logo"></img>
       <div className="container">
+        <img src={logo} className="logo"></img>
         <Link to="/">
           <span className="navbar-brand mb-0 h1 ">Home</span>
         </Link>
