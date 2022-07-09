@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
 import { useNavigate, Link } from "react-router-dom";
-import ProgressBar from "./progressBar"
+import ProgressBar from "./progressBar";
 // import {ProgressBar} from "./component/progressBar";
-
-
 
 export const Questions = (props) => {
   const { store, actions } = useContext(Context);
@@ -21,6 +19,7 @@ export const Questions = (props) => {
     setLesson1(firstLesson);
   }, [store.myQuestion]);
 
+  // ok
   return (
     <div>
       {/* <h1 style={{ textAlign: "center" }}>{data && data.lesson_para}</h1>
