@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -82,6 +83,8 @@ const LessonComponent = (props) => {
   const n = 3;
   const arr = [];
 
+  const lengthOfMyQuestion = store.myQuestion.length;
+
   if (n === 0) {
     console.log(null);
   }
@@ -108,6 +111,9 @@ const LessonComponent = (props) => {
     setProg(prog + increment);
     <Link to={`/display_lesson/${parseInt(props.index) + 1}`} />;
     setCount(count + 1);
+    if (count === lengthOfMyQuestion - 1) {
+      navigate("/ratings");
+    }
   };
 
   useEffect(() => {
