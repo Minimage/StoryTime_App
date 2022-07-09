@@ -55,7 +55,7 @@ const Layout = () => {
               <Route path="/display_lesson/:question_id" element={<LessonComponent />} />
               <Route path="/ResetPassword" element={<ResetPassword />} />
               <Route path="/Data" element={<Data />} />
-              <Route path="/Ratings" element={<Ratings />} />
+              <Route path="/ratings" element={<Ratings />} />
               <Route path="/about_us" element={<AboutUs />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

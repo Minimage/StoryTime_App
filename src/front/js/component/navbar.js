@@ -1,17 +1,30 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { userContext } from "../pages/global_context";
 import { Context } from "../store/appContext";
 // import logo from "../../img/profile-pic.png";
 import "../../styles/styles.css";
-import logo from "../../img/new-story-time-logo.png";
+import logo from "../../img/new-story-time-logo.png"
+// import logo2 from "../../img/alan's-storytime-logo.svg"
 
 export const Navbar = () => {
   const { auth, setAuth } = useContext(userContext);
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  
+  const redirect = () => {
+    actions.logout()
 
+      // actions.syncTokenFromSessionStore();
+      // if (store.token === null) {
+      //   navigate("/ratings");
+  // }
+}
   return (
     <nav className="navbar navbar-light bg-light">
+      <img src={logo} className="logo"></img>
+      {/* <img src={logo2} className="logo"></img> */}
       <div className="container">
         <img src={logo} className="logo"></img>
         <Link to="/">
@@ -49,6 +62,8 @@ export const Navbar = () => {
                 // <Link to={"/ratings"}>
                 //   actions.logout(),
                 // </Link>;
+              
+                redirect()       
               }}
             >
               Log Out

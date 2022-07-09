@@ -17,16 +17,22 @@ const LessonComponent = (props) => {
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
 
+  const [myInt, setMyInt] = useState(0);
   const randOption2 = Math.floor(Math.random() * options.length);
   const randOption3 = Math.floor(Math.random() * options.length);
 
-  console.log(randOption2, "randOption 2 new");
-  console.log(randOption3, "randOption 3 new");
+  // console.log(randOption2, "randOption 2 new");
+  // console.log(randOption3, "randOption 3 new");
 
   console.log(store);
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
+    actions.myData();
+    actions.getQuestions();
+    actions.getOptions();
+  
+
     if (!store.token) {
       navigate("/login");
     }
@@ -46,27 +52,16 @@ const LessonComponent = (props) => {
 
   useEffect(() => {
     setOptions(store.myOptions);
-    console.log(store.myOptions, "first useState");
+    
   }, [store.myOptions]);
-  console.log(options, "options new");
+  // console.log(options, "options new");
+
+  
 
   let ints = [];
   for (let x = 0; x < store.myOptions.length; x++) {
     ints.push(x);
   }
-
-  // useEffect(() => {
-  //   console.log(store.myOptions);
-  //   const firstOption = store.myOptions[ints[0]]
-  //   console.log(firstOption, "this is firstOption");
-  //   setRandOption2(firstOption)
-
-  // if(firstOption.id) {
-  //   let newArray = store.myOptions.filter(option => option.id != firstOption.id)
-  //   setRandOption3(newArray[ints[0]])
-  // }
-
-  // }, [options]);
 
   // console.log(randOption2, "option2")
   // console.log(randOption3, "option3")
@@ -165,7 +160,7 @@ const LessonComponent = (props) => {
                   >
                     <h1 className="box1">{store.myOptions[1]?.option}</h1>
                     {/* <h1 className="box1">食物</h1> */}
-                    {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
+                    
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Shíwù</p> */}
@@ -190,7 +185,7 @@ const LessonComponent = (props) => {
                     </h1>
 
                     {/* <h1 className="box2">车</h1> */}
-                    {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
+                    
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Chē</p> */}
@@ -205,7 +200,7 @@ const LessonComponent = (props) => {
                         </audio>
                       )}
                       {/* ___________________________________________________________________________________________________________*/}
-                      {/* {console.log(store.wordLink.data)} */}
+                      
                     </div>
                   </div>
 
@@ -218,7 +213,7 @@ const LessonComponent = (props) => {
                       {options.length > 0 && options[randOption3]?.option}
                     </h1>
                     {/* <h1 className="box3">卫生间</h1> */}
-                    {/* <img src="https://picsum.photos/seed/picsum/350/200" id="main-image" className="card-img-top" alt="..." /> */}
+                    
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Wei sheng jian</p> */}
@@ -240,13 +235,9 @@ const LessonComponent = (props) => {
                 <div style={{ color: "blue", marginTop: "20px" }}>
                   {/* <h3 className="answer-alert">That is Correct!!</h3> */}
                   <div style={{ textAlign: "center" }}>
-                    {/* <h2 className="progress-bar">Space for progressBar</h2> */}
-                    {/* <div className="progress-bar">
-                      <span style={{ width: "25%" }}></span>
-                    </div> */}
-                    {/* <img src="https://reactscript.com/wp-content/uploads/2016/11/Circular-Progress-Indicator-Component-For-React.png"></img> */}
+                    
                   </div>
-                  {console.log(randOption2, "randOption 2 NOT FIRST")}
+                  {/* {console.log(randOption2, "randOption 2 NOT FIRST")}
                   {console.log(randOption3, "randOption 3 NOT FIRST")}
                   {console.log(options[randOption2]?.audio, "this is audio2")}
                   {console.log(options[randOption3]?.audio, "this is audio3")}
