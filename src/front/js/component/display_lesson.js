@@ -180,7 +180,10 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!")}
                   >
                     <h1 className="box2">
-                      {options.length > 0 && options[ints[1]]?.option}
+                      {options.length > 0 &&
+                      options[ints[1]]?.option === "食物 Shíwù"
+                        ? randomize(ints)
+                        : options[ints[1]]?.option}
                     </h1>
 
                     {/* <h1 className="box2">车</h1> */}
@@ -208,7 +211,10 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!!")}
                   >
                     <h1 className="box3">
-                      {options.length > 0 && options[ints[2]]?.option}
+                      {options.length > 0 &&
+                      options[ints[2]]?.option === "食物 Shíwù"
+                        ? randomize(ints)
+                        : options[ints[2]]?.option}
                     </h1>
                     {/* <h1 className="box3">卫生间</h1> */}
 
