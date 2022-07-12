@@ -107,8 +107,8 @@ export const AboutUs = () => {
                 <h5>Coder professional</h5>
                 <p className="text">
                   A Texas native, Alan is a musician, full-stack web developer,
-                  gamer, and a soccer player with aspirations of being a full
-                  time coder.{" "}
+                  gamer, and a soccer player with <br></br>aspirations of being
+                  a full time coder.{" "}
                 </p>
               </div>
             </Transform>
