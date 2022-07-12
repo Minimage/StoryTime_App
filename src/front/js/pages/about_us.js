@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 // import Hangmen from "../component/Hangmen.js";
 import { Transform } from "react-animation-components";
 import "../../styles/about_us.css";
+import alanHeadshot from "../../img/headshot_alan.jpg";
 
 // import { motion } from "framer-motion";
 
@@ -92,7 +93,7 @@ export const AboutUs = () => {
               <img
                 id="picture"
                 className={state ? "active" : ""}
-                src="https://ca.slack-edge.com/T0BFXMWMV-U032MF8R23Z-e5010381314f-512"
+                src={alanHeadshot}
               />
             </Transform>
 
