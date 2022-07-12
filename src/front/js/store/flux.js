@@ -232,7 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             const data = await response.json();
             setStore({ wordLink: data });
-            console.log(data);
+            // console.log(data);
             return true;
           }
         } catch (error) {

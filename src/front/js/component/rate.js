@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { PropTypes } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import {faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -26,15 +26,16 @@ const Rate = ({count, rating, color, onRating}) => {
             <FontAwesomeIcon 
                 key={idx}
                 className="cursor-pointer"
-                icon = {faStar}
+                icon = {faHeart}
                 onClick={()=> onRating(idx)}
                 style={{color: getColor(idx)}}
                 onMouseOver={() => setHoverRating(idx)}
                 onMouseLeave={() => setHoverRating(0)}                
             />
+            
         ))
     }, [count, rating, hoverRating])
-
+    
     return (
         <div>
 
