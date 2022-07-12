@@ -7,6 +7,9 @@ import { Questions } from "./questions";
 import TheProgressBar from "./progressBar";
 import { Link } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { AudioPlayerProvider } from "react-use-audio-player";
+import { FaBeer } from "react-icons/fa";
+import ReactLogo from "../../img/alans-storytime-logo.svg";
 
 const LessonComponent = (props) => {
   let navigate = useNavigate();
@@ -16,6 +19,7 @@ const LessonComponent = (props) => {
   const [lesson1, setLesson1] = useState({});
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
+  const [myAudio, setMyAudio] = useState();
 
   const [myInt, setMyInt] = useState(0);
   const randOption2 = Math.floor(Math.random() * options.length);
@@ -51,6 +55,8 @@ const LessonComponent = (props) => {
 
   useEffect(() => {
     setOptions(store.myOptions);
+    setMyAudio(store.myOptions[count]?.audio);
+    console.log(myAudio);
   }, [store.myOptions]);
   // console.log(options, "options new");
 
@@ -110,6 +116,12 @@ const LessonComponent = (props) => {
     }
   };
 
+  let audio = new Audio(myAudio);
+
+  const start = () => {
+    audio.play();
+  };
+
   useEffect(() => {
     if (prog > 100) {
       setProg(100);
@@ -124,7 +136,6 @@ const LessonComponent = (props) => {
     console.log(firstLesson, "firstLesson");
   }, [store.myQuestion]);
 
-  console.log(data, " this is data");
   return (
     <div className="background">
       <div className="mt-1">
@@ -150,7 +161,7 @@ const LessonComponent = (props) => {
             <div>
               {/* <Questions index={params.question_id} /> */}
 
-              <div>
+              <div className="answers">
                 <div style={{ display: "flex" }} className="card-group mt-2">
                   <div
                     style={{ order: a }}
@@ -158,19 +169,16 @@ const LessonComponent = (props) => {
                     onClick={handleclick}
                   >
                     <h1 className="box1">{store.myOptions[1]?.option}</h1>
-                    {/* <h1 className="box1">食物</h1> */}
-
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       {/* <p className="card-text">Shíwù</p> */}
                     </div>
                     <div className="Pronounciation">
-                      {store.audioLink && (
+                      {options.length > 0 && (
                         <audio controls>
-                          <source src={store.audioLink} type="audio/ogg" />
+                          <source src={myAudio} type="audio/mp3" />
                         </audio>
                       )}
-                      {/* ___________________________________________________________________________________________________________*/}
                     </div>
                   </div>
 
@@ -200,7 +208,6 @@ const LessonComponent = (props) => {
                           />
                         </audio>
                       )}
-                      {/* ___________________________________________________________________________________________________________*/}
                     </div>
                   </div>
 
@@ -224,13 +231,11 @@ const LessonComponent = (props) => {
                       {options.length > 0 && (
                         <audio controls>
                           <source
-                            src={options[randOption3]?.audio}
-                            type="audio/ogg"
+                            src={myAudio ? myAudio : "none"}
+                            type="audio/mp3"
                           />
                         </audio>
                       )}
-
-                      {/* ___________________________________________________________________________________________________________*/}
                     </div>
                   </div>
                 </div>
@@ -251,6 +256,21 @@ const LessonComponent = (props) => {
                   >
                     Next Lesson
                   </button> */}
+                  <button onClick={start}>Play</button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                      d="M5.889 16H2a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.889l5.294-4.332a.5.5 0 0 1 .817.387v15.89a.5.5 0 0 1-.817.387L5.89 16zm13.517 4.134l-1.416-1.416A8.978 8.978 0 0 0 21 12a8.982 8.982 0 0 0-3.304-6.968l1.42-1.42A10.976 10.976 0 0 1 23 12c0 3.223-1.386 6.122-3.594 8.134zm-3.543-3.543l-1.422-1.422A3.993 3.993 0 0 0 16 12c0-1.43-.75-2.685-1.88-3.392l1.439-1.439A5.991 5.991 0 0 1 18 12c0 1.842-.83 3.49-2.137 4.591z"
+                      fill="rgba(52,72,94,1)"
+                    />
+                  </svg>
+
+                  <img src={ReactLogo} />
 
                   <ProgressBar
                     completed={prog.toFixed(2)}
