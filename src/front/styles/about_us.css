@@ -43,8 +43,8 @@
   margin-right: 100px;
   border-radius: 50%;
   border: 1px solid black;
-  transform: translateX(-1600px);
-  transition: transform 2s ease;
+  /* transform: translateX(-1600px);
+  transition: transform 2s ease; */
   box-shadow: 5px 5px black;
 }
 
@@ -64,8 +64,8 @@
   border-radius: 10px;
   border: 1px solid black;
   box-shadow: 15px 15px black;
-  transform: translatex(1600px);
-  transition: transform 2s ease;
+  /* transform: translatex(1600px);
+  transition: transform 2s ease; */
 }
 
 .active {

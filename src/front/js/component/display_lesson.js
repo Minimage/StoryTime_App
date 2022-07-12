@@ -14,13 +14,11 @@ const LessonComponent = (props) => {
   const [options, setOptions] = useState([]);
   const randOption2 = Math.floor(Math.random() * options.length);
   const randOption3 = Math.floor(Math.random() * options.length);
-  const [answer, setAnswer] = useState({})
-
+  const [answer, setAnswer] = useState({});
 
   useEffect(() => {
-    setAnswer(store.myQuestion)
-
-  }, [store.myQuestion])
+    setAnswer(store.myQuestion);
+  }, [store.myQuestion]);
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
@@ -31,11 +29,10 @@ const LessonComponent = (props) => {
     if (!store.token) {
       navigate("/login");
     }
-  }, [store.token])
+  }, [store.token]);
 
   useEffect(() => {
     setOptions(store.myOptions);
-
   }, [store.myOptions]);
 
   let ints = [];
@@ -105,25 +102,27 @@ const LessonComponent = (props) => {
   }, [store.myQuestion]);
 
   //this is to stop dupications within the cards
-  if (options[randOption2]?.option === answer[count]?.answer.option ||
-    options[randOption2]?.option === options[randOption3]?.option) {
+  if (
+    options[randOption2]?.option === answer[count]?.answer.option ||
+    options[randOption2]?.option === options[randOption3]?.option
+  ) {
     // options[randOption2]?.option
     // setOptions(options[randOption2]?.option)
   }
 
-  if (options[randOption3]?.option === answer[count]?.answer.option ||
-    options[randOption3]?.option === options[randOption2]?.option) {
+  if (
+    options[randOption3]?.option === answer[count]?.answer.option ||
+    options[randOption3]?.option === options[randOption2]?.option
+  ) {
     // options[randOption3]?.option
     // setOptions(options[randOption3]?.option)
   }
-
 
   return (
     <div className="background">
       <div className="mt-1">
         <div className="container-fluid">
-          <div className="game-section">
-          </div>
+          <div className="game-section"></div>
           <div>
             <h3 className="mt-1">
               Welcome to Story Time {store.userdata.first_name}
@@ -141,7 +140,10 @@ const LessonComponent = (props) => {
 
             <div>
               <div>
-                <div style={{ display: "flex" }} className="card-group mt-2">
+                <div
+                  style={{ display: "flex" }}
+                  className="card-group mt-2 Question-holder"
+                >
                   <div
                     style={{ order: a }}
                     className="card"
@@ -154,10 +156,12 @@ const LessonComponent = (props) => {
                     <div className="Pronounciation">
                       {answer[count]?.answer.audio && (
                         <audio controls>
-                          <source src={answer[count]?.answer.audio} type="audio/ogg" />
+                          <source
+                            src={answer[count]?.answer.audio}
+                            type="audio/ogg"
+                          />
                         </audio>
                       )}
-
                     </div>
                   </div>
 
@@ -193,9 +197,6 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!!")}
                   >
                     <h1 className="box3">
-
-
-
                       {options[ints[2]]?.option === answer[count]?.answer.option
                         ? options[ints[3]]?.option
                         : options[ints[2]]?.option}
@@ -220,10 +221,7 @@ const LessonComponent = (props) => {
                   </div>
                 </div>
                 <div style={{ color: "blue", marginTop: "20px" }}>
-
-                  <div style={{ textAlign: "center" }}>
-
-                  </div>
+                  <div style={{ textAlign: "center" }}></div>
 
                   <ProgressBar
                     completed={prog}
@@ -231,7 +229,6 @@ const LessonComponent = (props) => {
                     bgColor="blue"
                     animateOnRender
                   />
-
                 </div>
               </div>
             </div>
