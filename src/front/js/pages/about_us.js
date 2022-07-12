@@ -46,7 +46,7 @@ export const AboutUs = () => {
                 <h5>Coder professional</h5>
 
                 <p className="text">
-                  a Miami native. Doug is a future Blockchain specialist and
+                  A Miami native. Doug is a future Blockchain specialist and
                   coding expert.
                 </p>
                 <h5>
@@ -76,7 +76,7 @@ export const AboutUs = () => {
                 <h1 className="name">Sean Campbell</h1>
                 <h5>Coder professional</h5>
                 <p className="text">
-                  a New York native. Sean is a musician with aspirations of
+                  A New York native. Sean is a musician with aspirations of
                   being a Python expert{" "}
                 </p>
                 <h5>
@@ -106,8 +106,9 @@ export const AboutUs = () => {
                 <h1 className="name">Alan Martinez</h1>
                 <h5>Coder professional</h5>
                 <p className="text">
-                  a Texas native, Alan is a gamer with a dream of being a coder
-                  for google.{" "}
+                  A Texas native, Alan is a musician, full-stack web developer,
+                  gamer, and a soccer player with aspirations of being a full
+                  time coder.{" "}
                 </p>
               </div>
             </Transform>
