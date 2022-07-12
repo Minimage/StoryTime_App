@@ -69,12 +69,12 @@ export const Navbar = () => {
             </span>
           )}
 
-          <Link to="/User/1">
+          {/* <Link to="/User/1">
             <img
               src={logo}
               className={auth === false ? "hide" : "show" + " profile"}
             />
-          </Link>
+          </Link> */}
 
           {store.token &&
           store.token != "" &&

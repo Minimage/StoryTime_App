@@ -22,21 +22,21 @@ api = Blueprint('api', __name__)
 def reset_password():
     payload = request.get_json()
     user = User.query.filter_by(email=payload["email"]).one_or_none()
-        # if user.email == 'seancampbell914@gmail.com':
-        #     sg = sendgrid.SendGridAPIClient(api_key = os.getenv('SENDGRID_API_KEY'))
-        #     from_email = Email('seancampbell914@gmail.com')
-        #     to_email = To('seancampbell914@gmail.com')
-        #     content = Content("text/plain", "and easy to do anywhere, even with Python")
-        #     myMail = Mail(from_email, to_email,'', content)
+    if user.email == 'seancampbell914@gmail.com':
+        sg = sendgrid.SendGridAPIClient(api_key = os.getenv('SENDGRID_API_KEY'))
+        from_email = Email('seancampbell914@gmail.com')
+        to_email = To('seancampbell914@gmail.com')
+        content = Content("text/plain", "and easy to do anywhere, even with Python")
+        myMail = Mail(from_email, to_email,'', content)
 
-        #     sg.send(myMail)
-        #     print(myMail)
-        #     response_body = {
-        #         "message": 'response.serialize()'
-        #         }
+        sg.send(myMail)
+        print(myMail)
+        response_body = {
+            "message": 'response.serialize()'
+            }
 
-        #     return jsonify(response_body), 200
-        # return 'Sucess'
+    return jsonify(response_body), 200
+    return 'Sucess'
 
     if user:
         message = Mail(

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
+import { useParams, Link } from "react-router-dom";
 import { userContext } from "./global_context";
 import axios from "axios";
 
@@ -70,8 +71,9 @@ export const Login = () => {
         <div id="submit_button">
           <button className="btn btn-primary btn-lg btn-block" onClick={handleClick}>Login</button>
         </div>
-
+              {/* <Route path="/Data" element={<Data />} /> */}
       </div>
+      <Link to={"/ResetPassword"}><h6 style={{textAlign: "center", textdecoration:"underline"}}>forgot password?</h6></Link>
 
       
     </div>

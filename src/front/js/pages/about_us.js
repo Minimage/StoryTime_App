@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import Hangmen from "../component/Hangmen.js";
+// import Hangmen from "../component/Hangmen.js";
 import "../../styles/about_us.css";
 
 // import { motion } from "framer-motion";
@@ -26,7 +26,7 @@ export const AboutUs = () => {
           onClick={toggleOpen}
         >
           <div className="slide">
-            <img
+            <img id="picture"
               className={state ? "active" : ""}
               src="https://ca.slack-edge.com/T0BFXMWMV-U03538G6V9D-ac975af7b40f-512"
             />
@@ -39,10 +39,11 @@ export const AboutUs = () => {
                 a Miami native. Doug is a future Blockchain specialist and
                 coding expert.
               </p>
+              <h5><a href="https://github.com/DougMontas">Github</a> - <a href="https://www.linkedin.com/in/futureitprofessional/">LinkedIn</a></h5>
             </div>
           </div>
           <div className="slide">
-            <img
+            <img id="picture"
               className={state ? "active" : ""}
               src="https://ca.slack-edge.com/T0BFXMWMV-U033E6TK4QK-76ec8fa3b0b4-512"
             />
@@ -54,10 +55,11 @@ export const AboutUs = () => {
                 a New York native. Sean is a musician with aspirations of being
                 a Python expert{" "}
               </p>
+              <h5><a href="https://github.com/Minimage">Github</a> - <a href="https://www.linkedin.com/in/sean-campbell-cpht-437aa780/">LinkedIn</a></h5>
             </div>
           </div>
           <div className="slide">
-            <img
+            <img id="picture"
               className={state ? "active" : ""}
               src="https://ca.slack-edge.com/T0BFXMWMV-U032MF8R23Z-e5010381314f-512"
             />
@@ -72,7 +74,7 @@ export const AboutUs = () => {
             </div>
           </div>
           <div className="slide">
-            <img
+            <img id="picture"
               className={state ? "active" : ""}
               src="https://ca.slack-edge.com/T0BFXMWMV-U02FKP23DEJ-275306524d96-512"
             />
