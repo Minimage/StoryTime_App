@@ -36,7 +36,7 @@ const LessonComponent = (props) => {
   }, [store.myOptions]);
 
   let ints = [];
-  console.log(store.myOptions, "myQuestion");
+  // console.log(store.myOptions, "myQuestion");
   for (let x = 0; x < store.myOptions.length; x++) {
     ints.push(x);
     // console.log("this is x ", x);
@@ -46,7 +46,7 @@ const LessonComponent = (props) => {
 
   const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
   randomize(ints);
-  console.log("randomized ", ints);
+  // console.log("randomized ", ints);
 
   let result1 = Math.floor(Math.random() * randint) + 1;
   let result2 = Math.floor(Math.random() * randint) + 1;

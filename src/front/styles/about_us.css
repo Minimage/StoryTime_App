@@ -43,9 +43,10 @@
   margin-right: 100px;
   border-radius: 50%;
   border: 1px solid black;
-  /* transform: translateX(-1600px);
-  transition: transform 2s ease; */
+  transform-box: translateX(-1600px);
+  transition: transform 2s ease;
   box-shadow: 5px 5px black;
+  
 }
 
 .box {
