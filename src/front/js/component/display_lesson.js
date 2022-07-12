@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { Questions } from "./questions";
-import TheProgressBar from "./progressBar";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const LessonComponent = (props) => {
@@ -16,15 +12,15 @@ const LessonComponent = (props) => {
   const [lesson1, setLesson1] = useState({});
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
-
-  const [myInt, setMyInt] = useState(0);
   const randOption2 = Math.floor(Math.random() * options.length);
   const randOption3 = Math.floor(Math.random() * options.length);
+  const [answer, setAnswer] = useState({})
 
-  // console.log(randOption2, "randOption 2 new");
-  // console.log(randOption3, "randOption 3 new");
 
-  console.log(store);
+  useEffect(() => {
+    setAnswer(store.myQuestion)
+
+  }, [store.myQuestion])
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
@@ -35,24 +31,12 @@ const LessonComponent = (props) => {
     if (!store.token) {
       navigate("/login");
     }
-  }, [store.token]),
-    useEffect(() => {
-      actions.syncTokenFromSessionStore();
-      actions.myData();
-      actions.getQuestions();
-      actions.getOptions();
-
-      // actions.getWords()
-
-      if (!store.token) {
-        navigate("/login");
-      }
-    }, []);
+  }, [store.token])
 
   useEffect(() => {
     setOptions(store.myOptions);
+
   }, [store.myOptions]);
-  // console.log(options, "options new");
 
   let ints = [];
   console.log(store.myOptions, "myQuestion");
@@ -60,8 +44,6 @@ const LessonComponent = (props) => {
     ints.push(x);
     // console.log("this is x ", x);
   }
-  // console.log(randOption2, "option2")
-  // console.log(randOption3, "option3")
 
   let randint = store.myOptions.length;
 
@@ -103,7 +85,6 @@ const LessonComponent = (props) => {
 
   let handleclick = () => {
     setProg(prog + increment);
-    <Link to={`/display_lesson/${parseInt(props.index) + 1}`} />;
     setCount(count + 1);
     if (count === lengthOfMyQuestion - 1) {
       navigate("/ratings");
@@ -121,16 +102,27 @@ const LessonComponent = (props) => {
   useEffect(() => {
     let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
     setLesson1(firstLesson);
-    console.log(firstLesson, "firstLesson");
   }, [store.myQuestion]);
 
-  console.log(data, " this is data");
+  //this is to stop dupications within the cards
+  if (options[randOption2]?.option === answer[count]?.answer.option ||
+    options[randOption2]?.option === options[randOption3]?.option) {
+    // options[randOption2]?.option
+    // setOptions(options[randOption2]?.option)
+  }
+
+  if (options[randOption3]?.option === answer[count]?.answer.option ||
+    options[randOption3]?.option === options[randOption2]?.option) {
+    // options[randOption3]?.option
+    // setOptions(options[randOption3]?.option)
+  }
+
+
   return (
     <div className="background">
       <div className="mt-1">
         <div className="container-fluid">
           <div className="game-section">
-            {/* Section for the games / games selection */}
           </div>
           <div>
             <h3 className="mt-1">
@@ -148,8 +140,6 @@ const LessonComponent = (props) => {
             </div>
 
             <div>
-              {/* <Questions index={params.question_id} /> */}
-
               <div>
                 <div style={{ display: "flex" }} className="card-group mt-2">
                   <div
@@ -157,20 +147,17 @@ const LessonComponent = (props) => {
                     className="card"
                     onClick={handleclick}
                   >
-                    <h1 className="box1">{store.myOptions[1]?.option}</h1>
-                    {/* <h1 className="box1">食物</h1> */}
-
+                    <h1 className="box1">{answer[count]?.answer.option}</h1>
                     <div className="card-body">
                       <h5 className="card-title"></h5>
-                      {/* <p className="card-text">Shíwù</p> */}
                     </div>
                     <div className="Pronounciation">
-                      {store.audioLink && (
+                      {answer[count]?.answer.audio && (
                         <audio controls>
-                          <source src={store.audioLink} type="audio/ogg" />
+                          <source src={answer[count]?.answer.audio} type="audio/ogg" />
                         </audio>
                       )}
-                      {/* ___________________________________________________________________________________________________________*/}
+
                     </div>
                   </div>
 
@@ -180,16 +167,13 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!")}
                   >
                     <h1 className="box2">
-                      {options[ints[1]]?.option === "食物 Shíwù"
+                      {options[ints[1]]?.option === answer[count]?.answer.option
                         ? options[ints[4]]?.option
                         : options[ints[1]]?.option}
+                      {/* {options.length > 0 && options[randOption2]?.option} */}
                     </h1>
-
-                    {/* <h1 className="box2">车</h1> */}
-
                     <div className="card-body">
                       <h5 className="card-title"></h5>
-                      {/* <p className="card-text">Chē</p> */}
                     </div>
                     <div className="Pronounciation">
                       {options.length > 0 && (
@@ -200,7 +184,6 @@ const LessonComponent = (props) => {
                           />
                         </audio>
                       )}
-                      {/* ___________________________________________________________________________________________________________*/}
                     </div>
                   </div>
 
@@ -210,15 +193,17 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!!")}
                   >
                     <h1 className="box3">
-                      {options[ints[2]]?.option === "食物 Shíwù"
+
+
+
+                      {options[ints[2]]?.option === answer[count]?.answer.option
                         ? options[ints[3]]?.option
                         : options[ints[2]]?.option}
-                    </h1>
-                    {/* <h1 className="box3">卫生间</h1> */}
 
+                      {/* {options.length > 0 && options[randOption3]?.option} */}
+                    </h1>
                     <div className="card-body">
                       <h5 className="card-title"></h5>
-                      {/* <p className="card-text">Wei sheng jian</p> */}
                     </div>
                     <div className="Pronounciation">
                       {options.length > 0 && (
@@ -235,37 +220,18 @@ const LessonComponent = (props) => {
                   </div>
                 </div>
                 <div style={{ color: "blue", marginTop: "20px" }}>
-                  {/* <h3 className="answer-alert">That is Correct!!</h3> */}
-                  <div style={{ textAlign: "center" }}></div>
-                  {/* {console.log(randOption2, "randOption 2 NOT FIRST")}
-                  {console.log(randOption3, "randOption 3 NOT FIRST")}
-                  {console.log(options[randOption2]?.audio, "this is audio2")}
-                  {console.log(options[randOption3]?.audio, "this is audio3")}
-                </div>
 
-                <div className="next">
-                  {/* <button
-                    type="button"
-                    onClick={actions.loadNextLesson}
-                    className="btn btn-primary btn-lg btn-block"
-                  >
-                    Next Lesson
-                  </button> */}
+                  <div style={{ textAlign: "center" }}>
+
+                  </div>
 
                   <ProgressBar
-                    completed={prog.toFixed(2)}
+                    completed={prog}
                     labelColor="white"
                     bgColor="blue"
                     animateOnRender
                   />
 
-                  {/* Keeping this as it has a turnary for when the progress bar is 100%*/}
-                  {/* <button
-                    className={prog >= 100 ? "hide" : ""}
-                    onClick={handleclick}
-                  >
-                    Next Lesson
-                  </button> */}
                 </div>
               </div>
             </div>

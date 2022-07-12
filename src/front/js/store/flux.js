@@ -109,8 +109,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         const options = {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
+            // "Content-Type": "application/json",
+            // "Access-Control-Allow-Origin": process.env.FRONTEND_URL,
           },
           body: JSON.stringify({
             email: email,

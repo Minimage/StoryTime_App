@@ -29,13 +29,13 @@ export const Questions = (props) => {
 
       <div className="Next_Lesson">
         <Link to={`/display_lesson/${parseInt(props.index) + 1}`}>
-          <button
+          {/* <button
             style={{ alignItems: "center" }}
             type="button"
             className="btn btn-primary btn-lg btn-block"
           >
             Next Lesson
-          </button>
+          </button> */}
         </Link>
       </div>
     </div>
