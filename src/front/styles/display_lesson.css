@@ -26,7 +26,7 @@
 }
 
 .title {
-    text-align: left;
+  text-align: left;
 }
 
 .game-section {
@@ -58,9 +58,8 @@
 }
 
 .Next_Lesson {
-    text-align: center;
-    margin-top: 100px;
-    
+  text-align: center;
+  margin-top: 100px;
 }
 
 .stories {
@@ -68,44 +67,43 @@
   font-size: 20px;
 }
 
-.box1, .box2 , .box3{
-    text-align: center;
-    margin-top: 98px;
-    font-size: 70px;
-    color: rgb(253, 0, 0);
-    margin: 10px;
-    padding: 50px;
-    grid-template-rows: 1fr; 
-    grid-template-columns: 50% 50%;
-    /* float: left;
+.box1,
+.box2,
+.box3 {
+  text-align: center;
+  margin-top: 98px;
+  font-size: 70px;
+  color: rgb(253, 0, 0);
+  margin: 10px;
+  padding: 50px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50% 50%;
+  /* float: left;
     transform: scaleZ(-1); */
-    /* display: flex; */
-      
+  /* display: flex; */
 }
 .card-group div:nth-of-type(1) {
-  order:1;
+  order: 1;
 }
 
-  
- .Pronounciation {
-    text-align: center;
+.Pronounciation {
+  text-align: center;
 }
 
 .card-group :hover {
-    /* border-color: blue; */
-    /* border-color: rgb(4, 4, 4); */
-    /* box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px; */
-    transform: scale(1.06);
-    /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
-    /* transform: translate3d(0px, -1px, 0px); */
+  /* border-color: blue; */
+  /* border-color: rgb(4, 4, 4); */
+  /* box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px; */
+  transform: scale(1.06);
+  /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  /* transform: translate3d(0px, -1px, 0px); */
 }
 
 .lesson_title {
-font-style: italic;
-color: red;
-text-decoration: underline; 
-text-align: center;
-
+  font-style: italic;
+  color: red;
+  text-decoration: underline;
+  text-align: center;
 }
 
 /* .card {
@@ -116,3 +114,15 @@ text-align: center;
     padding: 10px;
     cursor: pointer;
 } */
+
+@media only screen and (max-device-width: 768px) and (min-device-width: 1024px) and (orientation: portrait) {
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+@media only screen and (max-width: 1018px) {
+  .Question-holder {
+    flex-direction: column;
+  }
+}
