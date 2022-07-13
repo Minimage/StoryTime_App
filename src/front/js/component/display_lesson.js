@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
+import LessonBody from "./lesson_body";
 
 const LessonComponent = (props) => {
   let navigate = useNavigate();
@@ -128,7 +129,7 @@ const LessonComponent = (props) => {
               Welcome to Story Time {store.userdata.first_name}
             </h3>
             <h3 className="lesson_title">Lesson 1</h3>
-
+            <LessonBody />
             <div>
               <h1 style={{ textAlign: "center" }}>
                 {lesson1[count]?.lesson_para}
@@ -229,6 +230,14 @@ const LessonComponent = (props) => {
                     bgColor="blue"
                     animateOnRender
                   />
+
+                  {/* Keeping this as it has a turnary for when the progress bar is 100%*/}
+                  {/* <button
+          className={prog >= 100 ? "hide" : ""}
+          onClick={handleclick}
+        >
+          Next Lesson
+        </button> */}
                 </div>
               </div>
             </div>

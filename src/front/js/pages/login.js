@@ -38,17 +38,18 @@ export const Login = () => {
     if (store.token) {
       navigate("/display_lesson/0");
     }
-})
+  });
 
-// useEffect(() => {
-//     if (store.token === null) {
-//       navigate("/ratings")
-//   }
-// })
+  // useEffect(() => {
+  //     if (store.token === null) {
+  //       navigate("/ratings")
+  //   }
+  // })
 
   return (
-    <div className="login">
-      <div>
+    <div>
+      <div className="loginBack"></div>
+      <div className="loginCont">
         <input
           type="text"
           placeholder="Username"
@@ -69,13 +70,20 @@ export const Login = () => {
           required
         ></input>
         <div id="submit_button">
-          <button className="btn btn-primary btn-lg btn-block" onClick={handleClick}>Login</button>
+          <button
+            className="btn btn-primary btn-lg btn-block"
+            onClick={handleClick}
+          >
+            Login
+          </button>
         </div>
-              {/* <Route path="/Data" element={<Data />} /> */}
+        {/* <Route path="/Data" element={<Data />} /> */}
       </div>
-      <Link to={"/ResetPassword"}><h6 style={{textAlign: "center", textdecoration:"underline"}}>forgot password?</h6></Link>
-
-      
+      <Link to={"/ResetPassword"}>
+        <h6 style={{ textAlign: "center", textdecoration: "underline" }}>
+          forgot password?
+        </h6>
+      </Link>
     </div>
   );
 };
