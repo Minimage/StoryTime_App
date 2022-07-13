@@ -40,10 +40,12 @@ const LessonComponent = (props) => {
     let options_left = store.myOptions.filter((item)=> {
       if(item.option != answer[count]?.answer.option) {
         return item
-      } 
+      }
     })
+
     let option_2 = options_left[Math.floor(Math.random() * options_left.length)]
     setOption2(option_2)
+    
     let final_options = options_left.filter((item) => {
       if(item.option != option_2.option){
         return item
@@ -53,7 +55,7 @@ const LessonComponent = (props) => {
     setOption3(option_3)
 
 
-  },[store.options, answer])
+  },[store.options, count])
 
   let ints = [];
 
@@ -62,16 +64,12 @@ const LessonComponent = (props) => {
     ints.push(x);
     // console.log("this is x ", x);
   }
-
-
+  
   let randint = store.myOptions.length;
 
   const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
   randomize(ints);
   // console.log("randomized ", ints);
-
-
-
 
   // let rand_values = ints.map((num) => {
   //   return options[num]    
@@ -126,22 +124,28 @@ const LessonComponent = (props) => {
 
   const data = store.myQuestion[props.index];
 
-  useEffect(() => {
-    let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
-    setLesson1(firstLesson);
-  }, [store.myQuestion]);
+  // useEffect(() => {
+  //   let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
+  //   setLesson1(firstLesson);
+  // }, [store.myQuestion]);
 
   let card2 = () => {
-      let card2_data = options[ints[2]]?.option === answer[count]?.answer.option
-      ? options[ints[3]]?.option && options[ints[3]]?.audio
-      : options[ints[2]]?.option && options[ints[2]]?.audio
+      let card2_data = option2?.option === answer[count]?.answer.option
+      ? option3?.option && option3?.audio
+      : option2?.option  && option2?.audio
 
       return card2_data
     }
-    console.log(card2(),"this CARD2 INFO")
-  console.log("this is the ANSWER!!", answer)
+  console.log(card2(),"this CARD2 INFO")
+  
   console.log("this is the option2!!", option2)
   console.log("this is the option3!!", option3)
+  // console.log("THIS IS OPTION 2", option_2)
+  // console.log("THIS IS OPTION 3", option_3)
+  // console.log("THIS IS FINAL OPTION", final_options)
+    console.log("this is option2--AUDIO--LINK",option2?.audio)
+    console.log("this is option3--AUDIO--LINK",option3?.audio)
+
 
   return (
     <div className="background">
@@ -153,7 +157,7 @@ const LessonComponent = (props) => {
               Welcome to Story Time {store.userdata.first_name}
             </h3>
             <h3 className="lesson_title">Lesson 1</h3>
-            <LessonBody />
+            {/* <LessonBody /> */}
             <div>
               <h1 style={{ textAlign: "center" }}>
                 {lesson1[count]?.lesson_para}
@@ -175,7 +179,6 @@ const LessonComponent = (props) => {
                     onClick={handleclick}
                   >
                     <h1 className="box1">{answer[count]?.answer.option}</h1>
-                    {console.log(answer[count]?.answer.option, "this is answer")}
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                     </div>
@@ -186,7 +189,6 @@ const LessonComponent = (props) => {
                             src={answer[count]?.answer.audio}
                             type="audio/ogg"
                             />
-                            {console.log(answer[count]?.answer.audio,"this answer audio")}
                         </audio>
                       )}
                     </div>
