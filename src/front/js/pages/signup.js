@@ -42,109 +42,113 @@ export const Signup = () => {
 
   //_____________________________________________________________________
   return (
-    <div className="container-fluid" id="signup_form">
-      <form>
-        <label for="fname"></label>
-        <input
-          required
-          type="text"
-          id="fname"
-          placeholder="First Name"
-          name="fname"
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
+    <div>
+      <div classname="loginCont"></div>
 
-        <label for="lname"></label>
-        <input
-          type="text"
-          id="lname"
-          placeholder="Last Name"
-          name="lname"
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        ></input>
-        <label for="username"></label>
-        <input
-          type="text"
-          id="username"
-          placeholder="Username"
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-        ></input>
+      <div className="container-fluid loginBack" id="signup_form">
+        <form className="">
+          <label for="fname"></label>
+          <input
+            required
+            type="text"
+            id="fname"
+            placeholder="First Name"
+            name="fname"
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+          />
 
-        <label for="password"></label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        ></input>
+          <label for="lname"></label>
+          <input
+            type="text"
+            id="lname"
+            placeholder="Last Name"
+            name="lname"
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          ></input>
+          <label for="username"></label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          ></input>
 
-        <label for="email"></label>
-        <input
-          type="text"
-          id="email"
-          // placeholder="Email"
-          placeholder="✉️ Email"
-          name="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        ></input>
+          <label for="password"></label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
 
-        <div className="toggle">
-          <label class="container">
-            Beginner
-            <input
-              type="checkbox"
-              checked={beginner}
-              onClick={beginnerOnChange}
-            />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            Intermediate
-            <input
-              type="checkbox"
-              checked={intermediate}
-              onClick={intermediateOnChange}
-              required
-            ></input>
-            <span class="checkmark"></span>
-          </label>
-        </div>
+          <label for="email"></label>
+          <input
+            type="text"
+            id="email"
+            // placeholder="Email"
+            placeholder="✉️ Email"
+            name="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
 
-        <input
-          type="submit"
-          value="Submit"
-          onClick={() => {
-            if (
-              firstName == "" ||
-              lastName == "" ||
-              email == "" ||
-              userName == "" ||
-              password == ""
-            ) {
-              alert("all fields are required");
-            } else {
-              actions.createUser(
-                firstName,
-                lastName,
-                email,
-                userName,
-                password,
-                navigate("/login")
-              );
-            }
-          }}
-        />
-      </form>
+          <div className="toggle">
+            <label class="container">
+              Beginner
+              <input
+                type="checkbox"
+                checked={beginner}
+                onClick={beginnerOnChange}
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">
+              Intermediate
+              <input
+                type="checkbox"
+                checked={intermediate}
+                onClick={intermediateOnChange}
+                required
+              ></input>
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <input
+            type="submit"
+            value="Submit"
+            onClick={() => {
+              if (
+                firstName == "" ||
+                lastName == "" ||
+                email == "" ||
+                userName == "" ||
+                password == ""
+              ) {
+                alert("all fields are required");
+              } else {
+                actions.createUser(
+                  firstName,
+                  lastName,
+                  email,
+                  userName,
+                  password,
+                  navigate("/login")
+                );
+              }
+            }}
+          />
+        </form>
+      </div>
     </div>
   );
   //_____________________________________________________________________

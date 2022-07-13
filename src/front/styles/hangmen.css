@@ -31,3 +31,13 @@
   font-size: 2.5rem;
   box-shadow: 10px 10px 10px black;
 }
+.inactive {
+  background-color: gray;
+  color: rgb(232, 204, 215);
+  position: relative;
+  display: inline-block;
+  padding: 0.7rem;
+  margin: 3px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}

@@ -26,69 +26,73 @@ export const Navbar = () => {
       {/* <img src={logo2} className="logo"></img> */}
       <div className="container">
         <img src={logo} className="logo"></img>
-        <Link to="/">
-          <span className="navbar-brand mb-0 h1 ">Home</span>
-        </Link>
+        <div className="links">
+          <Link to="/">
+            <span className=" route mb-0 h1 ">Home</span>
+          </Link>
 
-        <Link to="/about_us">
-          <span className="navbar-brand mb-0 h1 ">About Us</span>
-        </Link>
+          <Link to="/about_us">
+            <span className="route mb-0 h1 ">About Us</span>
+          </Link>
 
-        <div className="ml-auto">
-          {store.token == "null" ||
-          (store.token == null &&
-            store.token != "" &&
-            store.token != "undefined") ? (
-            <Link to="/Login">
-              <span
-                className={
-                  auth === true ? "hide" : "show" + " btn btn-primary texter"
-                }
-              >
-                Login
-              </span>
-            </Link>
-          ) : (
-            <span
-              style={{ textDecoration: "underline", color: "blue" }}
-              className="navbar-brand mb-0 h1"
-              onClick={() => {
-                actions.logout();
-                // <Link to={"/ratings"}>actions.logout()</Link>;
-                // if (actions.logout()) {
-                //   <Link to={"/ratings"}></Link>;
-                // }
-                // <Link to={"/ratings"}>
-                //   actions.logout(),
-                // </Link>;
-
-                redirect();
-              }}
-            >
-              Log Out
-            </span>
-          )}
-
-          {/* <Link to="/User/1">
-            <img
-              src={logo}
-              className={auth === false ? "hide" : "show" + " profile"}
-            />
-          </Link> */}
-
-          {store.token &&
-          store.token != "" &&
-          store.token != undefined &&
-          store.token != null &&
-          store.token != "null" ? (
-            ""
-          ) : (
-            <div className="ml-auto">
-              <Link to="/signup">
-                <div className={auth === true ? "hide" : "show"}>Sign up </div>
+          <div className="ml-auto">
+            {store.token == "null" ||
+            (store.token == null &&
+              store.token != "" &&
+              store.token != "undefined") ? (
+              <Link to="/Login">
+                <span
+                  className={
+                    auth === true ? "hide" : "show" + " btn btn-primary texter"
+                  }
+                >
+                  Login
+                </span>
               </Link>
-            </div>
-          )}
+            ) : (
+              <span
+                style={{ textDecoration: "underline", color: "blue" }}
+                className="route mb-0 h1"
+                onClick={() => {
+                  actions.logout();
+                  // <Link to={"/ratings"}>actions.logout()</Link>;
+                  // if (actions.logout()) {
+                  //   <Link to={"/ratings"}></Link>;
+                  // }
+                  // <Link to={"/ratings"}>
+                  //   actions.logout(),
+                  // </Link>;
+
+                  redirect();
+                }}
+              >
+                Log Out
+              </span>
+            )}
+
+            {/* <Link to="/User/1">
+              <img
+                src={logo}
+                className={auth === false ? "hide" : "route" + " profile"}
+              />
+            </Link> */}
+
+            {store.token &&
+            store.token != "" &&
+            store.token != undefined &&
+            store.token != null &&
+            store.token != "null" ? (
+              ""
+            ) : (
+              <div className="ml-auto">
+                <Link to="/signup">
+                  <div className={auth === true ? "hide" : "show"}>
+                    Sign up{" "}
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>
