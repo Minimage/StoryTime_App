@@ -61,7 +61,7 @@
   background-image: url("https://th.bing.com/th/id/R.07c9835561a53a76416a0cb95fc434e2?rik=fuTQVMAAf9tndw&pid=ImgRaw&r=0");
   background-size: contain;
   background-position: left center;
-  animation: moveIt 10s linear infinite;
+  animation: moveIt 20s linear infinite;
 }
 
 @keyframes moveIt {
