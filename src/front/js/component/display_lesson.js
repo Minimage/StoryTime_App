@@ -13,9 +13,9 @@ const LessonComponent = (props) => {
   const [lesson1, setLesson1] = useState({});
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
+  const randOption2 = Math.floor(Math.random() * options.length);
+  const randOption3 = Math.floor(Math.random() * options.length);
   const [answer, setAnswer] = useState({});
-  const [option2, setOption2] = useState({})
-  const [option3, setOption3] = useState({})
 
   useEffect(() => {
     setAnswer(store.myQuestion);
@@ -36,45 +36,18 @@ const LessonComponent = (props) => {
     setOptions(store.myOptions);
   }, [store.myOptions]);
 
-  useEffect(() => {
-    let options_left = store.myOptions.filter((item)=> {
-      if(item.option != answer[count]?.answer.option) {
-        return item
-      }
-    })
-
-    let option_2 = options_left[Math.floor(Math.random() * options_left.length)]
-    setOption2(option_2)
-    
-    let final_options = options_left.filter((item) => {
-      if(item.option != option_2.option){
-        return item
-      }
-    })
-    let option_3 = final_options[Math.floor(Math.random() * options_left.length)]
-    setOption3(option_3)
-
-
-  },[store.options, count])
-
   let ints = [];
-
   // console.log(store.myOptions, "myQuestion");
   for (let x = 0; x < store.myOptions.length; x++) {
     ints.push(x);
     // console.log("this is x ", x);
   }
-  
+
   let randint = store.myOptions.length;
 
   const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
   randomize(ints);
   // console.log("randomized ", ints);
-
-  // let rand_values = ints.map((num) => {
-  //   return options[num]    
-  // })
-  // console.log("randomized ", rand_values)
 
   let result1 = Math.floor(Math.random() * randint) + 1;
   let result2 = Math.floor(Math.random() * randint) + 1;
@@ -124,28 +97,27 @@ const LessonComponent = (props) => {
 
   const data = store.myQuestion[props.index];
 
-  // useEffect(() => {
-  //   let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
-  //   setLesson1(firstLesson);
-  // }, [store.myQuestion]);
+  useEffect(() => {
+    let firstLesson = store.myQuestion.filter((item) => item.lessons == 1);
+    setLesson1(firstLesson);
+  }, [store.myQuestion]);
 
-  let card2 = () => {
-      let card2_data = option2?.option === answer[count]?.answer.option
-      ? option3?.option && option3?.audio
-      : option2?.option  && option2?.audio
+  //this is to stop dupications within the cards
+  if (
+    options[randOption2]?.option === answer[count]?.answer.option ||
+    options[randOption2]?.option === options[randOption3]?.option
+  ) {
+    // options[randOption2]?.option
+    // setOptions(options[randOption2]?.option)
+  }
 
-      return card2_data
-    }
-  console.log(card2(),"this CARD2 INFO")
-  
-  console.log("this is the option2!!", option2)
-  console.log("this is the option3!!", option3)
-  // console.log("THIS IS OPTION 2", option_2)
-  // console.log("THIS IS OPTION 3", option_3)
-  // console.log("THIS IS FINAL OPTION", final_options)
-    console.log("this is option2--AUDIO--LINK",option2?.audio)
-    console.log("this is option3--AUDIO--LINK",option3?.audio)
-
+  if (
+    options[randOption3]?.option === answer[count]?.answer.option ||
+    options[randOption3]?.option === options[randOption2]?.option
+  ) {
+    // options[randOption3]?.option
+    // setOptions(options[randOption3]?.option)
+  }
 
   return (
     <div className="background">
@@ -157,7 +129,7 @@ const LessonComponent = (props) => {
               Welcome to Story Time {store.userdata.first_name}
             </h3>
             <h3 className="lesson_title">Lesson 1</h3>
-            {/* <LessonBody /> */}
+            <LessonBody />
             <div>
               <h1 style={{ textAlign: "center" }}>
                 {lesson1[count]?.lesson_para}
@@ -188,7 +160,7 @@ const LessonComponent = (props) => {
                           <source
                             src={answer[count]?.answer.audio}
                             type="audio/ogg"
-                            />
+                          />
                         </audio>
                       )}
                     </div>
@@ -200,11 +172,9 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!")}
                   >
                     <h1 className="box2">
-                      {option2?.option}
-                      {/* {options[ints[1]]?.option === answer[count]?.answer.option
+                      {options[ints[1]]?.option === answer[count]?.answer.option
                         ? options[ints[4]]?.option
                         : options[ints[1]]?.option}
-                        {console.log( options[ints[1]]?.option, "this is the second card")} */}
                       {/* {options.length > 0 && options[randOption2]?.option} */}
                     </h1>
                     <div className="card-body">
@@ -214,10 +184,9 @@ const LessonComponent = (props) => {
                       {options.length > 0 && (
                         <audio controls>
                           <source
-                            src={option2?.audio}
+                            src={options[randOption2]?.audio}
                             type="audio/ogg"
                           />
-                         
                         </audio>
                       )}
                     </div>
@@ -229,11 +198,10 @@ const LessonComponent = (props) => {
                     onClick={() => alert("try again!!")}
                   >
                     <h1 className="box3">
-                      {option3?.option}
-                      {/* {options[ints[2]]?.option === answer[count]?.answer.option
+                      {options[ints[2]]?.option === answer[count]?.answer.option
                         ? options[ints[3]]?.option
                         : options[ints[2]]?.option}
-                       {console.log(options[ints[2]]?.option, "this is the 3rd card")} */}
+
                       {/* {options.length > 0 && options[randOption3]?.option} */}
                     </h1>
                     <div className="card-body">
@@ -243,12 +211,10 @@ const LessonComponent = (props) => {
                       {options.length > 0 && (
                         <audio controls>
                           <source
-                            src={option3?.audio}
+                            src={options[randOption3]?.audio}
                             type="audio/ogg"
                           />
-                         
                         </audio>
-                      
                       )}
 
                       {/* ___________________________________________________________________________________________________________*/}
