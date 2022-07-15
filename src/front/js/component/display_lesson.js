@@ -14,54 +14,53 @@ const LessonComponent = (props) => {
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
   const [answer, setAnswer] = useState({});
-  const [option2, setOption2] = useState({})
-  const [option3, setOption3] = useState({})
+  const [option2, setOption2] = useState({});
+  const [option3, setOption3] = useState({});
 
-  const [audio2, setAudio2] = useState("")
-  const [audio3, setAudio3] = useState("")
-  const [ansAudio, setAnsAudio] = useState("")
+  const [audio2, setAudio2] = useState("");
+  const [audio3, setAudio3] = useState("");
+  const [ansAudio, setAnsAudio] = useState("");
 
-  const answerAudio = useRef()
-  const audioRef2 = useRef()
-  const audioRef3 = useRef()
-
-
+  const answerAudio = useRef();
+  const audioRef2 = useRef();
+  const audioRef3 = useRef();
 
   const updateAudio2 = (audio) => {
-    setAudio2(audio)
-    if(audioRef2.current){
+    setAudio2(audio);
+    if (audioRef2.current) {
       // audioRef2.current.pause();
       audioRef2.current.load();
       // audioRef2.current.play();
     }
-  }
+  };
   const updateAudio3 = (audio) => {
-    setAudio3(audio)
-    if(audioRef3.current){
+    setAudio3(audio);
+    if (audioRef3.current) {
       // audioRef3.current.pause();
       audioRef3.current.load();
       // audioRef3.current.play();
     }
-  }
+  };
 
   const updateAnswerAudio = (audio) => {
-    setAnsAudio(audio)
-    if(answerAudio.current){
+    setAnsAudio(audio);
+    if (answerAudio.current) {
       // audioRef2.current.pause();
       answerAudio.current.load();
       // audioRef2.current.play();
     }
-  }
+  };
 
   // useEffect(() => {
   //   updateAnswerAudio(answer[count].answer.audio)
   // }, [count])
-  console.log(answer)
+  console.log(answer);
 
   useEffect(() => {
-   updateAudio2(option2?.audio)
-   updateAudio3(option3?.audio)
-  }, [option3])
+    updateAudio2(option2?.audio);
+    updateAudio3(option3?.audio);
+    updateAnswerAudio(answer[count]?.answer.audio);
+  }, [option3]);
 
   useEffect(() => {
     setAnswer(store.myQuestion);
@@ -83,31 +82,28 @@ const LessonComponent = (props) => {
   }, [store.myOptions]);
 
   useEffect(() => {
-    let options_left = store.myOptions.filter((item)=> {
-      if(item.option != answer[count]?.answer.option) {
-        return item
-      } 
-      
-    })
-    let option_2 = options_left[Math.floor(Math.random() * options_left.length)]
-    // console.log(option_2)
-    setOption2(option_2)
-
-    
-    let final_options = options_left.filter((item) => {
-      if(item.option != option_2.option){
-        return item
+    let options_left = store.myOptions.filter((item) => {
+      if (item.option != answer[count]?.answer.option) {
+        return item;
       }
-    })
-    let option_3 = final_options[Math.floor(Math.random() * options_left.length)]
+    });
+    let option_2 =
+      options_left[Math.floor(Math.random() * options_left.length)];
+    // console.log(option_2)
+    setOption2(option_2);
+
+    let final_options = options_left.filter((item) => {
+      if (item.option != option_2.option) {
+        return item;
+      }
+    });
+    let option_3 =
+      final_options[Math.floor(Math.random() * options_left.length)];
     // console.log(option_3)
-    setOption3(option_3)
+    setOption3(option_3);
 
-    updateAnswerAudio(answer[count]?.answer.audio)
-
-  },[count])
-  
-  
+    updateAnswerAudio(answer[count]?.answer.audio);
+  }, [count]);
 
   let ints = [];
 
@@ -117,18 +113,14 @@ const LessonComponent = (props) => {
     // console.log("this is x ", x);
   }
 
-
   let randint = store.myOptions.length;
 
   const randomize = (arr) => arr.sort(() => 0.5 - Math.random());
   randomize(ints);
   // console.log("randomized ", ints);
 
-
-
-
   // let rand_values = ints.map((num) => {
-  //   return options[num]    
+  //   return options[num]
   // })
   // console.log("randomized ", rand_values)
 
@@ -185,10 +177,8 @@ const LessonComponent = (props) => {
     setLesson1(firstLesson);
   }, [store.myQuestion]);
 
- 
-  
-  console.log("this is the option2!!", option2)
-  console.log("this is the option3!!", option3)
+  console.log("this is the option2!!", option2);
+  console.log("this is the option3!!", option3);
 
   return (
     <div className="background">
@@ -229,11 +219,8 @@ const LessonComponent = (props) => {
                     <div className="Pronounciation">
                       {answer[count]?.answer.audio && (
                         <audio controls ref={answerAudio}>
-                          <source
-                            src={ansAudio}
-                            type="audio/ogg"
-                            />
-                            {/* {console.log(answer[count]?.answer.audio,"this answer audio")} */}
+                          <source src={ansAudio} type="audio/ogg" />
+                          {/* {console.log(answer[count]?.answer.audio,"this answer audio")} */}
                         </audio>
                       )}
                     </div>
@@ -256,17 +243,11 @@ const LessonComponent = (props) => {
                       <h5 className="card-title"></h5>
                     </div>
                     <div className="Pronounciation">
-                      
-                    {options.length > 0 && (
+                      {options.length > 0 && (
                         <audio controls ref={audioRef2}>
-                          <source
-                            src={audio2}
-                            type="audio/ogg"
-                          />
-                         
+                          <source src={audio2} type="audio/ogg" />
                         </audio>
-                        )}
-                      
+                      )}
                     </div>
                   </div>
 
@@ -289,13 +270,8 @@ const LessonComponent = (props) => {
                     <div className="Pronounciation">
                       {options.length > 0 && (
                         <audio controls ref={audioRef3}>
-                          <source
-                            src={audio3}
-                            type="audio/ogg"
-                          />
-                         
+                          <source src={audio3} type="audio/ogg" />
                         </audio>
-                      
                       )}
 
                       {/* ___________________________________________________________________________________________________________*/}
