@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/display_lesson.css";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
+import useSound from "use-sound";
 import LessonBody from "./lesson_body";
 
 const LessonComponent = (props) => {
@@ -16,10 +17,40 @@ const LessonComponent = (props) => {
   const randOption2 = Math.floor(Math.random() * options.length);
   const randOption3 = Math.floor(Math.random() * options.length);
   const [answer, setAnswer] = useState({});
+  const [soundUrl, setSoundUrl] = useState();
+  const testarr = [];
+
+  const [test, setTest] = useState();
+  const [sound, setSound] = useState([]);
+
+  const [playbackRate, setPlaybackRate] = React.useState();
+
+  const [play] = useSound(sound, {
+    playbackRate,
+  });
+
+  const testing = () => {
+    play();
+  };
 
   useEffect(() => {
     setAnswer(store.myQuestion);
   }, [store.myQuestion]);
+
+  useEffect(() => {
+    const newarr = [];
+    const myanswer = Object.values(answer);
+    console.log(myanswer);
+
+    myanswer.map((item, index) => {
+      // setSoundUrl(item);
+      newarr.push(item?.answer?.audio);
+      console.log(newarr);
+      // console.log(soundUrl);
+    });
+
+    // console.log(myanswer[0]?.answer);
+  }, [answer]);
 
   useEffect(() => {
     actions.syncTokenFromSessionStore();
@@ -103,21 +134,21 @@ const LessonComponent = (props) => {
   }, [store.myQuestion]);
 
   //this is to stop dupications within the cards
-  if (
-    options[randOption2]?.option === answer[count]?.answer.option ||
-    options[randOption2]?.option === options[randOption3]?.option
-  ) {
-    // options[randOption2]?.option
-    // setOptions(options[randOption2]?.option)
-  }
+  // if (
+  //   options[randOption2]?.option === answer[count]?.answer.option ||
+  //   options[randOption2]?.option === options[randOption3]?.option
+  // ) {
+  //   // options[randOption2]?.option
+  //   // setOptions(options[randOption2]?.option)
+  // }
 
-  if (
-    options[randOption3]?.option === answer[count]?.answer.option ||
-    options[randOption3]?.option === options[randOption2]?.option
-  ) {
-    // options[randOption3]?.option
-    // setOptions(options[randOption3]?.option)
-  }
+  // if (
+  //   options[randOption3]?.option === answer[count]?.answer.option ||
+  //   options[randOption3]?.option === options[randOption2]?.option
+  // ) {
+  //   // options[randOption3]?.option
+  //   // setOptions(options[randOption3]?.option)
+  // }
 
   return (
     <div className="background">
@@ -138,6 +169,12 @@ const LessonComponent = (props) => {
                 {lesson1[count]?.question}
               </h1>
             </div>
+
+            <button onClick={testing}>
+              <span role="img" aria-label="Heart">
+                💖
+              </span>
+            </button>
 
             <div>
               <div>
@@ -189,6 +226,8 @@ const LessonComponent = (props) => {
                           />
                         </audio>
                       )}
+
+                      {console.log(options[randOption2]?.audio)}
                     </div>
                   </div>
 
