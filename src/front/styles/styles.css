@@ -99,6 +99,13 @@
   width: 500px;
   height: 500px;
   margin: auto;
+ 
+}
+
+.login_background{
+  background-image: url("https://i.pinimg.com/originals/81/b8/22/81b8226888b2ae7aebdcb2f39f4b99d6.png");
+  background-size:contain;
+  
 }
 /* __________________________________________________ */
 

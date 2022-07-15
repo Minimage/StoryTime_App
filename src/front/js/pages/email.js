@@ -24,7 +24,7 @@ export const ResetPassword = () => {
         placeholder="Enter your email"
       />
       <br />
-      <button onClick={handleClick}>Submit</button>
+      <button className = "btn btn-primary btn-lg btn-block" onClick={handleClick}>Submit</button>
       <br />
       <br />
       <br />
