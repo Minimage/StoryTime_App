@@ -70,7 +70,7 @@ export const Home = () => {
             >
               <Transform enterTransform="translateX(30px)" in>
                 <h1 className="heading1">
-                  Ever had a hard time learning something new?
+                  Ever had a hard time learning Mandarin?
                 </h1>
                 <h2 className="heading2">
                   Story Time is a fun and <wbr />
