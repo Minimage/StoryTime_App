@@ -18,8 +18,10 @@ const LessonComponent = (props) => {
   const randOption3 = Math.floor(Math.random() * options.length);
   const [answer, setAnswer] = useState({});
   const [soundUrl, setSoundUrl] = useState();
+  import React, { useRef } from "react";
   const testarr = [];
 
+  const audioRef = useRef();
   const [test, setTest] = useState();
   const [sound, setSound] = useState([]);
 
