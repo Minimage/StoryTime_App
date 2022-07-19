@@ -20,6 +20,7 @@ import { Preloader1 } from "./component/pre_loader1";
 import { Data } from "./pages/Datafetching";
 import { AboutUs } from "./pages/about_us";
 import { Ratings } from "./pages/ratings";
+import { NewDisplay } from "./pages/newDisplay";
 
 const Layout = () => {
   //  This useState hook will be a global hook  that wont allow a user
@@ -52,11 +53,15 @@ const Layout = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/test" element={<Test />} />
               <Route path="/lesson" element={<Lesson />} />
-              <Route path="/display_lesson/:question_id" element={<LessonComponent />} />
+              <Route
+                path="/display_lesson/:question_id"
+                element={<LessonComponent />}
+              />
               <Route path="/ResetPassword" element={<ResetPassword />} />
               <Route path="/Data" element={<Data />} />
               <Route path="/ratings" element={<Ratings />} />
               <Route path="/about_us" element={<AboutUs />} />
+              <Route path="/newDisplay" element={<NewDisplay />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </userContext.Provider>
