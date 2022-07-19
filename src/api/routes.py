@@ -172,7 +172,7 @@ def options():
     return jsonify(myOptions)
 
 @api.route('/options', methods = ['POST'])
-@jwt_required
+@jwt_required()
 def add_options():
     payload = request.get_json()
     for item in payload:
