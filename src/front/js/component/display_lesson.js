@@ -8,7 +8,6 @@ import ProgressBar from "@ramonak/react-progress-bar";
 const LessonComponent = (props) => {
   let navigate = useNavigate();
   const { store, actions } = useContext(Context);
-  const params = useParams();
   const [prog, setProg] = useState(0);
   const [lesson1, setLesson1] = useState({});
   const [count, setCount] = useState(0);
