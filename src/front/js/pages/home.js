@@ -9,13 +9,13 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import "../../styles/home.css";
 import { useEffect } from "react";
+import "../../styles/navbar.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const { hidden, isHidden } = useContext(userContext);
   const [lesson1, setLesson1] = useState({});
   const [options, setOptions] = useState({});
-
 
   useEffect(() => {
     actions.myData();
@@ -78,14 +78,17 @@ export const Home = () => {
                   and everything you've learned!!
                 </h2>
                 {store.token &&
-                  store.token !== null &&
-                  store.token !== undefined ? (
+                store.token !== null &&
+                store.token !== undefined ? (
                   // Authenticated
                   ""
                 ) : (
                   // Unauthenticated
                   <Link to="/signup">
-                    <button type="button" className="btn btn-primary btn-lg btn-block">
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-lg btn-block"
+                    >
                       Start learning today!
                     </button>
                   </Link>
@@ -115,8 +118,7 @@ export const Home = () => {
                     <motion.div
                       animate={{ scale: titleInView ? 1 : 0 }}
                       transition={{ duration: 0.5 }}
-                    >
-                    </motion.div>
+                    ></motion.div>
                   </div>
                 </div>
               </div>

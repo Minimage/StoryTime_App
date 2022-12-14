@@ -1,6 +1,6 @@
 /* Specifically for the login page */
 * {
-  font-family: 'Tangerine', serif;
+  font-family: "Tangerine", serif;
   /* font-size: 48px; */
   text-shadow: 4px 4px 4px #aaa;
 }
@@ -99,13 +99,11 @@
   width: 500px;
   height: 500px;
   margin: auto;
- 
 }
 
-.login_background{
+.login_background {
   background-image: url("https://i.pinimg.com/originals/81/b8/22/81b8226888b2ae7aebdcb2f39f4b99d6.png");
-  background-size:contain;
-  
+  background-size: contain;
 }
 /* __________________________________________________ */
 
@@ -132,7 +130,7 @@
   display: flex;
 }
 
-#submit_button{
+#submit_button {
   display: block;
   width: 100%;
   border: none;
@@ -150,11 +148,9 @@
   width: 100px;
   margin-left: 25px;
 }
-#ourfooter{
-  
+#ourfooter {
   height: 270px;
   text-align: center;
-  
 }
 
 @media only screen and (max-width: 600px) {

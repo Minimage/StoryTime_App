@@ -5,7 +5,7 @@ import { userContext } from "./pages/global_context";
 import { ResetPassword } from "./pages/email";
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
-import { Navbar } from "./component/navbar";
+import { MyNavbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import LessonComponent from "./component/display_lesson";
 import { User } from "./pages/user";
@@ -41,7 +41,7 @@ const Layout = () => {
           <userContext.Provider
             value={{ auth, setAuth, hidden, isHidden, myData, setMyData }}
           >
-            <Navbar />
+            <MyNavbar />
             <Preloader1 />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -52,7 +52,10 @@ const Layout = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/test" element={<Test />} />
               <Route path="/lesson" element={<Lesson />} />
-              <Route path="/display_lesson/:question_id" element={<LessonComponent />} />
+              <Route
+                path="/display_lesson/:question_id"
+                element={<LessonComponent />}
+              />
               <Route path="/ResetPassword" element={<ResetPassword />} />
               <Route path="/Data" element={<Data />} />
               <Route path="/ratings" element={<Ratings />} />
