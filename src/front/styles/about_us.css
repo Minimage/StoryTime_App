@@ -55,23 +55,23 @@
   background-color: rgba(2, 2, 254, 0.5);
   filter: blur(2px);
 }
-.navbar {
+/* .navbar {
   max-height: 100px;
   border-bottom: 3px solid #000;
   background-image: url("https://th.bing.com/th/id/R.07c9835561a53a76416a0cb95fc434e2?rik=fuTQVMAAf9tndw&pid=ImgRaw&r=0");
   background-size: contain;
   background-position: left center;
   animation: moveIt 60s linear infinite;
-}
+} */
 
-@keyframes moveIt {
+/* @keyframes moveIt {
   from {
     background-position: bottom left;
   }
   to {
     background-position: top right;
   }
-}
+} */
 
 .slide {
   display: flex;
@@ -172,13 +172,13 @@
   background-color: rgba(2, 2, 254, 0.5);
   filter: blur(2px);
 }
-.navbar {
+/* .navbar {
   max-height: 100px;
   border-bottom: 3px solid #000;
   background-image: url("https://th.bing.com/th/id/R.07c9835561a53a76416a0cb95fc434e2?rik=fuTQVMAAf9tndw&pid=ImgRaw&r=0");
   background-size: contain;
   background-position: left center;
-}
+} */
 
 .slide {
   display: flex;
