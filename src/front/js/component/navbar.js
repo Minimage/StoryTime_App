@@ -102,7 +102,9 @@ export const MyNavbar = () => {
 
     <Navbar id="navbar" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#home">Logo</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand href="#home">Logo</Navbar.Brand>
+        </Link>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
